@@ -18,6 +18,6 @@ application = get_wsgi_application()
 
 
 
-#Heroku stuff
+#Heroku stuff (whitenoise er en pip dependencie som server statics)
 from whitenoise.django import DjangoWhiteNoise
 application = DjangoWhiteNoise(application)

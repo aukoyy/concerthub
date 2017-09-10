@@ -29,7 +29,7 @@ DEBUG = True #DEEEEEEEEEEEEEEEEEERP!
 # heroku spesifikke ting rundtom, ettersom jeg prøvde litt
 # forskjellig før jeg skjønte hva som føkka til
 
-# Allowed host is neceserry for production --> Heroku stuff
+# Allowed host is necessary for production --> Heroku stuff
 ALLOWED_HOSTS = ['conserthub.herokuapp.com']
 
 
@@ -131,13 +131,16 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+# Herifra og ned har jeg rota litt frem og tilbake for å få Heroku til å funke med statics
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-# Extra places for collectstatic to find static files.
+# Extra places for collectstatic to find static files. Heroku stuff
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )

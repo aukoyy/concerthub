@@ -13,16 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+
+# Legg merke til at jeg har lagt til include på slutten i linjen under
+from django.conf.urls import url, include
+# Dette lar meg bruke urlpatterns fra andre filer enn bare denne
+
 from django.contrib import admin
 
-from coolcats.views import (
-    dont,
-    rocket,
-)
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^cats/$', dont),
-    url(r'^rocket/$', rocket),
+
+    # I linjen under bruker jeg include til å inkludere urls fila fra appen jeg ønsker å inkludere
+    url(r'^coolcats/', include('coolcats.urls')),
+    # Legg merke til at det ikke er noe $ tegn etter coolcats/
+    # $ forteller browseren at url'en er slutt, og om den brukes her, vil ikke cats eller rocket
+    # hentes, selv og man skriver coolcats/cats
+
 ]
