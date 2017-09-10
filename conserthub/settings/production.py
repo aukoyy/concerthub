@@ -23,8 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = '8m^p(c-)&behz4u0rkoxtp@y_k+&its400h3vk5sysvm)wk-yh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #DEEEEEEEEEEEEEEEEEERP!
+# Heroku be fucked og funker ikke om den er satt til False
+# Dette førte også til at det kanskje er noe redundency mtp
+# heroku spesifikke ting rundtom, ettersom jeg prøvde litt
+# forskjellig før jeg skjønte hva som føkka til
 
+# Allowed host is neceserry for production --> Heroku stuff
 ALLOWED_HOSTS = ['conserthub.herokuapp.com']
 
 
@@ -87,7 +92,7 @@ DATABASES = {
     }
 }
 
-#Heroku hobbu dev stuff
+#Heroku hobby dev postgresql db stuff
 import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
@@ -115,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nb'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Oslo'
 
 USE_I18N = True
 
