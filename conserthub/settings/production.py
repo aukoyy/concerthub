@@ -25,7 +25,7 @@ SECRET_KEY = '8m^p(c-)&behz4u0rkoxtp@y_k+&its400h3vk5sysvm)wk-yh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['conserthub.herokuapp.com']
 
 
 # Application definition
@@ -86,6 +86,11 @@ DATABASES = {
     }
 }
 
+#Heroku hobbu dev stuff
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
