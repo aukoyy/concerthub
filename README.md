@@ -18,6 +18,7 @@ $ virtualenv -p python3 it1901
 $ cd it1901
 $ source bin/activate
 $ mkdir src
+$ cd src
 ```
 Remember det dot (".") at the end of following command. It copies all files to current folder,
  as opposed to a new folder with all the files. 
@@ -60,6 +61,7 @@ Go to your preferred code / github folder
 > activate
 > cd ..
 > mkdir src
+> cd src
 ```
 Remember det dot (".") at the end of following command. It copies all files to current folder,
  as opposed to a now folder with all the files. 
