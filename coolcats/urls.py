@@ -18,6 +18,6 @@ from .views import (
 # Ønsker vi den første i browseren skriver vi /coolcats/cats. De legger seg altså etter hverandre
 urlpatterns = [
     url(r'^cats/$', dont),
-    url(r'^rocket/$', rocket),
+    url(r'^rockets/$', rocket),
     # Her brukes $ for å markere slutten på url'en. I motsetning til i prosjektets urls.py
 ]

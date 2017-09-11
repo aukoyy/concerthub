@@ -23,14 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = '8m^p(c-)&behz4u0rkoxtp@y_k+&its400h3vk5sysvm)wk-yh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #DEEEEEEEEEEEEEEEEEERP!
-# Heroku be fucked og funker ikke om den er satt til False
-# Dette førte også til at det kanskje er noe redundency mtp
-# heroku spesifikke ting rundtom, ettersom jeg prøvde litt
-# forskjellig før jeg skjønte hva som føkka til
+DEBUG = True
 
-# Allowed host is necessary for production --> Heroku stuff
-ALLOWED_HOSTS = ['conserthub.herokuapp.com', 'localhost', '127.0.0.1']
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -48,7 +44,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',           # <--WhiteNoise for Heroku
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,11 +87,7 @@ DATABASES = {
     }
 }
 
-#Heroku hobby dev postgresql db stuff
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-DATABASES['default']['CONN_MAX_AGE'] = 500
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -131,18 +122,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-
-# Herifra og ned har jeg rota litt frem og tilbake for å få Heroku til å funke med statics
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-# Extra places for collectstatic to find static files. Heroku stuff
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
