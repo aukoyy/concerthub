@@ -7,8 +7,10 @@ conserthub is the place to be for local and big band to run your gig at gløs
 
 ## Set up on Linux
 
- - Make sure to have virtualenv and pip installed
+Install and configure PostgreSQL
 
+
+ - Make sure to have virtualenv and pip installed
  - Go to your preferred code / github folder
 
 ```
@@ -17,7 +19,7 @@ $ cd it1901
 $ source bin/activate
 $ mkdir src
 $ git clone '[repo link]'
-$ pip install requirements.txt
+$ pip install -r requirements.txt
 ```
 
  You may now test the server <br> 

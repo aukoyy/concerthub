@@ -37,7 +37,12 @@ class Engine(models.Model):
     name = models.CharField(max_length=120)
     propellant = models.CharField(max_length=120)
     # IntegerField er standard felt for heltall
-    isp = models.IntegerField()
+    isp_sl = models.IntegerField(null=True, blank=True)
+    isp_vacuum = models.IntegerField(null=True, blank=True)
+    thrust_sl = models.IntegerField(null=True, blank=True)
+    thrust_vacuum = models.IntegerField(null=True, blank=True)
+    # FloatField er standard felt for flyttall
+    chamber_pressure = models.FloatField(null=True, blank=True)
     # ForeignKey er en måte å opprette relasjon på. Her vil en manufacturer ha mange engines
     manufacturer = models.ForeignKey(Manufacturer, null=True, blank=True)
 
@@ -48,6 +53,8 @@ class Engine(models.Model):
 class LaunchPlatform(models.Model):
     name = models.CharField(max_length=120)
     description = models.TextField(null=True, blank=True)
+    weight = models.IntegerField(null=True, blank=True)
+    height = models.IntegerField(null=True, blank=True)
     manufacturer = models.ForeignKey(Manufacturer)
     engine = models.ForeignKey(Engine, null=True, blank=True)
 
