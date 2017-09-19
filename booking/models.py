@@ -13,6 +13,8 @@ class Concert(models.Model):
     artist = models.CharField(max_length=120)
     stage = models.ForeignKey(Stage)
     date = models.DateField(null=True, blank=True)
+    concert_start_time = models.TimeField(null=True, blank=True)
+    concert_end_time = models.TimeField(null=True, blank=True)
     tickets = models.IntegerField(null=True, blank=True)
     number_of_tech = models.IntegerField(null=True, blank=True)
 
