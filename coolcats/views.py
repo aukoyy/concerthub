@@ -18,7 +18,6 @@ def dont(request):
 
 
 
-
 # For å kunne bruke models, altså tabellene i databasen vår, må de importeres
 from .models import LaunchPlatform
 
