@@ -16,6 +16,9 @@ def dont(request):
 
     return render(request, template_name, context)
 
+def sondre(request):
+    template_name = 'coolcats/sndre.html'
+    return render(request,template_name)
 
 
 # For å kunne bruke models, altså tabellene i databasen vår, må de importeres

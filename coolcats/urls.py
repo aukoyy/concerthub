@@ -9,6 +9,7 @@ from django.conf.urls import url
 # lenger nede. For hver gang dere gjør det, dreper jeg en kul katt. Ikke gjør det >:{
 from .views import (
     dont,
+    sondre,
     rocket,
 )
 
@@ -18,6 +19,7 @@ from .views import (
 # Ønsker vi den første i browseren skriver vi /coolcats/cats. De legger seg altså etter hverandre
 urlpatterns = [
     url(r'^cats/$', dont),
+url(r'^sondre/$', sondre),
     url(r'^rockets/$', rocket),
     # Her brukes $ for å markere slutten på url'en. I motsetning til i prosjektets urls.py
 ]
