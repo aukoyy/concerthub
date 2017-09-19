@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
+
+</head>
+<body>
+
+<table>
+  <tr>
+    <th>Artist</th>
+    <th>Stage</th>
+    <th>Date</th>
+  </tr>
+    {% for concert in concerts %}
+  <tr>
+    <td> {{ concert.artist }}</td>
+    <td> {{ concert.stage }}</td>
+    <td> {{ concert.date }}</td>
+  </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock content %}
