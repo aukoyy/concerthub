@@ -28,7 +28,7 @@ def rocket(request):
 
     # Dette er en query som henter alle objektene i launchplatform inkludert evt. koblinger.
     # Ettersom modellen LaunchPlatform har både Manufacturer og Engine som Foreignkey, kan man
-    # akkessere begge igjennom kun LaunchPlatform.
+    # akksessere begge igjennom kun LaunchPlatform.
     launchPlatforms = LaunchPlatform.objects.all()
 
     context = {
