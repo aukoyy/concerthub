@@ -8,6 +8,7 @@ from django.contrib import admin
 from .models import (
     Manufacturer,
     LaunchPlatform,
+    GitMemes,
     Engine,
 )
 
@@ -16,3 +17,4 @@ from .models import (
 admin.site.register(Manufacturer)
 admin.site.register(LaunchPlatform)
 admin.site.register(Engine)
+admin.site.register(GitMemes)

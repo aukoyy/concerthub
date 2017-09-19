@@ -29,9 +29,10 @@ class Manufacturer(models.Model):
     def __str__(self):
         return self.name
 
-
-
-
+class GitMemes(models.Model):
+    name = models.CharField(max_length=120)
+    def __str__(self):
+        return self.name
 
 class Engine(models.Model):
     name = models.CharField(max_length=120)
