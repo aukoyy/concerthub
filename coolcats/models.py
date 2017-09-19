@@ -4,7 +4,7 @@ from django.db import models
 # Her har jeg laget litt eksempellsnadder som kan brukes til referanse når vi
 # utvikler andre deler av prosjektet.
 
-# Ta en titt på conserthub.herokuapp.com/coolcats/rocket for å se dette i praksis med litt data
+# Ta en titt på conserthub.herokuapp.com/coolcats/rockets for å se dette i praksis med litt data
 # Om jeg har kommet så langt. + /admin vil kunne gi en del innsikt. bruk: - pass: -
 
 # Dette er filen som brukes for å sette opp database-tabeller. En modell, f.eks. Engine vil ved hjelp av
