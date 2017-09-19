@@ -9,17 +9,21 @@
 </head>
 <body>
 
-<table>
+<table class="center">
   <tr>
     <th>Artist</th>
     <th>Stage</th>
     <th>Date</th>
+    <th>Total Tickets</th>
+    <th> Number of Technicians</th>
   </tr>
     {% for concert in concerts %}
   <tr>
     <td> {{ concert.artist }}</td>
     <td> {{ concert.stage }}</td>
     <td> {{ concert.date }}</td>
+    <td> {{ concert.tickets }}</td>
+    <td> {{ concert.number_of_tech }}</td>
   </tr>
     {% endfor %}
 
