@@ -16,5 +16,3 @@ def booking(request):
     return render(request, template_name, context)
 
 
-
-
