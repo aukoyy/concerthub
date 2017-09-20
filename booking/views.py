@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from .models import Concert
 
 # Create your views here.
 
-from .models import Concert
+
 def booking(request):
     template_name = "booking/firstpage.html"
 
