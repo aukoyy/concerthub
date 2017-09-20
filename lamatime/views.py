@@ -5,8 +5,8 @@ import random
 
 
 def basic_lama(request):
-    template_name = 'lama/basic.html'
-    rand = random.randint(0, 8)
+    template_name = 'lamatime/lama.html'
+    rand = random.randint(0, 7)
     lama_names = ['South', 'South-West', 'West', 'North-West', 'North', 'North-East', 'East', 'South-East']
 
     python_version = platform.python_version()
