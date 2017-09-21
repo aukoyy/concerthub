@@ -25,7 +25,6 @@ SECRET_KEY = '8m^p(c-)&behz4u0rkoxtp@y_k+&its400h3vk5sysvm)wk-yh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
 ALLOWED_HOSTS = []
 
 
@@ -40,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'coolcats',
-    'lamatime',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'conserthub.urls'
+ROOT_URLCONF = 'concerthub.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'conserthub.wsgi.application'
+WSGI_APPLICATION = 'concerthub.wsgi.application'
 
 
 # Database
@@ -80,14 +78,13 @@ WSGI_APPLICATION = 'conserthub.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'conserthub_development',
-        'USER': 'conserthub_user',
-        'PASSWORD': 'conserthub_password',
+        'NAME': 'concerthub_development',
+        'USER': 'concerthub_user',
+        'PASSWORD': 'concerthub_password',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
-
 
 
 # Password validation
@@ -112,9 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'nb'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Oslo'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -127,4 +124,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
 
