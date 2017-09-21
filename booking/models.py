@@ -30,3 +30,10 @@ class Concert(models.Model):
     def __str__(self):
         return self.artist
 
+
+class Festival(models.Model):
+    name = models.CharField(max_length=120)
+    concerts = models.ManyToManyField(Concert, verbose_name='list of concerts')
+
+    def _str_(self):
+        return self.name
