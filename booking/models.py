@@ -8,7 +8,6 @@ class Stage(models.Model):
     def __str__(self):
         return self.name
 
-
 class Concert(models.Model):
     artist = models.CharField(max_length=120)
     stage = models.ForeignKey(Stage)
