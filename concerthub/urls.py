@@ -27,11 +27,11 @@ urlpatterns = [
 
     # I linjen under bruker jeg include til å inkludere urls fila fra appen jeg ønsker å inkludere
     url(r'^coolcats/', include('coolcats.urls')),
-<<<<<<< HEAD:conserthub/urls.py
+
     url(r'^booking/', include('booking.urls')),
-=======
+
     url(r'^lama/', include('lamatime.urls')),
->>>>>>> 2aa5ff281c78aa78bd654482b8987c506f97e84a:concerthub/urls.py
+
     # Legg merke til at det ikke er noe $ tegn etter coolcats/
     # $ forteller browseren at url'en er slutt, og om den brukes her, vil ikke cats eller rocket
     # hentes, selv og man skriver coolcats/cats

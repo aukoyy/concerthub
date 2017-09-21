@@ -40,11 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'coolcats',
-<<<<<<< HEAD:conserthub/settings/local.py
     'booking',
-=======
     'lamatime',
->>>>>>> 2aa5ff281c78aa78bd654482b8987c506f97e84a:concerthub/settings/local.py
 ]
 
 MIDDLEWARE = [
