@@ -1,8 +1,8 @@
-![conserthub Logo](https://www.ntnu.no/documents/10310/1272645483/PhD-award-NTNU.jpg/aa8b5a76-c9ce-4876-a116-5b1d4323a240?t=1483311043529)
+![concerthub Logo](https://www.ntnu.no/documents/10310/1272645483/PhD-award-NTNU.jpg/aa8b5a76-c9ce-4876-a116-5b1d4323a240?t=1483311043529)
 
-# conserthub
+# concerthub
 
-conserthub is the place to be for local and big band to run your gig at gløs
+concerthub is the place to be for local and big band to run your gig at gløs
 
 
 ## Set up on Linux

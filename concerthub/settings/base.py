@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'conserthub.urls'
+ROOT_URLCONF = 'concerthub.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'conserthub.wsgi.application'
+WSGI_APPLICATION = 'concerthub.wsgi.application'
 
 
 # Database
@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'conserthub.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'conserthub_development',
-        'USER': 'conserthub_user',
-        'PASSWORD': 'conserthub_password',
+        'NAME': 'concerthub_development',
+        'USER': 'concerthub_user',
+        'PASSWORD': 'concerthub_password',
         'HOST': 'localhost',
         'PORT': '',
     }
