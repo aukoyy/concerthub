@@ -27,9 +27,7 @@ urlpatterns = [
 
     # I linjen under bruker jeg include til å inkludere urls fila fra appen jeg ønsker å inkludere
     url(r'^coolcats/', include('coolcats.urls')),
-
     url(r'^booking/', include('booking.urls')),
-
     url(r'^lama/', include('lamatime.urls')),
 
     # Legg merke til at det ikke er noe $ tegn etter coolcats/
