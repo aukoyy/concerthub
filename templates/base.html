@@ -1,24 +1,30 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ConcertHub</title>
-</head>
-<body>
-
-<div>
-</div>
-
-<div>
-    {% block content %}
-    {% endblock content %}
-</div>
-
-<footer>
-</footer>
-
-</body>
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="utf-8">
+        <title>ConcertHub</title>
+    </head>
+    <body>
+        <header>
+            <a href="/index.html">Home</a>
+            <h1>ConcertHub</h1>
+        </header>
+        <main>
+            <div class="content">
+                <h2>{% block title %}</h2>
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </main>
+        <footer>
+            <div class="footer_section">
+                <h3>Laget av</h3>
+                <p>Aslak, Ebba, Hanna, Håkon og Øyvind</p>
+            </div>
+            <div class="footer_section">
+                <h3>Kontakt oss</h3>
+                <p>Webmaster kan kontaktes på <a href="mailto:kontakt@concerthub.org">epost</a></p>
+            </div>
+        </footer>
+    </body>
 </html>
