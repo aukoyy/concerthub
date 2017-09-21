@@ -1,10 +1,12 @@
 {% extends 'magiclamabase.html' %}
 
+{% load static %}
+
 {% block content %}
 
     <h2>Hi my name is {{ lama_name }}</h2>
 
-    <img alt="The coolest lama ever" src="../../img/lama.jpg">
+    <img alt="The coolest lama ever" src="{% static 'lamatime/img/lama.jpg' %}">
 
     <p>I'm here to help.</p>
 
