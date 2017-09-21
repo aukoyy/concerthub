@@ -4,4 +4,3 @@ from .views import basic_lama
 urlpatterns = [
     url(r'^hi/$', basic_lama),
 ]
-
