@@ -15,14 +15,16 @@ Including another URLconf
 """
 
 # Legg merke til at jeg har lagt til include på slutten i linjen under
-from django.conf.urls import url, include
 # Dette lar meg bruke urlpatterns fra andre filer enn bare denne
-
+from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 
 
 urlpatterns = [
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^admin/', admin.site.urls),
 
     # I linjen under bruker jeg include til å inkludere urls fila fra appen jeg ønsker å inkludere
