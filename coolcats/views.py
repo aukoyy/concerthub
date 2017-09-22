@@ -13,7 +13,6 @@ from .models import LaunchPlatform
 def is_cat(user):
     return True
 
-@user_passes_test(is_cat)
 @login_required(login_url='/login/')
 def dont(request):
     template_name = 'coolcats/lookat.html'
@@ -28,7 +27,6 @@ def dont(request):
         'python_version': python_version,
         'django_version': django_version,
         'user_member_of': user_member_of,
-
     }
 
     return render(request, template_name, context)
@@ -38,6 +36,7 @@ def dont(request):
 
 
 # Her begynner det å bli synlig hvorfor det var så kult å kunne sende stuff til templates i context:
+@user_passes_test(is_cat)
 def rocket(request):
     template_name = 'coolcats/rockets.html'
 

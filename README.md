@@ -2,7 +2,7 @@
 
 # concerthub
 
-concerthub is the place to be for local and big band to run your gig at gløs
+concerthub is the place to be for local and big bands to run your gigs at gløs
 
 
 ## Set up on Linux
@@ -20,7 +20,7 @@ $ source bin/activate
 $ mkdir src
 $ cd src
 ```
-Remember det dot (".") at the end of following command. It copies all files to current folder,
+Remember the dot (".") at the end of following command. It copies all files to current folder,
  as opposed to a new folder with all the files. 
 ```
 $ git clone '[repo link]' .
@@ -63,7 +63,7 @@ Go to your preferred code / github folder
 > mkdir src
 > cd src
 ```
-Remember det dot (".") at the end of following command. It copies all files to current folder,
+Remember the dot (".") at the end of following command. It copies all files to current folder,
  as opposed to a now folder with all the files. 
 ```
 > git clone '[repo link]' .
