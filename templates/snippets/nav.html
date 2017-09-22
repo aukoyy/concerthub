@@ -3,6 +3,13 @@
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'cats' %}">Festivals</a>
         <a href="{% url 'booking' %}">Booking</a>
+
+        {% for group in request.user.groups.all %}
+            {% if group.name == 'technician' %}
+            <a href="{% url 'cats' %}">My Concerts</a>
+            {% endif %}
+        {% endfor %}
+
         <a href="{% url 'about' %}">About</a>
         <a href="{% url 'contact' %}">Contact</a>
 
@@ -16,7 +23,8 @@
             {% endif %}
 
             {% if user.groups.all.0 %}
-                || You have role: {{ user.groups.all.0 }}
+        || You have role: <strong>{{ user.groups.all.0 }}</strong>
+        <!--only shows first role-->
             {% else %}
                 || You do not have a role
             {% endif %}
