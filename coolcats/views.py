@@ -1,17 +1,34 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User, Group
+import platform
+import django
+
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+# For å kunne bruke models, altså tabellene i databasen vår, må de importeres
+from .models import LaunchPlatform
 
 
+
+def is_cat(user):
+    return True
+
+@user_passes_test(is_cat)
+@login_required(login_url='/login/')
 def dont(request):
     template_name = 'coolcats/lookat.html'
 
-    import platform
-    pythonVersion = platform.python_version()
-    import django
-    djangoVersion = django.get_version()
+    python_version = platform.python_version()
+    django_version = django.get_version()
+
+    user = User.objects.get(username="org1")
+    user_member_of = user.groups.all()
 
     context = {
-        'python_version': pythonVersion,
-        'django_version': djangoVersion,
+        'python_version': python_version,
+        'django_version': django_version,
+        'user_member_of': user_member_of,
+
     }
 
     return render(request, template_name, context)
@@ -19,8 +36,6 @@ def dont(request):
 
 
 
-# For å kunne bruke models, altså tabellene i databasen vår, må de importeres
-from .models import LaunchPlatform
 
 # Her begynner det å bli synlig hvorfor det var så kult å kunne sende stuff til templates i context:
 def rocket(request):

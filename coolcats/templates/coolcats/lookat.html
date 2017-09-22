@@ -1,4 +1,4 @@
-{% extends 'catbase.html' %}}
+{% extends 'base.html' %}}
 
 {% block content %}
 
@@ -10,6 +10,22 @@
     Python Version: {{ python_version }}
     <br>
     Django Version: {{ django_version }}
+</p>
+
+<p>
+    The current user is a member of: {{ user_member_of }}
+</p>
+<p>
+    user: {{ user }}<br>
+    .first_name: {{ user.first_name }}<br>
+    .last_name: {{ user.last_name }}<br>
+    .password: {{ user.password }}<br>
+    .user_permissions: {{ user.user_permissions }}<br>
+    .has_perm: {{ user.has_perm }}<br>
+    .groups: {{ user.groups }}<br>
+    .groups.0: {{ user.groups.all.0 }}<br>
+    .is_staff: {{ user.is_staff }}<br>
+
 </p>
 
 <img alt="Cool Cats Don't Look At Explosions" src="https://i.imgflip.com/106ijj.jpg">
