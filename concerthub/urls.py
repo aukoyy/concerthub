@@ -24,7 +24,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # url(r'^$', some_view),
 
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
@@ -32,11 +31,9 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
+    url(r'^foot/$', TemplateView.as_view(template_name='footer_test.html'), name='foot'),
 
     url(r'^booking/', include('booking.urls')),
-
-
-
 
 
 

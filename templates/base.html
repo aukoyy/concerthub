@@ -4,15 +4,19 @@
 <html lang="nb">
     <head>
         <meta charset="utf-8">
-        <title>ConcertHub</title>
+        <title>{% block head_title %}ConcertHub{% endblock head_title %}</title>
+        <link rel="icon" href="{% static 'img/mic-logo.png' %}" type="image/gif" sizes="16x16">
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+
     </head>
+
     <body>
+
         <header>
             <h1>ConcertHub</h1>
         </header>
-            {% include 'snippets/nav.html' %}
 
+            {% include 'snippets/nav.html' %}
 
         <main>
             <div class="content">
@@ -26,5 +30,6 @@
         <footer>
             {% include 'snippets/footer.html' %}
         </footer>
+
     </body>
 </html>
