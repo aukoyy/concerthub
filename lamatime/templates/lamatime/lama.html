@@ -1,10 +1,14 @@
-{% extends 'magiclamabase.html' %}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}LAMAMAMA{% endblock title %}
 
 {% block content %}
 
     <h2>Hi my name is {{ lama_name }}</h2>
 
-    <img alt="The coolest lama ever" src="../../img/lama.jpg">
+    <img alt="The coolest lama ever" src="{% static 'lamatime/img/lama.jpg' %}">
 
     <p>I'm here to help.</p>
 
@@ -13,3 +17,4 @@
     <p>Have a nice day.</p>
 
 {% endblock content %}
+

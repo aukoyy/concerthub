@@ -1,24 +1,31 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ConcertHub</title>
-</head>
-<body>
+{% load static %}
 
-<div>
-</div>
+<!DOCTYPE html>
+<html lang="nb">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block head_title %}ConcertHub{% endblock head_title %}</title>
+        <link rel="icon" href="{% static 'img/mic-logo.png' %}" type="image/gif" sizes="16x16">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+    </head>
 
-<div>
-    {% block content %}
-    {% endblock content %}
-</div>
+    <body>
+        <header>
+            <h1>ConcertHub</h1>
+            {% include 'snippets/nav.html' %}
+        </header>
 
-<footer>
-</footer>
+        <main>
+            <div class="content">
+                <h2>{% block title %}{% endblock title %}</h2>
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </main>
 
-</body>
+        <footer>
+            {% include 'snippets/footer.html' %}
+        </footer>
+
+    </body>
 </html>

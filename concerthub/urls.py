@@ -14,20 +14,31 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
-# Legg merke til at jeg har lagt til include på slutten i linjen under
-from django.conf.urls import url, include
-# Dette lar meg bruke urlpatterns fra andre filer enn bare denne
 
+from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic import TemplateView
 
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
+
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
+    url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
+    url(r'^foot/$', TemplateView.as_view(template_name='footer_test.html'), name='foot'),
+
+    url(r'^booking/', include('booking.urls')),
+
+
+
     # I linjen under bruker jeg include til å inkludere urls fila fra appen jeg ønsker å inkludere
     url(r'^coolcats/', include('coolcats.urls')),
-    url(r'^booking/', include('booking.urls')),
     url(r'^lama/', include('lamatime.urls')),
 
     # Legg merke til at det ikke er noe $ tegn etter coolcats/

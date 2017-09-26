@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block head_title %}About || {{ block.super }}{% endblock head_title %}
+
+
+{% block content %}
+
+<style>
+
+    .text {
+        margin: 5%;
+    }
+
+    p {
+    font-family: "Times New Roman", Times, serif;
+    }
+
+    img {
+        width: 100%;
+    }
+
+</style>
+
+
+
+<h1>About us</h1>
+
+<div class="text">
+    <p>
+        Sloths are mammals classified in the families Megalonychidae (two-toed sloths) and Bradypodidae (three-toed sloths).
+        There are six extant species of sloths. They are named after the capital sin of sloth because they seem slow and
+        lazy at first glance; however, their usual idleness is due to metabolic adaptations for conserving energy. Aside
+        from their surprising bursts of speed during emergency flights from predators, other notable traits of sloths
+        include their strong body, the ability to swim, and the fact that they host symbiotic algae on their fur.
+    </p>
+
+    <img alt="nope" src="http://kids.nationalgeographic.com/content/dam/kids/photos/animals/Mammals/Q-Z/sloth-beach-upside-down.adapt.945.1.jpg">
+
+</div>
+
+
+
+{% endblock content %}

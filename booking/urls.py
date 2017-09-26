@@ -3,7 +3,7 @@ from .views import (
     booking,
 )
 
-urlpatterns = [
-    url(r'^firstpage/$', booking),
-]
 
+urlpatterns = [
+    url(r'^firstpage/$', booking, name='booking'),
+]

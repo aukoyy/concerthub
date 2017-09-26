@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block head_title %}Home || {{ block.super }}{% endblock head_title %}
+
+{% load static %}
+
+
+{% block content %}
+
+<h1>Home to ConcertHub</h1>
+
+<h2>Welcome to us</h2>
+
+<img alt="people dancing" src="{% static 'img/concert.jpg' %}" style="width:100%">
+
+{% endblock content %}
