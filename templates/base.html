@@ -7,16 +7,13 @@
         <title>{% block head_title %}ConcertHub{% endblock head_title %}</title>
         <link rel="icon" href="{% static 'img/mic-logo.png' %}" type="image/gif" sizes="16x16">
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
-
     </head>
 
     <body>
-
         <header>
             <h1>ConcertHub</h1>
-        </header>
-
             {% include 'snippets/nav.html' %}
+        </header>
 
         <main>
             <div class="content">
@@ -25,7 +22,6 @@
                 {% endblock content %}
             </div>
         </main>
-
 
         <footer>
             {% include 'snippets/footer.html' %}

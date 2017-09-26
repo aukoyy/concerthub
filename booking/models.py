@@ -9,6 +9,18 @@ class Stage(models.Model):
         return self.name
 
 
+class Festival(models.Model):
+    name = models.CharField(max_length=120)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    start_time = models.TimeField(null=True, blank=True)
+    end_time = models.TimeField(null=True, blank=True)
+    tickets = models.IntegerField(null=True, blank=True)
+
+    def _str_(self):
+        return self.name
+
+
 class Concert(models.Model):
     artist = models.CharField(max_length=120)
     stage = models.ForeignKey(Stage)
@@ -17,6 +29,7 @@ class Concert(models.Model):
     concert_end_time = models.TimeField(null=True, blank=True)
     tickets = models.IntegerField(null=True, blank=True)
     number_of_tech = models.IntegerField(null=True, blank=True)
+    festival = models.ForeignKey(Festival, null=True, blank=True)
 
     # Cheeky solution, switch to .clean() when enough knowledge.
     def save(self, force_insert=False, force_update=False, using=None,
@@ -28,12 +41,3 @@ class Concert(models.Model):
 
     def __str__(self):
         return self.artist
-
-
-class Festival(models.Model):
-    name = models.CharField(max_length=120)
-    concerts = models.ManyToManyField(Concert, verbose_name='list of concerts')
-
-    def _str_(self):
-        return self.name
-
