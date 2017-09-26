@@ -50,7 +50,7 @@
         <li>
             {% for group in request.user.groups.all %}
                 {% if group.name == 'technician' %}
-                <a href="{% url 'cats' %}">My Concerts</a>
+                <a href="{% url 'myconcerts' %}">My Concerts</a>
                 {% endif %}
             {% endfor %}
         </li>

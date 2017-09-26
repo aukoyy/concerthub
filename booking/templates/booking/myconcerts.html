@@ -8,37 +8,30 @@
 </head>
 <body>
     <table class="container">
-        <caption class="title1">Overview of planned concerts</caption>
+        <caption class="title1">Overview of your concerts</caption>
         <tr>
             <th>Artist</th>
             <th>Stage</th>
             <th>Start time</th>
             <th>End time</th>
-            <th>Total Tickets</th>
-            <!--<th> Number of Technicians</th>-->
+            <th>Tech meet-up time</th>
+            <th>Tech done time</th>
         </tr>
-        {% for concert in concerts %}
+        {% for concert in myconcerts %}
         <tr>
             <td> {{ concert.name }}</td>
             <td> {{ concert.stage_id }}</td>
             <td> {{ concert.concert_start_time }}</td>
             <td> {{ concert.concert_end_time }}</td>
-            <td> {{ concert.tickets }}</td>
-            <td>
-            {% for tech in  concert.technicians.all %}
-                {{ tech }}
-            {% endfor %}
-            </td>
+            <td> {{ concert.tech_meetup_time}}</td>
+            <td> {{ concert.tech_done_time}}</td>
 
-
-
-            <td> {{ concert.sold_tickets }}</td>
-            <!--<td> {{ concert.number_of_tech }}</td>-->
         </tr>
         {% endfor %}
 
+
+
+
     </table>
-
-
 
 {% endblock content %}

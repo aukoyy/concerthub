@@ -7,28 +7,25 @@
 
 {{ concerts }}<br>
 
-{% for tech in  concerts.2.technicians.all %}
-    {{ tech }}
+<br>
+For loop techs in concert 3:<br>
+{% for tech in  concerts.3.technicians.all %}
+    {{ tech }}<br>
 {% endfor %}
 
-<br><br><br>
+<br><br>
+consert 2, alle teknikkere<br>
 {{ concerts.2.technicians.all.0 }}
-<br><br><br>
-
-user_objs {{ user_objs }}
-<br><br><br>
+<br><br>
 
 
 <h1>hvilke konserter skal jeg på?</h1>
-<p>user 5 is tech1^^</p>
 <hr>
+<br>
+For loop concerts in users:<br>
 {% for con in users_concerts %}
     konsert {{ forloop.counter }}: {{ con }}<br>
 {% endfor %}
-Konserter: {{ users_concerts.1 }}
-<br>
-techs: {{ techs }}
-cur: {{ cur }}
 
 
 
