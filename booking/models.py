@@ -41,7 +41,7 @@ class Concert(models.Model):
     # Not the best solution, should implement validation with clear.All() Method
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        if self.stage.capacity < self.tickets:
+        if self.stage_id.audience_cap < self.sold_tickets:
             raise Exception("Cant add more tickets than stage capacity")
         else:
             super(Concert, self).save()
