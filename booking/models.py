@@ -31,7 +31,7 @@ class Concert(models.Model):
     number_of_tech = models.IntegerField(null=True, blank=True)
     festival = models.ForeignKey(Festival, null=True, blank=True)
 
-    # Cheeky solution, switch to .clean() when enough knowledge.
+    # Not the best solution, should implement validation with clear.All() Method
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         if self.stage.capacity < self.tickets:
