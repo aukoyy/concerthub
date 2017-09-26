@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Stage(models.Model):
@@ -21,6 +22,7 @@ class Festival(models.Model):
         return self.name
 
 
+
 class Concert(models.Model):
     artist = models.CharField(max_length=120)
     stage = models.ForeignKey(Stage)
@@ -30,6 +32,7 @@ class Concert(models.Model):
     tickets = models.IntegerField(null=True, blank=True)
     number_of_tech = models.IntegerField(null=True, blank=True)
     festival = models.ForeignKey(Festival, null=True, blank=True)
+    technicians = models.ManyToManyField(User)
 
     # Not the best solution, should implement validation with clear.All() Method
     def save(self, force_insert=False, force_update=False, using=None,

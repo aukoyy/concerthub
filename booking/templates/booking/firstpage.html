@@ -26,10 +26,19 @@
             <td> {{ concert.concert_start_time }}</td>
             <td> {{ concert.concert_end_time }}</td>
             <td> {{ concert.tickets }}</td>
-            <td> {{ concert.number_of_tech }}</td>
+            <td>
+            {% for tech in  concert.technicians.all %}
+                {{ tech }}
+            {% endfor %}
+            </td>
+
+
+
         </tr>
         {% endfor %}
 
     </table>
+
+
 
 {% endblock content %}
