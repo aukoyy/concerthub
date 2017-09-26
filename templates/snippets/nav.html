@@ -1,0 +1,90 @@
+<style>
+
+    nav {
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    nav ul {
+        list-style: none;
+    }
+
+    nav li {
+        float: left;
+    }
+
+    nav a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    nav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    nav a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .logintext {
+        color: #CC3434;
+        float: right;
+        margin-right: 3em;
+    }
+
+</style>
+
+<div class="container">
+    <nav>
+        <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'booking' %}">Program</a></li>
+
+        <li>
+            {% for group in request.user.groups.all %}
+                {% if group.name == 'technician' %}
+                <a href="{% url 'cats' %}">My Concerts</a>
+                {% endif %}
+            {% endfor %}
+        </li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'lama' %}">_=Lama=_</a></li>
+        <li><a href="{% url 'cats' %}">_=Cat=_</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+        <li><a href="{% url 'foot' %}">Foot</a></li>
+        </ul>
+
+        <ul class="logintext">
+        <li>
+        {% if user.is_authenticated %}
+
+            {% if user.first_name %}
+                || Currently logged in as: <strong>{{ user.first_name }}</strong> <a href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+                || Currently logged in as: <strong>{{ user }}</strong> <a href="{% url 'logout' %}">Log Out</a>
+            {% endif %}
+
+            {% if user.groups.all.0 %}
+                || You have role: <strong>{{ user.groups.all.0 }}</strong>
+                <!--only shows first role-->
+            {% else %}
+                || You do not have a role
+            {% endif %}
+
+        {% else %}
+            || Currently not logged in <a href="{% url 'login' %}">Log In</a>
+
+        {% endif %}
+        </li>
+        </ul>
+    </nav>
+</div>
+
+<!--https://codepen.io/chorijan/pen/aqDpo-->

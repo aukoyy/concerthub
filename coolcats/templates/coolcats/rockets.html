@@ -1,15 +1,16 @@
-{% extends 'catbase.html' %}
+{% extends 'base.html' %}
+
+{% load static %}
 
 {% block content %}
 
-{% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'coolcats/rocket.css' %}" />
 
 </head>
 <body>
 
-<table>
+<table align="center">
   <tr>
     <th>Name</th>
     <th>Company</th>
@@ -25,7 +26,7 @@
     <td>{{ launcher.manufacturer }}</td>
     <td>{{ launcher.engine }}</td>
     <td>{{ launcher.engine.propellant }}</td>
-    <td>{{ launcher.engine.isp }}s</td>
+    <td>{{ launcher.engine }}s</td>
     <td>{{ launcher.engine.manufacturer }}</td>
     <td>{{ launcher.description }}</td>
   </tr>
