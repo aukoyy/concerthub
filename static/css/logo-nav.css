@@ -4,8 +4,14 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logo-nav/blob/master/LICENSE)
  */
 
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
 body {
-    padding-top: 54px;
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
 }
 
 @media (min-width: 992px) {

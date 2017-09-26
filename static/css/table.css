@@ -1,14 +1,35 @@
-/*
-	Side Navigation Menu V2, RWD
-	===================
-	License:
-	https://goo.gl/EaUPrt
-	===================
-	Author: @PableraShow
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    color: #A7A1AE;
+    background-color: #1F2739;
+}
 
- */
+h1 {
+    font-size: 3em;
+    font-weight: 300;
+    line-height: 1em;
+    text-align: center;
+}
 
-@charset "UTF-8";
+h2 {
+    font-size: 1em;
+    font-weight: 300;
+    text-align: center;
+    display: block;
+    line-height: 1em;
+    padding-bottom: 2em;
+    color: #FB667A;
+}
+
+h2 a {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FB667A;
+    text-decoration: none;
+}
+
 .blue {
     color: #185875;
 }
