@@ -18,8 +18,6 @@
     <link href="{% static 'css/login.css' %}" rel="stylesheet"></link>
     <!-- Custom styles for this template -->
 
-
-
 </head>
 
 <body>
@@ -51,9 +49,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
-
-
-
+                </ul>
+                <ulc class="navbar ml-auto">
                     <li class="nav-item">
                         {% if user.is_authenticated %} {% if user.first_name %}
                         <strong>{{ user.first_name }}</strong>
@@ -65,8 +62,7 @@
                         {% else %} {% endif %} {% else %}
                         <a class "nav-link" href="{% url 'login' %}">Log In</a> {% endif %}
                     </li>
-                </ul>
-
+                    </ul>
 
 
 
@@ -80,9 +76,6 @@
     <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-    </script>
 
 </body>
 
