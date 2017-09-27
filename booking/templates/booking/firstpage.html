@@ -1,8 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
 <body>
-    <table class="container">
-        <caption class="title1">Overview of planned concerts</caption>
+    <table class="containertable">
         <tr>
             <th>Artist</th>
             <th>Stage</th>
@@ -19,9 +18,7 @@
             <td> {{ concert.concert_end_time }}</td>
             <td> {{ concert.tickets }}</td>
             <td>
-            {% for tech in  concert.technicians.all %}
-                {{ tech }}
-            {% endfor %}
+                {% for tech in concert.technicians.all %} {{ tech }} {% endfor %}
             </td>
             <td> {{ concert.sold_tickets }}</td>
             <!--<td> {{ concert.number_of_tech }}</td>-->
@@ -30,4 +27,4 @@
 
     </table>
 
-{% endblock content %}
+    {% endblock content %}
