@@ -3,31 +3,30 @@
 
 {% block content %}
 
+    {{ concerts }}<br>
 
+    <br>
+    For loop techs in concert 3:
+    <br>
+    {% for tech in  concerts.3.technicians.all %}
+        {{ tech }}
+        <br>
+    {% endfor %}
 
-{{ concerts }}<br>
+    <br><br>
+    consert 2, alle teknikkere
+    <br>
+    {{ concerts.2.technicians.all.0 }}
+    <br><br>
 
-<br>
-For loop techs in concert 3:<br>
-{% for tech in  concerts.3.technicians.all %}
-    {{ tech }}<br>
-{% endfor %}
-
-<br><br>
-consert 2, alle teknikkere<br>
-{{ concerts.2.technicians.all.0 }}
-<br><br>
-
-
-<h1>hvilke konserter skal jeg på?</h1>
-<hr>
-<br>
-For loop concerts in users:<br>
-{% for con in users_concerts %}
-    konsert {{ forloop.counter }}: {{ con }}<br>
-{% endfor %}
-
-
-
+    <h1>hvilke konserter skal jeg på?</h1>
+    <hr>
+    <br>
+    For loop concerts in users:
+    <br>
+    {% for con in users_concerts %}
+        konsert {{ forloop.counter }}: {{ con }}
+        <br>
+    {% endfor %}
 
 {% endblock content %}
