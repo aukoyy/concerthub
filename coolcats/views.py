@@ -20,13 +20,13 @@ def dont(request):
     python_version = platform.python_version()
     django_version = django.get_version()
 
-    user = User.objects.get(username="org1")
-    user_member_of = user.groups.all()
+    # user = User.objects.get(username="org1")
+    # user_member_of = user.groups.all()
 
     context = {
         'python_version': python_version,
         'django_version': django_version,
-        'user_member_of': user_member_of,
+        # 'user_member_of': user_member_of,
     }
 
     return render(request, template_name, context)

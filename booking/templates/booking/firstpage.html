@@ -1,10 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-{% block content %}
-    {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
+<table class="containertable">
+    <tr>
+        <th>Artist</th>
+        <th>Stage</th>
+        <th>Date</th>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Total Tickets</th>
+        <th> Number of Technicians</th>
+    </tr>
+    {% for concert in concerts %}
+    <tr>
+        <td> {{ concert.artist }}</td>
+        <td> {{ concert.stage }}</td>
+        <td> {{ concert.date }}</td>
+        <td> {{ concert.concert_start_time }}</td>
+        <td> {{ concert.concert_end_time }}</td>
+        <td> {{ concert.tickets }}</td>
+        <td> {{ concert.number_of_tech }}</td>
+    </tr>
+    {% endfor %}
 
+<<<<<<< HEAD
 </head>
 <body>
     <table class="container">
@@ -12,24 +31,33 @@
         <tr>
             <th>Artist</th>
             <th>Stage</th>
-            <th>Date</th>
             <th>Start time</th>
             <th>End time</th>
             <th>Total Tickets</th>
-            <th> Number of Technicians</th>
+            <!--<th> Number of Technicians</th>-->
         </tr>
         {% for concert in concerts %}
         <tr>
-            <td> {{ concert.artist }}</td>
-            <td> {{ concert.stage }}</td>
-            <td> {{ concert.date }}</td>
+            <td> {{ concert.name }}</td>
+            <td> {{ concert.stage_id }}</td>
             <td> {{ concert.concert_start_time }}</td>
             <td> {{ concert.concert_end_time }}</td>
             <td> {{ concert.tickets }}</td>
-            <td> {{ concert.number_of_tech }}</td>
+            <td>
+            {% for tech in  concert.technicians.all %}
+                {{ tech }}
+            {% endfor %}
+            </td>
+            <td> {{ concert.sold_tickets }}</td>
+            <!--<td> {{ concert.number_of_tech }}</td>-->
         </tr>
         {% endfor %}
 
     </table>
+=======
+</table>
+>>>>>>> master
+
+
 
 {% endblock content %}
