@@ -2,33 +2,31 @@
 
 <!DOCTYPE html>
 <html lang="nb">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block head_title %}ConcertHub{% endblock head_title %}</title>
+        <link rel="icon" href="{% static 'img/mic-logo.png' %}" type="image/gif" sizes="16x16">
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <title>{% block head_title %}ConcertHub{% endblock head_title %}</title>
-    <link rel="icon" href="{% static 'img/mic-logo.png' %}" type="image/gif" sizes="16x16">
-</head>
+    <body>
 
-<body>
+        <header>
+            {% include 'snippets/nav.html' %}
+        </header>
 
-    <header>
-        {% include 'snippets/nav.html' %}
-    </header>
+        <main>
+            <div class="container">
+                {% block title %}{% endblock title %}
+                {% block content %}{% endblock content %}
+            </div>
+        </main>
 
-    <main>
-        <div class="container">
-            {% block title %}{% endblock title %}
-            {% block content %}{% endblock content %}
+        <div class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                <p class="navbar-text pull-left">© 2017 - Site Built By Hanna, Aslak, Øyvind, Ebba, Håkon and Sondre
+                </p>
+            </div>
         </div>
-    </main>
 
-    <div class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container">
-            <p class="navbar-text pull-left">© 2017 - Site Built By Hanna, Aslak, Øyvind, Ebba, Håkon and Sondre
-            </p>
-        </div>
-    </div>
-
-</body>
-
+    </body>
 </html>
