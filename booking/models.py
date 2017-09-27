@@ -15,7 +15,7 @@ class Concert(models.Model):
     name = models.CharField(max_length=120, null=True, blank=True)
     description = models.TextField(max_length=120, null=True, blank=True)
     revenue = models.FloatField(null=True, blank=True)
-    stage_id = models.ForeignKey(Stage, null=True, blank=True)
+    stage_id = models.ForeignKey('Stage', null=True, blank=True)
     sold_tickets = models.IntegerField(null=True, blank=True)
     audience_showed_up = models.IntegerField(null=True, blank=True)
     concert_start_time = models.DateTimeField(null=True, blank=True)
