@@ -1,30 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-
-<table class="containertable">
-    <tr>
-        <th>Artist</th>
-        <th>Stage</th>
-        <th>Date</th>
-        <th>Start time</th>
-        <th>End time</th>
-        <th>Total Tickets</th>
-        <th> Number of Technicians</th>
-    </tr>
-    {% for concert in concerts %}
-    <tr>
-        <td> {{ concert.artist }}</td>
-        <td> {{ concert.stage }}</td>
-        <td> {{ concert.date }}</td>
-        <td> {{ concert.concert_start_time }}</td>
-        <td> {{ concert.concert_end_time }}</td>
-        <td> {{ concert.tickets }}</td>
-        <td> {{ concert.number_of_tech }}</td>
-    </tr>
-    {% endfor %}
-
-<<<<<<< HEAD
-</head>
 <body>
     <table class="container">
         <caption class="title1">Overview of planned concerts</caption>
@@ -54,10 +29,5 @@
         {% endfor %}
 
     </table>
-=======
-</table>
->>>>>>> master
-
-
 
 {% endblock content %}
