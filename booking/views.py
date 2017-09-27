@@ -18,6 +18,7 @@ def booking(request):
 
     return render(request, template_name, context)
 
+
 @login_required()
 def myconcerts(request):
     template_name = "booking/myconcerts.html"
@@ -41,7 +42,6 @@ def testuser(request):
     concert_objs = Concert.objects.all()
 
     users_concerts = User.objects.get(username=request.user).concert_set.all()
-
 
     context = {
         'concerts': concert_objs,
