@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Festival(models.Model):
@@ -12,13 +13,13 @@ class Festival(models.Model):
     def _str_(self):
         return self.name
 
+
 class Stage(models.Model):
     name = models.CharField(max_length=120, null=True, blank=True)
     description = models.TextField(max_length=120, null=True, blank=True)
     audience_cap = models.IntegerField(null=True, blank=True)
     festival_id = models.ForeignKey(Festival, null=True, blank=True)
     #schedule?
-
 
     def __str__(self):
         return self.name
@@ -36,7 +37,9 @@ class Concert(models.Model):
     tech_meetup_time = models.DateTimeField(null=True, blank=True)
     tech_done_time = models.DateTimeField(null=True, blank=True)
     festival_id = models.ForeignKey(Festival, null=True, blank=True)
+    technicians = models.ManyToManyField(User, blank=True)
     # number_of_tech = models.IntegerField(null=True, blank=True)
+
 
     # Not the best solution, should implement validation with clear.All() Method
     def save(self, force_insert=False, force_update=False, using=None,
