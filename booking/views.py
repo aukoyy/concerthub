@@ -22,7 +22,7 @@ def booking(request):
 def myconcerts(request):
     template_name = "booking/myconcerts.html"
 
-    # Following query requests stages through the current user object, and thus
+    # Following query requests model Stages through the current user object, and thus
     # only fetches the stages that have the current user registered under technicians
     myconcert_objs = User.objects.get(username=request.user).concert_set.all()
 
