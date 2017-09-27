@@ -40,9 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'coolcats',
     'booking',
-    'lamatime',
 ]
 
 MIDDLEWARE = [

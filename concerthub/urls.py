@@ -31,18 +31,6 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
-    url(r'^foot/$', TemplateView.as_view(template_name='footer_test.html'), name='foot'),
 
     url(r'^booking/', include('booking.urls')),
-
-
-
-    # I linjen under bruker jeg include til å inkludere urls fila fra appen jeg ønsker å inkludere
-    url(r'^coolcats/', include('coolcats.urls')),
-    url(r'^lama/', include('lamatime.urls')),
-
-    # Legg merke til at det ikke er noe $ tegn etter coolcats/
-    # $ forteller browseren at url'en er slutt, og om den brukes her, vil ikke cats eller rocket
-    # hentes, selv og man skriver coolcats/cats
-
 ]
