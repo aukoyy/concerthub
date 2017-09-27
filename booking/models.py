@@ -36,7 +36,7 @@ class Concert(models.Model):
             super(Concert, self).save()
 
     def __str__(self):
-        return self.artist
+        return self.name
 
 
 class Festival(models.Model):
