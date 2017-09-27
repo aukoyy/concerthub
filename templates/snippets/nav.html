@@ -11,10 +11,10 @@
         <title>Concerthub</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"></link>
-        <link href="{% static 'css/boot.css' %}" rel="stylesheet"></link>
-        <link href="{% static 'css/table.css' %}" rel="stylesheet"></link>
-        <link href="{% static 'css/login.css' %}" rel="stylesheet"></link>
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/boot.css' %}" rel="stylesheet">
+        <link href="{% static 'css/table.css' %}" rel="stylesheet">
+        <link href="{% static 'css/login.css' %}" rel="stylesheet">
         <!-- Custom styles for this template -->
 
     </head>
@@ -42,7 +42,7 @@
 
                         <li class="nav-item">
                             {% for group in request.user.groups.all %} {% if group.name == 'technician' %}
-                            <a class="nav-link" href="{% url 'cats' %}">My Concerts</a> {% endif %} {% endfor %}
+                            <a class="nav-link" href="{% url 'myconcerts' %}">My Concerts</a> {% endif %} {% endfor %}
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'contact' %}">Contact</a>
@@ -58,7 +58,7 @@
                             <strong>{{ user.groups.all.0 }}</strong>
                             <!--only shows first role-->
                             {% else %} {% endif %} {% else %}
-                            <a class "nav-link" href="{% url 'login' %}">Log In</a> {% endif %}
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a> {% endif %}
                         </li>
                         </ul>
 
