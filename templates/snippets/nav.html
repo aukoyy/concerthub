@@ -98,11 +98,10 @@
                                     <p>role:</p>
                                     <strong>{{ user.groups.all.0 }}</strong>
                                     <!--only shows first role-->
-                                {% else %}
-                                    {% endif %}
-                                {% else %}
-                                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
                                 {% endif %}
+                            {% else %}
+                                <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
