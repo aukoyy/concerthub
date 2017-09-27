@@ -1,90 +1,82 @@
-<style>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-    nav {
-      overflow: hidden;
-      background-color: #333;
-    }
+<head>
 
-    nav ul {
-        list-style: none;
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    nav li {
-        float: left;
-    }
+    <title>Concerthub</title>
 
-    nav a {
-      float: left;
-      display: block;
-      color: #f2f2f2;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-      font-size: 17px;
-    }
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"></link>
+    <link href="{% static 'css/boot.css' %}" rel="stylesheet"></link>
+    <link href="{% static 'css/table.css' %}" rel="stylesheet"></link>
+    <link href="{% static 'css/login.css' %}" rel="stylesheet"></link>
+    <!-- Custom styles for this template -->
 
-    nav a:hover {
-      background-color: #ddd;
-      color: black;
-    }
+</head>
 
-    nav a.active {
-        background-color: #4CAF50;
-        color: white;
-    }
+<body>
 
-    .logintext {
-        color: #CC3434;
-        float: right;
-        margin-right: 3em;
-    }
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'img/logo.png' %}" type="image/gif" width="150" height="30" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}">Home
+                <span class="sr-only">(current)</span>
+              </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'booking' %}">Program</a>
+                    </li>
 
-</style>
+                    <li class="nav-item">
+                        {% for group in request.user.groups.all %} {% if group.name == 'technician' %}
+                        <a class="nav-link" href="{% url 'cats' %}">My Concerts</a> {% endif %} {% endfor %}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </ul>
+                <ulc class="navbar ml-auto">
+                    <li class="nav-item">
+                        {% if user.is_authenticated %} {% if user.first_name %}
+                        <strong>{{ user.first_name }}</strong>
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a> {% else %}
+                        <strong>{{ user }}</strong>
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a> {% endif %} {% if user.groups.all.0 %} role:
+                        <strong>{{ user.groups.all.0 }}</strong>
+                        <!--only shows first role-->
+                        {% else %} {% endif %} {% else %}
+                        <a class "nav-link" href="{% url 'login' %}">Log In</a> {% endif %}
+                    </li>
+                    </ul>
 
-<div class="container">
-    <nav>
-        <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'booking' %}">Program</a></li>
 
-        <li>
-            {% for group in request.user.groups.all %}
-                {% if group.name == 'technician' %}
-                <a href="{% url 'cats' %}">My Concerts</a>
-                {% endif %}
-            {% endfor %}
-        </li>
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a href="{% url 'lama' %}">_=Lama=_</a></li>
-        <li><a href="{% url 'cats' %}">_=Cat=_</a></li>
-        <li><a href="{% url 'contact' %}">Contact</a></li>
-        <li><a href="{% url 'foot' %}">Foot</a></li>
-        </ul>
 
-        <ul class="logintext">
-        <li>
-        {% if user.is_authenticated %}
-
-            {% if user.first_name %}
-                || Currently logged in as: <strong>{{ user.first_name }}</strong> <a href="{% url 'logout' %}">Log Out</a>
-            {% else %}
-                || Currently logged in as: <strong>{{ user }}</strong> <a href="{% url 'logout' %}">Log Out</a>
-            {% endif %}
-
-            {% if user.groups.all.0 %}
-                || You have role: <strong>{{ user.groups.all.0 }}</strong>
-                <!--only shows first role-->
-            {% else %}
-                || You do not have a role
-            {% endif %}
-
-        {% else %}
-            || Currently not logged in <a href="{% url 'login' %}">Log In</a>
-
-        {% endif %}
-        </li>
-        </ul>
+            </div>
+        </div>
     </nav>
-</div>
 
-<!--https://codepen.io/chorijan/pen/aqDpo-->
+    <!-- Bootstrap core JavaScript -->
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+</body>
+
+</html>
