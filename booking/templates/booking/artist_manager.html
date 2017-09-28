@@ -14,6 +14,7 @@
             <th>Start time</th>
             <th>End time</th>
             <th>Technical needs</th>
+            <th>Accepted</th>
         </tr>
 
         {% for offer in bookingoffers %}
@@ -23,6 +24,7 @@
             <td> {{ offer.artist.concert_id.concert_start_time }}</td>
             <td> {{ offer.artist.concert_id.concert_end_time }}</td>
             <td> {{ offer.tech_needs }}</td>
+            <td> {{ offer.accepted_by_am }}</td>
         </tr>
         {% endfor %}
     </table>
