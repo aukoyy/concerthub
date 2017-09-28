@@ -21,6 +21,9 @@ class Bookingoffer(models.Model):
     accepted_by_am = models.NullBooleanField(null=True, blank=True)
     artist_id = models.OneToOneField(User, blank=True)
 
+    def __str__(self):
+        return self.comment
+
 
 class Concert(models.Model):
     name = models.CharField(max_length=120, null=True, blank=True)
