@@ -1,14 +1,18 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Concert, Bookingoffer
+from .models import Concert, BookingOffer
 from django.contrib.auth.decorators import login_required, user_passes_test
+from .models import (
+    Concert,
+    Artist,
+    BookingOffer,
+)
 from .login_tests import (
     is_technician,
     is_booking_manager
 )
-
-
 # Create your views here.
+
 
 @login_required()
 def program_view(request):
@@ -27,7 +31,7 @@ def program_view(request):
 def booking_view(request):
     template_name = "booking/booking.html"
 
-    booking_offers = Bookingoffer.objects.all()
+    booking_offers = BookingOffer.objects.all()
     booking_offers_count = booking_offers.count()
     print(booking_offers)
     print('boop')
@@ -51,6 +55,21 @@ def technician_view(request):
         'concert_objs': concert_objs_for_user,
     }
 
+    return render(request, template_name, context)
+
+
+# koble manager til et artist? hente artistene til manager, hente tekniske behov til disse artistene.
+@login_required()
+def artist_manager_view(request):
+    template_name = "booking/artist_manager.html"
+
+    artist_objs = User.objects.get(username=request.user).artist_set.all()
+    bookingoffer_objs = BookingOffer.objects.all()
+
+    context = {
+        'artists': artist_objs,
+        'bookingoffers': bookingoffer_objs,
+    }
     return render(request, template_name, context)
 
 
