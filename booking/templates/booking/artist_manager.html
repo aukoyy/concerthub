@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
     <caption class="title1">Overview of your concerts</caption>
+
     <table class="containertable">
         <tr>
             <th>Artist</th>
@@ -14,15 +15,15 @@
             <th>End time</th>
             <th>Technical needs</th>
         </tr>
-        {% for artist in artists %}
+
+        {% for offer in bookingoffers %}
         <tr>
-            <td> {{ artist.name }}</td>
-            <td> {{ artist.concert_id.stage_id }}</td>
-            <td> {{ artist.concert_id.concert_start_time }}</td>
-            <td> {{ artist.concert_id.concert_end_time }}</td>
-            <td> {{ artist.tech_needs }}</td>
+            <td> {{ offer.artist.name }}</td>
+            <td> {{ offer.artist.concert_id.stage_id }}</td>
+            <td> {{ offer.artist.concert_id.concert_start_time }}</td>
+            <td> {{ offer.artist.concert_id.concert_end_time }}</td>
+            <td> {{ offer.tech_needs }}</td>
         </tr>
         {% endfor %}
     </table>
-
 {% endblock content %}

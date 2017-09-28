@@ -3,10 +3,9 @@ from django.contrib.auth.models import User
 
 
 class Artist(models.Model):
-    name = models.CharField(max_length=120)
+    name = models.CharField(max_length=120, null=True, blank=True)
     description = models.TextField(max_length=256, null=True, blank=True)
     genre = models.CharField(max_length=120)
-    tech_needs = models.TextField(max_length=256, null=True, blank=True)
     concert_id = models.ForeignKey('Concert', null=True, blank=True)
     festival_id = models.ForeignKey('Festival', null=True, blank=True)
     artist_manager = models.ForeignKey(User, null=True, blank=True)
@@ -16,17 +15,20 @@ class Artist(models.Model):
 
 
 class Bookingoffer(models.Model):
+    name = models.CharField(max_length=120, null=True, blank=True)
+    artist = models.OneToOneField(Artist, null=True, blank=True)
     comment = models.TextField(max_length=120, null=True, blank=True)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
     offering_time = models.DateTimeField(null=True, blank=True)
     offering_price = models.IntegerField(null=True, blank=True)
+    tech_needs = models.TextField(null=True, blank=True)
     approved_by_bm = models.NullBooleanField(null=True, blank=True)
     accepted_by_am = models.NullBooleanField(null=True, blank=True)
-    artist_id = models.OneToOneField(User, blank=True)
+    artist_manager = models.ForeignKey(User, null=True, blank=True)
 
     def __str__(self):
-        return self.comment
+        return self.name
 
 
 class Concert(models.Model):
