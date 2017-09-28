@@ -9,7 +9,6 @@ from .models import (
 from .login_tests import (
     is_technician,
 )
-# Create your views here.
 
 
 @login_required()
