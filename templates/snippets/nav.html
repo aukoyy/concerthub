@@ -82,7 +82,7 @@
                         <li class="nav-item">
                             {% for group in request.user.groups.all %}
                                 {% if group.name == 'technician' %}
-                                    <a class="nav-link" href="{% url 'technician_view' %}">My Concerts</a>
+                                    <a class="nav-link" href="{% url 'technician_view' %}">My Work Hours</a>
                                 {% endif %}
                             {% endfor %}
                         </li>

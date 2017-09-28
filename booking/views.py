@@ -10,7 +10,6 @@ from .login_tests import (
     is_technician,
     is_artist_manager,
 )
-# Create your views here.
 
 
 @login_required()
