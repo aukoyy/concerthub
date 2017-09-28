@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 
 @login_required()
-def booking(request):
-    template_name = "booking/firstpage.html"
+def program_view(request):
+    template_name = "booking/program.html"
 
     objs = Concert.objects.all()
 

@@ -1,13 +1,15 @@
 from django.conf.urls import url
 from .views import (
-    booking,
+    program_view, 
+    booking_view,
     myconcerts,
     testuser,
 )
 
 
 urlpatterns = [
-    url(r'^firstpage/$', booking, name='booking'),
+    url(r'^booking/$', booking_view, name='booking'),
+    url(r'^program/$', program_view, name='program'),
     url(r'^myconcerts/$', myconcerts, name='myconcerts'),
     url(r'^testuser/$', testuser, name='testuser'),
 ]
