@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Concert
+from .models import Concert, Bookingoffer
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .login_tests import (
     is_technician,
@@ -27,7 +27,14 @@ def program_view(request):
 def booking_view(request):
     template_name = "booking/booking.html"
 
+    booking_offers = Bookingoffer.objects.all()
+    booking_offers_count = booking_offers.count()
+    print(booking_offers)
+    print('boop')
+
     context = {
+        'amount_booking_offers': booking_offers_count,
+        
 
     }
 
