@@ -4,6 +4,7 @@ from .models import Concert
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .login_tests import (
     is_technician,
+    is_booking_manager
 )
 
 
@@ -22,6 +23,7 @@ def program_view(request):
     return render(request, template_name, context)
 
 
+@user_passes_test(is_booking_manager)
 def booking_view(request):
     template_name = "booking/booking.html"
 
