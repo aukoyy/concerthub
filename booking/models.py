@@ -13,6 +13,7 @@ class Artist(models.Model):
     def __str__(self):
         return self.name
 
+
 class Bookingoffer(models.Model):
     comment = models.TextField(max_length=120, null=True, blank=True)
     created_at = models.DateTimeField(null=True, blank=True)
