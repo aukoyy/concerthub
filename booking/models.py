@@ -70,7 +70,7 @@ class Concert(models.Model):
             return False
 
     class Meta:
-        ordering = ('concert_start_time',)
+        ordering = ('concert_start_time', 'name',)
 
 
 class Festival(models.Model):
