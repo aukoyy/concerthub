@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import (
     Concert,
     Artist,
-    Bookingoffer,
+    BookingOffer,
 )
 
 
@@ -44,7 +44,7 @@ def artist_manager_view(request):
     template_name = "booking/artist_manager.html"
 
     artist_objs = User.objects.get(username=request.user).artist_set.all()
-    bookingoffer_objs = Bookingoffer.objects.all()
+    bookingoffer_objs = BookingOffer.objects.all()
 
     context = {
         'artists': artist_objs,

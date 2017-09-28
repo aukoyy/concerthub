@@ -14,7 +14,7 @@ class Artist(models.Model):
         return self.name
 
 
-class Bookingoffer(models.Model):
+class BookingOffer(models.Model):
     name = models.CharField(max_length=120, null=True, blank=True)
     artist = models.OneToOneField(Artist, null=True, blank=True)
     comment = models.TextField(max_length=120, null=True, blank=True)
