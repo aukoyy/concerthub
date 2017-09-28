@@ -19,6 +19,16 @@ def program_view(request):
     return render(request, template_name, context)
 
 
+def booking_view(request):
+    template_name = "booking/booking.html"
+
+    context = {
+
+    }
+
+    return render(request, template_name, context)
+
+
 @login_required()
 def myconcerts(request):
     template_name = "booking/myconcerts.html"
