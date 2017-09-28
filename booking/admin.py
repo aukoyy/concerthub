@@ -5,6 +5,7 @@ from .models import (
     Festival,
     Stage,
     BookingOffer,
+    TimeSlot,
 )
 
 # Register your models here.
@@ -14,3 +15,4 @@ admin.site.register(Concert)
 admin.site.register(Festival)
 admin.site.register(Stage)
 admin.site.register(BookingOffer)
+admin.site.register(TimeSlot)

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Concert, BookingOffer
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import (
     Concert,

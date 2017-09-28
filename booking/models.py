@@ -9,6 +9,7 @@ class Artist(models.Model):
     concert_id = models.ForeignKey('Concert', null=True, blank=True)
     festival_id = models.ForeignKey('Festival', null=True, blank=True)
     artist_manager = models.ForeignKey(User, null=True, blank=True)
+    time_slot = models.OneToOneField('TimeSlot', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -38,12 +39,11 @@ class Concert(models.Model):
     stage_id = models.ForeignKey('Stage', null=True, blank=True)
     sold_tickets = models.IntegerField(null=True, blank=True)
     audience_showed_up = models.IntegerField(null=True, blank=True)
-    concert_start_time = models.DateTimeField(null=True, blank=True)
-    concert_end_time = models.DateTimeField(null=True, blank=True)
     tech_meetup_time = models.DateTimeField(null=True, blank=True)
     tech_done_time = models.DateTimeField(null=True, blank=True)
     festival_id = models.ForeignKey('Festival', null=True, blank=True)
     technicians = models.ManyToManyField(User, blank=True)
+    time_slot = models.OneToOneField('TimeSlot', null=True, blank=True)
 
     # number_of_tech = models.IntegerField(null=True, blank=True)
 
@@ -76,7 +76,19 @@ class Stage(models.Model):
     description = models.TextField(max_length=120, null=True, blank=True)
     audience_cap = models.IntegerField(null=True, blank=True)
     festival_id = models.ForeignKey(Festival, null=True, blank=True)
-    # Do we need schedule here?
+    time_slots = models.ManyToManyField('TimeSlot', blank=True)
 
     def __str__(self):
         return self.name
+
+
+class TimeSlot(models.Model):
+    # Time Slots will be individual to each concert, so stage A will have slots A1, A2, A3...
+    # A1 can not be used on stage B.
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    start_time = models.TimeField(null=True, blank=True)
+    end_time = models.TimeField(null=True, blank=True)
+
+    def __str__(self):
+        return "%s - %s" % (self.start_time, self.end_time)
