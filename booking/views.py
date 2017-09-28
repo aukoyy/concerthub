@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import Concert
 from django.contrib.auth.decorators import login_required, user_passes_test
+from .login_tests import (
+    is_technician,
+)
 
 
 # Create your views here.
@@ -29,16 +32,14 @@ def booking_view(request):
     return render(request, template_name, context)
 
 
-@login_required()
-def myconcerts(request):
-    template_name = "booking/myconcerts.html"
+@user_passes_test(is_technician)
+def technician_view(request):
+    template_name = "booking/technician.html"
 
-    # Following query requests model Stages through the current user object, and thus
-    # only fetches the stages that have the current user registered under technicians
-    myconcert_objs = User.objects.get(username=request.user).concert_set.all()
+    concert_objs_for_user = User.objects.get(username=request.user).concert_set.all()
 
     context = {
-        'myconcerts': myconcert_objs,
+        'concert_objs': concert_objs_for_user,
     }
 
     return render(request, template_name, context)

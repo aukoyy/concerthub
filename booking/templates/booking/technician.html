@@ -3,12 +3,10 @@
 {% block content %}
     {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
-</head>
-<body>
-    <table class="container">
-        <caption class="title1">Overview of your concerts</caption>
+    <caption class="title1">Overview of your concerts</caption>
+    <table class="containertable">
         <tr>
             <th>Artist</th>
             <th>Stage</th>
@@ -17,7 +15,7 @@
             <th>Tech meet-up time</th>
             <th>Tech done time</th>
         </tr>
-        {% for concert in myconcerts %}
+        {% for concert in concert_objs %}
         <tr>
             <td> {{ concert.name }}</td>
             <td> {{ concert.stage_id }}</td>
@@ -25,7 +23,6 @@
             <td> {{ concert.concert_end_time }}</td>
             <td> {{ concert.tech_meetup_time}}</td>
             <td> {{ concert.tech_done_time}}</td>
-
         </tr>
         {% endfor %}
     </table>
