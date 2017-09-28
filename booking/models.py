@@ -9,6 +9,7 @@ class Artist(models.Model):
     tech_needs = models.TextField(max_length=256, null=True, blank=True)
     concert_id = models.ForeignKey('Concert', null=True, blank=True)
     festival_id = models.ForeignKey('Festival', null=True, blank=True)
+    artist_manager = models.ForeignKey(User, null=True, blank=True)
 
     def __str__(self):
         return self.name

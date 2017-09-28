@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Concert
 from django.contrib.auth.decorators import login_required, user_passes_test
+from .models import (
+    Concert,
+    Artist,
+    Bookingoffer,
+)
 
 
 # Create your views here.
@@ -31,6 +35,21 @@ def myconcerts(request):
         'myconcerts': myconcert_objs,
     }
 
+    return render(request, template_name, context)
+
+
+# koble manager til et artist? hente artistene til manager, hente tekniske behov til disse artistene.
+@login_required()
+def artist_manager_view(request):
+    template_name = "booking/artist_manager.html"
+
+    artist_objs = User.objects.get(username=request.user).artist_set.all()
+    bookingoffer_objs = Bookingoffer.objects.all()
+
+    context = {
+        'artists': artist_objs,
+        'bookingoffers': bookingoffer_objs,
+    }
     return render(request, template_name, context)
 
 

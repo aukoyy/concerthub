@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
+
+    <caption class="title1">Overview of your concerts</caption>
+    <table class="containertable">
+        <tr>
+            <th>Artist</th>
+            <th>Stage</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Technical needs</th>
+        </tr>
+        {% for artist in artists %}
+        <tr>
+            <td> {{ artist.name }}</td>
+            <td> {{ artist.concert_id.stage_id }}</td>
+            <td> {{ artist.concert_id.concert_start_time }}</td>
+            <td> {{ artist.concert_id.concert_end_time }}</td>
+            <td> {{ artist.tech_needs }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock content %}
