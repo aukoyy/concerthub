@@ -68,8 +68,16 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'booking' %}">Program</a>
+                            <a class="nav-link" href="{% url 'program' %}">Program</a>
                         </li>
+
+                        {% for group in request.user.groups.all %}
+                            {% if group.name == 'booking_manager' %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'booking' %}">Booking</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
 
                         <li class="nav-item">
                             {% for group in request.user.groups.all %}
@@ -77,7 +85,7 @@
                                     <a class="nav-link" href="{% url 'myconcerts' %}">My Concerts</a>
                                 {% endif %}
                             {% endfor %}
-                        </li>
+                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'contact' %}">Contact</a>
