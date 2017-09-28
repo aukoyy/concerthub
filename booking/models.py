@@ -10,6 +10,8 @@ class Artist(models.Model):
     concert_id = models.ForeignKey('Concert', null=True, blank=True)
     festival_id = models.ForeignKey('Festival', null=True, blank=True)
 
+    def __str__(self):
+        return self.name
 
 class Bookingoffer(models.Model):
     comment = models.TextField(max_length=120, null=True, blank=True)
