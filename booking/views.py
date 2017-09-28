@@ -34,6 +34,12 @@ def myconcerts(request):
     return render(request, template_name, context)
 
 
+@login_required()
+def technical(request):
+    template_name = 'booking/technical.html'
+    return render(request, template_name, {})
+
+
 # I (auk) want to keep this test page for now as it (the template) contains solutions for not yet
 # implemented functionality
 def testuser(request):
