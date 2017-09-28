@@ -11,6 +11,17 @@ class Artist(models.Model):
     festival_id = models.ForeignKey('Festival', null=True, blank=True)
 
 
+class Bookingoffer(models.Model):
+    comment = models.TextField(max_length=120, null=True, blank=True)
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+    offering_time = models.DateTimeField(null=True, blank=True)
+    offering_price = models.IntegerField(null=True, blank=True)
+    approved_by_bm = models.NullBooleanField(null=True, blank=True)
+    accepted_by_am = models.NullBooleanField(null=True, blank=True)
+    artist_id = models.OneToOneField(User, blank=True)
+
+
 class Concert(models.Model):
     name = models.CharField(max_length=120, null=True, blank=True)
     description = models.TextField(max_length=120, null=True, blank=True)
