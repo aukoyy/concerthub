@@ -5,18 +5,19 @@ def is_organizer(user):
     return False
 
 
-
 def is_booking_manager(user):
     for group in user.groups.all():
         if str(group) == 'booking_manager':
             return True
     return False
 
+
 def is_artist_manager(user):
     for group in user.groups.all():
         if str(group) == 'artist_manager':
             return True
     return False
+
 
 def is_booker(user):
     for group in user.groups.all():
