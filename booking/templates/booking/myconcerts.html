@@ -3,12 +3,10 @@
 {% block content %}
     {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
-
-<body>
+    <caption class="title1">Overview of your concerts</caption>
     <table class="containertable">
-        <caption class="title1">Overview of your concerts</caption>
         <tr>
             <th>Artist</th>
             <th>Stage</th>
@@ -25,7 +23,6 @@
             <td> {{ concert.concert_end_time }}</td>
             <td> {{ concert.tech_meetup_time}}</td>
             <td> {{ concert.tech_done_time}}</td>
-
         </tr>
         {% endfor %}
     </table>
