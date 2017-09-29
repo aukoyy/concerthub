@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 
 class Artist(models.Model):
-    name = models.CharField(max_length=120, null=True, blank=True)
-    description = models.TextField(max_length=256, null=True, blank=True)
-    genre = models.CharField(max_length=120)
+    name = models.CharField(max_length=120, null=False, blank=True)
+    description = models.TextField(max_length=256, null=False, blank=True)
+    genre = models.CharField(max_length=120, null=False, blank=True)
     concert_id = models.ForeignKey('Concert', null=True, blank=True)
     festival_id = models.ForeignKey('Festival', null=True, blank=True)
     artist_manager = models.ForeignKey(User, null=True, blank=True)
@@ -16,16 +16,16 @@ class Artist(models.Model):
 
 
 class BookingOffer(models.Model):
-    name = models.CharField(max_length=120, null=True, blank=True)
+    name = models.CharField(max_length=120, null=False, blank=False)
     artist = models.OneToOneField(Artist, null=True, blank=True)
-    comment = models.TextField(max_length=120, null=True, blank=True)
+    comment = models.TextField(max_length=120, null=False, blank=True)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
-    offering_time = models.DateTimeField(null=True, blank=True)
+    offering_time = models.ForeignKey('TimeSlot', null=True, blank=True)
     offering_price = models.IntegerField(null=True, blank=True)
-    tech_needs = models.TextField(null=True, blank=True)
-    approved_by_bm = models.NullBooleanField(null=True, blank=True)
-    accepted_by_am = models.NullBooleanField(null=True, blank=True)
+    tech_needs = models.TextField(null=False, blank=True)
+    approved_by_bm = models.BooleanField(blank=False, default=False)
+    accepted_by_am = models.BooleanField(blank=False, default=False)
     artist_manager = models.ForeignKey(User, null=True, blank=True)
 
     def __str__(self):
@@ -33,11 +33,11 @@ class BookingOffer(models.Model):
 
 
 class Concert(models.Model):
-    name = models.CharField(max_length=120, null=True, blank=True)
-    description = models.TextField(max_length=120, null=True, blank=True)
+    name = models.CharField(max_length=120, null=False, blank=False)
+    description = models.TextField(max_length=120, null=False, blank=True)
     revenue = models.FloatField(null=True, blank=True)
-    stage_id = models.ForeignKey('Stage', null=True, blank=True)
-    sold_tickets = models.IntegerField(null=True, blank=True)
+    stage = models.ForeignKey('Stage', null=True, blank=True)
+    sold_tickets = models.IntegerField(null=True, blank=False)
     audience_showed_up = models.IntegerField(null=True, blank=True)
     tech_meetup_time = models.DateTimeField(null=True, blank=True)
     tech_done_time = models.DateTimeField(null=True, blank=True)
@@ -60,7 +60,7 @@ class Concert(models.Model):
 
 
 class Festival(models.Model):
-    name = models.CharField(max_length=120, null=True, blank=True)
+    name = models.CharField(max_length=120, null=False, blank=False)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     start_time = models.TimeField(null=True, blank=True)
@@ -72,11 +72,10 @@ class Festival(models.Model):
 
 
 class Stage(models.Model):
-    name = models.CharField(max_length=120, null=True, blank=True)
-    description = models.TextField(max_length=120, null=True, blank=True)
-    audience_cap = models.IntegerField(null=True, blank=True)
+    name = models.CharField(max_length=120, null=False, blank=False)
+    description = models.TextField(max_length=120, null=False, blank=True)
+    audience_cap = models.IntegerField(null=True, blank=False)
     festival_id = models.ForeignKey(Festival, null=True, blank=True)
-    time_slots = models.ManyToManyField('TimeSlot', blank=True)
 
     def __str__(self):
         return self.name
@@ -85,10 +84,11 @@ class Stage(models.Model):
 class TimeSlot(models.Model):
     # Time Slots will be individual to each concert, so stage A will have slots A1, A2, A3...
     # A1 can not be used on stage B.
-    start_date = models.DateField(null=True, blank=True)
-    end_date = models.DateField(null=True, blank=True)
-    start_time = models.TimeField(null=True, blank=True)
-    end_time = models.TimeField(null=True, blank=True)
+    start_date = models.DateField(null=True, blank=False)
+    end_date = models.DateField(null=True, blank=False)
+    start_time = models.TimeField(null=True, blank=False)
+    end_time = models.TimeField(null=True, blank=False)
+    stage = models.ForeignKey(Stage, null=True, blank=False)
 
     def __str__(self):
         return "%s - %s" % (self.start_time, self.end_time)
