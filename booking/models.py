@@ -69,8 +69,8 @@ class Concert(models.Model):
             # print('It is in the past')
             return False
 
-    class Meta:
-        ordering = ('concert_start_time', 'name',)
+#    class Meta:
+#        ordering = ('concert_start_time', 'name',)
 
 
 class Festival(models.Model):
