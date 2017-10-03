@@ -14,7 +14,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"></link>
-    <link href="{% static 'css/boot.css' %}" rel="stylesheet"></link>
     <link href="{% static 'css/table.css' %}" rel="stylesheet"></link>
     <link href="{% static 'css/login.css' %}" rel="stylesheet"></link>
     <!-- Custom styles for this template -->
@@ -59,62 +58,50 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'home' %}">Home
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
-                        </li>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'booking' %}">Program</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'booking' %}">Program</a>
+                    </li>
 
-                        <li class="nav-item">
-                            {% for group in request.user.groups.all %}
-                                {% if group.name == 'artist_manager' %}
-                                    <a class="nav-link" href="{% url 'artist_manager' %}">Artist manager</a>
-                                {% endif %}
-                            {% endfor %}
-                        </li>
+                    <li class="nav-item">
+                        {% for group in request.user.groups.all %} {% if group.name == 'artist_manager' %}
+                        <a class="nav-link" href="{% url 'artist_manager' %}">Artist manager</a> {% endif %} {% endfor %}
+                    </li>
 
-                        <li class="nav-item">
-                            {% for group in request.user.groups.all %}
-                                {% if group.name == 'technician' %}
-                                    <a class="nav-link" href="{% url 'technician_view' %}">My Work Hours</a>
-                                {% endif %}
-                            {% endfor %}
-                        </li>
+                    <li class="nav-item">
+                        {% for group in request.user.groups.all %} {% if group.name == 'technician' %}
+                        <a class="nav-link" href="{% url 'technician_view' %}">My Work Hours</a> {% endif %} {% endfor %}
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                        </li>
-                    </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </ul>
 
-                    <ul class="navbar ml-auto">
-                        <li class="nav-item">
-                            {% if user.is_authenticated %}
-                                {% if user.first_name %}
-                                    <strong>{{ user.first_name }}</strong>
-                                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                                {% else %}
-                                    <strong>{{ user }}</strong>
-                                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                                {% endif %}
-                                {% if user.groups.all.0 %}
-                                    <p>role:</p>
-                                    <strong>{{ user.groups.all.0 }}</strong>
-                                    <!--only shows first role-->
-                                {% endif %}
-                            {% else %}
-                                <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
+                <ul class="navbar ml-auto">
+                    <li class="nav-item">
+                        {% if user.is_authenticated %} {% if user.first_name %}
+                        <strong>{{ user.first_name }}</strong>
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a> {% else %}
+                        <strong>{{ user }}</strong>
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a> {% endif %} {% if user.groups.all.0 %}
+                        <p>role:</p>
+                        <strong>{{ user.groups.all.0 }}</strong>
+                        <!--only shows first role-->
+                        {% endif %} {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a> {% endif %}
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
     <!-- Bootstrap core JavaScript -->
 
@@ -123,8 +110,8 @@
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    </body>
+</body>
 
-    <!--https://codepen.io/chorijan/pen/aqDpo-->
+<!--https://codepen.io/chorijan/pen/aqDpo-->
 
 </html>
