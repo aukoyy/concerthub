@@ -2,14 +2,16 @@ from django.conf.urls import url
 from .views import (
     technical,
     booking,
-    myconcerts,
+    technician_view,
     testuser,
+    artist_manager_view
 )
 
 
 urlpatterns = [
     url(r'^firstpage/$', booking, name='booking'),
-    url(r'^myconcerts/$', myconcerts, name='myconcerts'),
+    url(r'^technician/$', technician_view, name='technician_view'),
     url(r'^testuser/$', testuser, name='testuser'),
     url(r'^technical/$', technical, name='technical')
+    url(r'^artist_manager/$', artist_manager_view, name='artist_manager'),
 ]
