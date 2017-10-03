@@ -5,6 +5,7 @@ from .models import (
     Concert,
     Artist,
     BookingOffer,
+    TimeSlot,
 )
 from .login_tests import (
     is_technician,
@@ -32,13 +33,20 @@ def booking_view(request):
 
     booking_offers = BookingOffer.objects.all()
     booking_offers_count = booking_offers.count()
-    print(booking_offers)
-    print('boop')
+    available_slots = []
 
+    for obj in TimeSlot.objects.all():
+        if not hasattr(obj, "artist"):
+
+
+            available_slots.append(obj)
+
+
+    print(booking_offers)
     context = {
         'amount_booking_offers': booking_offers_count,
-        
-
+        'available_slots': available_slots,
+        'booking_offers': booking_offers,
     }
 
     return render(request, template_name, context)

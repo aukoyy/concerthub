@@ -1,5 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-    alskdjlaksjldkj
+
+
+<h1>AVAILABLE TIME SLOTS </h1>
+
+<table class="containertable">
+        <tr>
+            <th>Slot</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+           
+        </tr>
+        {% for slot in available_slots %}
+
+        <tr>
+            <td> {{ slot }}</td>
+            <td> {{ slot.start_date }}</td>
+            <td> {{ slot.end_date }}</td>
+
+        </tr>
+        {% endfor %}
+
+    </table>
+
 
 {% endblock content %}
