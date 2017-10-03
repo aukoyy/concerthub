@@ -37,8 +37,6 @@ def booking_view(request):
 
     for obj in TimeSlot.objects.all():
         if not hasattr(obj, "artist"):
-
-
             available_slots.append(obj)
 
 
