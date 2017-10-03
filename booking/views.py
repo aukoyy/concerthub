@@ -9,7 +9,20 @@ from .models import (
 from .login_tests import (
     is_technician,
     is_artist_manager,
+    is_booker,
 )
+
+
+@user_passes_test(is_booker)
+def booker_view(request):
+    template_name = 'booking/booker.html'
+
+    bookingoffer_objs = User.objects.get(username=request.user).booker.all()
+
+    context = {
+        'bookingoffers': bookingoffer_objs,
+    }
+    return render(request, template_name, context)
 
 
 @login_required()
@@ -36,12 +49,6 @@ def technician_view(request):
     }
 
     return render(request, template_name, context)
-
-
-@login_required()
-def technical(request):
-    template_name = 'booking/technical.html'
-    return render(request, template_name, {})
 
 
 # koble manager til et artist? hente artistene til manager, hente tekniske behov til disse artistene.

@@ -90,7 +90,7 @@
                         <li class="nav-item">
                             {% for group in request.user.groups.all %}
                                 {% if group.name == 'booker' %}
-                                    <a class="nav-link" href="{% url 'technical' %}">technical</a>
+                                    <a class="nav-link" href="{% url 'booker' %}">Booker</a>
                                 {% endif %}
                             {% endfor %}
                         </li>

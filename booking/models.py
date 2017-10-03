@@ -27,7 +27,8 @@ class BookingOffer(models.Model):
     tech_needs = models.TextField(null=False, blank=True)
     approved_by_bm = models.BooleanField(blank=False, default=False)
     accepted_by_am = models.BooleanField(blank=False, default=False)
-    artist_manager = models.ForeignKey(User, null=True, blank=True)
+    artist_manager = models.ForeignKey(User, null=True, blank=True, related_name='artist_manager')
+    booker = models.ForeignKey(User, null=True, blank=True, related_name='booker')
 
     def __str__(self):
         return self.name
@@ -69,8 +70,8 @@ class Concert(models.Model):
             # print('It is in the past')
             return False
 
-    class Meta:
-        ordering = ('concert_start_time', 'name',)
+    #class Meta:
+        #ordering = ('concert_start_time', 'name',)
 
 
 class Festival(models.Model):

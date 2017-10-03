@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <table class="containertable">Overview of technical needs>
+        <tr>
+            <th>Artist</th>
+            <th>Artist manager</th>
+            <th>Technical needs</th>
+        </tr>
+
+        {% for offer in bookingoffers %}
+        <tr>
+            <td> {{ offer.artist.name }}</td>
+            <td> {{ offer.artist_manager }}</td>
+            <td> {{ offer.tech_needs }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
