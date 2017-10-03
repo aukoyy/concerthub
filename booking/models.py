@@ -59,15 +59,15 @@ class Concert(models.Model):
     def __str__(self):
         return self.name
 
-    @property
-    def is_in_future(self):
-        # Using the starting time of Concert object
-        if self.concert_start_time.date() >= date.today():
-            # print('It is in the future')
-            return True
-        else:
-            # print('It is in the past')
-            return False
+    # @property
+    # def is_in_future(self):
+    #     # Using the starting time of Concert object
+    #     if self.concert_start_time.date() >= date.today():
+    #         # print('It is in the future')
+    #         return True
+    #     else:
+    #         # print('It is in the past')
+    #         return False
 
 #    class Meta:
 #        ordering = ('concert_start_time', 'name',)
