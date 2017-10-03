@@ -9,9 +9,9 @@ from .models import (
 )
 from .login_tests import (
     is_technician,
-    is_booking_manager
+    is_booking_manager,
+    is_artist_manager,
 )
-# Create your views here.
 
 
 @login_required()
@@ -66,7 +66,7 @@ def technician_view(request):
 
 
 # koble manager til et artist? hente artistene til manager, hente tekniske behov til disse artistene.
-@login_required()
+@user_passes_test(is_artist_manager)
 def artist_manager_view(request):
     template_name = "booking/artist_manager.html"
 
