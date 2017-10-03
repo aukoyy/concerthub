@@ -4,7 +4,7 @@ from .models import (
     Concert,
     Festival,
     Stage,
-    Bookingoffer,
+    BookingOffer,
 )
 
 # Register your models here.
@@ -13,4 +13,4 @@ admin.site.register(Artist)
 admin.site.register(Concert)
 admin.site.register(Festival)
 admin.site.register(Stage)
-admin.site.register(Bookingoffer)
+admin.site.register(BookingOffer)

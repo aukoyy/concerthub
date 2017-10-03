@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
+
+    <caption class="title1">Overview of your concerts</caption>
+
+    <table class="containertable">
+        <tr>
+            <th>Artist</th>
+            <th>Stage</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Technical needs</th>
+            <th>Accepted</th>
+        </tr>
+
+        {% for offer in bookingoffers %}
+        <tr>
+            <td> {{ offer.artist.name }}</td>
+            <td> {{ offer.artist.concert_id.stage_id }}</td>
+            <td> {{ offer.artist.concert_id.concert_start_time }}</td>
+            <td> {{ offer.artist.concert_id.concert_end_time }}</td>
+            <td> {{ offer.tech_needs }}</td>
+            <td> {{ offer.accepted_by_am }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
