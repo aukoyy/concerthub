@@ -31,7 +31,7 @@ class BookingOffer(models.Model):
     booker = models.ForeignKey(User, null=True, blank=True, related_name='booker')
 
     def __str__(self):
-        return self.name
+        return "%s offer at %s" % (self.artist, self.offering_time)
 
 
 class Concert(models.Model):
@@ -60,27 +60,26 @@ class Concert(models.Model):
     def __str__(self):
         return self.name
 
-    @property
-    def is_in_future(self):
-        # Using the starting time of Concert object
-        if self.concert_start_time.date() >= date.today():
-            # print('It is in the future')
-            return True
-        else:
-            # print('It is in the past')
-            return False
+    # @property
+    # def is_in_future(self):
+    #     # Using the starting time of Concert object
+    #     if self.concert_start_time.date() >= date.today():
+    #         # print('It is in the future')
+    #         return True
+    #     else:
+    #         # print('It is in the past')
+    #         return False
 
-    #class Meta:
-        #ordering = ('concert_start_time', 'name',)
+#    class Meta:
+#        ordering = ('concert_start_time', 'name',)
 
 
 class Festival(models.Model):
     name = models.CharField(max_length=120, null=False, blank=False)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
-    start_time = models.TimeField(null=True, blank=True)
-    end_time = models.TimeField(null=True, blank=True)
-    tickets = models.IntegerField(null=True, blank=True)
+    num_of_concerts = models.IntegerField(null=True, blank=True)
+    total_revenue = models.FloatField(null=True, blank=True)
 
     def _str_(self):
         return self.name

@@ -5,9 +5,11 @@ from .models import (
     Concert,
     Artist,
     BookingOffer,
+    TimeSlot,
 )
 from .login_tests import (
     is_technician,
+    is_booking_manager,
     is_artist_manager,
     is_booker,
 )
@@ -26,13 +28,36 @@ def booker_view(request):
 
 
 @login_required()
-def booking(request):
-    template_name = "booking/firstpage.html"
+def program_view(request):
+    template_name = "booking/program.html"
 
     objs = Concert.objects.all()
 
     context = {
         'concerts': objs,
+    }
+
+    return render(request, template_name, context)
+
+
+@user_passes_test(is_booking_manager)
+def booking_view(request):
+    template_name = "booking/booking.html"
+
+    booking_offers = BookingOffer.objects.all()
+    booking_offers_count = booking_offers.count()
+    available_slots = []
+
+    for obj in TimeSlot.objects.all():
+        if not hasattr(obj, "artist"):
+            available_slots.append(obj)
+
+
+    print(booking_offers)
+    context = {
+        'amount_booking_offers': booking_offers_count,
+        'available_slots': available_slots,
+        'booking_offers': booking_offers,
     }
 
     return render(request, template_name, context)

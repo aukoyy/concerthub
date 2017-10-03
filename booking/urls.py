@@ -1,7 +1,8 @@
 from django.conf.urls import url
 from .views import (
     booker_view,
-    booking,
+    program_view,
+    booking_view,
     technician_view,
     testuser,
     artist_manager_view
@@ -9,7 +10,8 @@ from .views import (
 
 
 urlpatterns = [
-    url(r'^firstpage/$', booking, name='booking'),
+    url(r'^booking/$', booking_view, name='booking'),
+    url(r'^program/$', program_view, name='program'),
     url(r'^technician/$', technician_view, name='technician_view'),
     url(r'^testuser/$', testuser, name='testuser'),
     url(r'^booker/$', booker_view, name='booker'),
