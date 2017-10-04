@@ -33,20 +33,21 @@ def booking_view(request):
 
     booking_offers = BookingOffer.objects.all()
     booking_offers_count = booking_offers.count()
+    booked_slots = []
     available_slots = []
 
     for obj in TimeSlot.objects.all():
         if not hasattr(obj, "artist"):
-
-
             available_slots.append(obj)
-
+        elif hasattr(obj, 'artist'):
+            booked_slots.append(obj)
 
     print(booking_offers)
     context = {
         'amount_booking_offers': booking_offers_count,
         'available_slots': available_slots,
         'booking_offers': booking_offers,
+        'booked_slots': booked_slots,
     }
 
     return render(request, template_name, context)
