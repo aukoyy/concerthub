@@ -42,7 +42,6 @@ def booking_view(request):
         elif hasattr(obj, 'artist'):
             booked_slots.append(obj)
 
-    print(booking_offers)
     context = {
         'amount_booking_offers': booking_offers_count,
         'available_slots': available_slots,
