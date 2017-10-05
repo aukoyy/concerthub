@@ -23,8 +23,8 @@
             <tr>
                 <td> {{ concert.name }}</td>
                 <td> {{ concert.stage_id }}</td>
-                <td> {{ concert.concert_start_time }}</td>
-                <td> {{ concert.concert_end_time }}</td>
+                <td> {{ concert.time_slot.start_date }}</td>
+                <td> {{ concert.time_slot.end_date }}</td>
                 <td> {{ concert.tech_meetup_time}}</td>
                 <td> {{ concert.tech_done_time}}</td>
             </tr>
@@ -51,8 +51,8 @@
             <tr>
                 <td> {{ concert.name }}</td>
                 <td> {{ concert.stage_id }}</td>
-                <td> {{ concert.concert_start_time }}</td>
-                <td> {{ concert.concert_end_time }}</td>
+                <td> {{ concert.time_slot.start_date }}</td>
+                <td> {{ concert.time_slot.end_date }}</td>
                 <td> {{ concert.tech_meetup_time}}</td>
                 <td> {{ concert.tech_done_time}}</td>
             </tr>

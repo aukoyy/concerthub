@@ -76,19 +76,3 @@ def artist_manager_view(request):
         'bookingoffers': bookingoffer_objs,
     }
     return render(request, template_name, context)
-
-
-# I (auk) want to keep this test page for now as it (the template) contains solutions for not yet
-# implemented functionality
-def testuser(request):
-    template_name = 'booking/testuser.html'
-
-    concert_objs = Concert.objects.all()
-
-    users_concerts = User.objects.get(username=request.user).concert_set.all()
-
-    context = {
-        'concerts': concert_objs,
-        'users_concerts': users_concerts,
-    }
-    return render(request, template_name, context)

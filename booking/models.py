@@ -59,18 +59,19 @@ class Concert(models.Model):
     def __str__(self):
         return self.name
 
-    # @property
-    # def is_in_future(self):
-    #     # Using the starting time of Concert object
-    #     if self.concert_start_time.date() >= date.today():
-    #         # print('It is in the future')
-    #         return True
-    #     else:
-    #         # print('It is in the past')
-    #         return False
+    @property
+    def is_in_future(self):
+        # print('start date : ' + str(self.time_slot.start_date))
+        # print('today date : ' + str(date.today()))
+        if self.time_slot.start_date >= date.today():
+            # print('It is in the future')
+            return True
+        else:
+            # print('It is in the past')
+            return False
 
-#    class Meta:
-#        ordering = ('concert_start_time', 'name',)
+    class Meta:
+        ordering = ('time_slot__start_date', 'name',)
 
 
 class Festival(models.Model):
@@ -104,4 +105,5 @@ class TimeSlot(models.Model):
     stage = models.ForeignKey(Stage, null=True, blank=False)
 
     def __str__(self):
-        return "%s - %s" % (self.start_time, self.end_time)
+        return "%s, %s - %s" % (self.start_date, self.start_time, self.end_time)
+
