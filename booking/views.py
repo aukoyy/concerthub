@@ -11,7 +11,20 @@ from .login_tests import (
     is_technician,
     is_booking_manager,
     is_artist_manager,
+    is_booker,
 )
+
+
+@user_passes_test(is_booker)
+def booker_view(request):
+    template_name = 'booking/booker.html'
+
+    bookingoffer_objs = User.objects.get(username=request.user).booker.all()
+
+    context = {
+        'bookingoffers': bookingoffer_objs,
+    }
+    return render(request, template_name, context)
 
 
 @login_required()

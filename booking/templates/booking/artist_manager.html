@@ -11,6 +11,8 @@
         <tr>
             <th>Artist</th>
             <th>Stage</th>
+            <th>Start date</th>
+            <th>End date</th>
             <th>Start time</th>
             <th>End time</th>
             <th>Technical needs</th>
@@ -20,9 +22,11 @@
         {% for offer in bookingoffers %}
         <tr>
             <td> {{ offer.artist.name }}</td>
-            <td> {{ offer.artist.concert_id.stage_id }}</td>
-            <td> {{ offer.artist.concert_id.concert_start_time }}</td>
-            <td> {{ offer.artist.concert_id.concert_end_time }}</td>
+            <td> {{ offer.artist.concert.stage }}</td>
+            <td> {{ offer.artist.concert.time_slot.start_date }}</td>
+            <td> {{ offer.artist.concert.time_slot.end_date }}</td>
+            <td> {{ offer.artist.concert.time_slot.start_time }}</td>
+            <td> {{ offer.artist.concert.time_slot.end_time }}</td>
             <td> {{ offer.tech_needs }}</td>
             <td> {{ offer.accepted_by_am }}</td>
         </tr>
