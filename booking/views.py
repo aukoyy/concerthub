@@ -37,9 +37,9 @@ def booking_view(request):
     available_slots = []
 
     for obj in TimeSlot.objects.all():
-        if not hasattr(obj, "artist"):
+        if not hasattr(obj, "concert"):
             available_slots.append(obj)
-        elif hasattr(obj, 'artist'):
+        elif hasattr(obj, 'concert'):
             booked_slots.append(obj)
 
     context = {

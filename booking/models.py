@@ -10,7 +10,6 @@ class Artist(models.Model):
     concert = models.ForeignKey('Concert', null=True, blank=True)
     festival = models.ForeignKey('Festival', null=True, blank=True)
     artist_manager = models.ForeignKey(User, null=True, blank=True)
-    time_slot = models.OneToOneField('TimeSlot', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -37,7 +36,8 @@ class Concert(models.Model):
     name = models.CharField(max_length=120, null=False, blank=False)
     description = models.TextField(max_length=120, null=False, blank=True)
     revenue = models.FloatField(null=True, blank=True)
-    stage = models.ForeignKey('Stage', null=True, blank=True)
+    stage = models.ForeignKey('Stage', null=True, blank=False)
+    # stage should be blank = true, but we're using this for audiencecap validation
     sold_tickets = models.IntegerField(null=True, blank=False)
     audience_showed_up = models.IntegerField(null=True, blank=True)
     tech_meetup_time = models.DateTimeField(null=True, blank=True)
