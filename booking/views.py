@@ -11,7 +11,20 @@ from .login_tests import (
     is_technician,
     is_booking_manager,
     is_artist_manager,
+    is_booker,
 )
+
+
+@user_passes_test(is_booker)
+def booker_view(request):
+    template_name = 'booking/booker.html'
+
+    bookingoffer_objs = User.objects.get(username=request.user).booker.all()
+
+    context = {
+        'bookingoffers': bookingoffer_objs,
+    }
+    return render(request, template_name, context)
 
 
 @login_required()
@@ -76,21 +89,5 @@ def artist_manager_view(request):
     context = {
         'artists': artist_objs,
         'bookingoffers': bookingoffer_objs,
-    }
-    return render(request, template_name, context)
-
-
-# I (auk) want to keep this test page for now as it (the template) contains solutions for not yet
-# implemented functionality
-def testuser(request):
-    template_name = 'booking/testuser.html'
-
-    concert_objs = Concert.objects.all()
-
-    users_concerts = User.objects.get(username=request.user).concert_set.all()
-
-    context = {
-        'concerts': concert_objs,
-        'users_concerts': users_concerts,
     }
     return render(request, template_name, context)
