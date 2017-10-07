@@ -29,7 +29,7 @@ def program_view(request):
 
 @user_passes_test(is_booking_manager)
 def booking_manager_view(request):
-    template_name = "booking/booking.html"
+    template_name = "booking/booking_manager.html"
 
     booking_offers = BookingOffer.objects.all()
     booking_offers_count = booking_offers.count()
