@@ -4,11 +4,9 @@ from datetime import date
 
 
 class Artist(models.Model):
-    name = models.CharField(max_length=120, null=False, blank=True)
-    description = models.TextField(max_length=256, null=False, blank=True)
-    genre = models.CharField(max_length=120, null=False, blank=True)
-    concert = models.ForeignKey('Concert', null=True, blank=True)
-    festival = models.ForeignKey('Festival', null=True, blank=True)
+    name = models.CharField(max_length=120, blank=False)
+    description = models.TextField(blank=True)
+    genre = models.CharField(max_length=120, null=False, blank=False)  # Validate only some / give list
     artist_manager = models.ForeignKey(User, null=True, blank=True)
 
     def __str__(self):
@@ -19,8 +17,10 @@ class BookingOffer(models.Model):
     name = models.CharField(max_length=120, null=False, blank=False)
     artist = models.OneToOneField(Artist, null=True, blank=True)
     comment = models.TextField(max_length=120, null=False, blank=True)
-    created_at = models.DateTimeField(null=True, blank=True)
-    updated_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+    # This could be just written time, then we choose timeslot in concert rather!
+    # Or if possible choose from timeslots then mark that timeslot as being offered?
     offering_time = models.ForeignKey('TimeSlot', null=True, blank=True)
     offering_price = models.IntegerField(null=True, blank=True)
     tech_needs = models.TextField(null=False, blank=True)
@@ -82,7 +82,7 @@ class Festival(models.Model):
     num_of_concerts = models.IntegerField(null=True, blank=True)
     total_revenue = models.FloatField(null=True, blank=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 
 
@@ -90,7 +90,6 @@ class Stage(models.Model):
     name = models.CharField(max_length=120, null=False, blank=False)
     description = models.TextField(max_length=120, null=False, blank=True)
     audience_cap = models.IntegerField(null=True, blank=False)
-    festival = models.ForeignKey(Festival, null=True, blank=True)
 
     def __str__(self):
         return self.name

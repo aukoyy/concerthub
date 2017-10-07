@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import (
     Concert,
-    Artist,
     BookingOffer,
     TimeSlot,
 )
@@ -13,18 +12,6 @@ from .login_tests import (
     is_artist_manager,
     is_booker,
 )
-
-
-@user_passes_test(is_booker)
-def booker_view(request):
-    template_name = 'booking/booker.html'
-
-    bookingoffer_objs = User.objects.get(username=request.user).booker.all()
-
-    context = {
-        'bookingoffers': bookingoffer_objs,
-    }
-    return render(request, template_name, context)
 
 
 @login_required()
@@ -41,7 +28,7 @@ def program_view(request):
 
 
 @user_passes_test(is_booking_manager)
-def booking_view(request):
+def booking_manager_view(request):
     template_name = "booking/booking.html"
 
     booking_offers = BookingOffer.objects.all()
@@ -62,6 +49,18 @@ def booking_view(request):
         'booked_slots': booked_slots,
     }
 
+    return render(request, template_name, context)
+
+
+@user_passes_test(is_booker)
+def booker_view(request):
+    template_name = 'booking/booker.html'
+
+    bookingoffer_objs = User.objects.get(username=request.user).booker.all()
+
+    context = {
+        'bookingoffers': bookingoffer_objs,
+    }
     return render(request, template_name, context)
 
 

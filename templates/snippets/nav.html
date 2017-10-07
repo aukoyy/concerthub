@@ -74,15 +74,15 @@
                         {% for group in request.user.groups.all %}
                             {% if group.name == 'booking_manager' %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'booking' %}">Booking</a>
+                                    <a class="nav-link" href="{% url 'booking_manager_view' %}">Booking Overview</a>
                                 </li>
                             {% endif %}
                         {% endfor %}
 
                         <li class="nav-item">
                             {% for group in request.user.groups.all %}
-                                {% if group.name == 'artist_manager' %}
-                                    <a class="nav-link" href="{% url 'artist_manager' %}">Artist manager</a>
+                                {% if group.name == 'booker' %}
+                                    <a class="nav-link" href="{% url 'booker_view' %}">Booking</a>
                                 {% endif %}
                             {% endfor %}
                         </li>
@@ -97,11 +97,13 @@
 
                         <li class="nav-item">
                             {% for group in request.user.groups.all %}
-                                {% if group.name == 'booker' %}
-                                    <a class="nav-link" href="{% url 'booker' %}">Booker</a>
+                                {% if group.name == 'artist_manager' %}
+                                    <a class="nav-link" href="{% url 'artist_manager_view' %}">Offers & Concerts</a>
                                 {% endif %}
                             {% endfor %}
                         </li>
+
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'contact' %}">Contact</a>
