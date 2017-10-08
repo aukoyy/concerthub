@@ -5,7 +5,7 @@
         <tr>
             <th>Artist</th>
             <th>Stage</th>
-            <th>Time slot</th>
+            <th>Date</th>
             <th>Artist manager</th>
             <th>Technical needs</th>
         </tr>
@@ -13,8 +13,8 @@
         {% for offer in bookingoffers %}
         <tr>
             <td>{{ offer.artist.name }}</td>
-            <td>{{ offer.artist.concert.stage }}</td>
-            <td>{{ offer.artist.time_slot }}</td>
+            <td>{{ offer.offering_stage }}</td>
+            <td>{{ offer.offering_date }}</td>
             <td>{{ offer.artist_manager }}</td>
             <td>{{ offer.tech_needs }}</td>
         </tr>

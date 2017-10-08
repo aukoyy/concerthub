@@ -6,24 +6,26 @@
         <tr>
             <th>Artist</th>
             <th>Stage</th>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Total Tickets</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Sold Tickets</th>
+            <th>Available Tickets</th>
+            <th>Technicians</th>
             <!--<th> Number of Technicians</th>-->
         </tr>
         {% for concert in concerts %}
         <tr>
-            <td> {{ concert.name }}</td>
-            <td> {{ concert.stage_id }}</td>
+            <td> {{ concert.artist }}</td>
+            <td> {{ concert.time_slot.stage }}</td>
+            <td> {{ concert.time_slot.start_date }}</td>
             <td> {{ concert.time_slot.start_time }}</td>
-            <td> {{ concert.time_slot.end_time }}</td>
-            <td> {{ concert.tickets }}</td>
+            <td> {{ concert.sold_tickets }}</td>
+            <td> {{ concert.time_slot.stage.audience_cap }}</td>
             <td>
                 {% for tech in concert.technicians.all %}
-                    {{ tech }}
+                <li>{{ tech }}</li>
                 {% endfor %}
             </td>
-            <td> {{ concert.sold_tickets }}</td>
             <!--<td> {{ concert.number_of_tech }}</td>-->
         </tr>
         {% endfor %}

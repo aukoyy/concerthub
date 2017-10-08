@@ -21,8 +21,8 @@
         {% for concert in concert_objs %}
             {% if concert.is_in_future %}
             <tr>
-                <td> {{ concert.name }}</td>
-                <td> {{ concert.stage_id }}</td>
+                <td> {{ concert.artist }}</td>
+                <td> {{ concert.time_slot.stage }}</td>
                 <td> {{ concert.time_slot.start_date }}</td>
                 <td> {{ concert.time_slot.end_date }}</td>
                 <td> {{ concert.tech_meetup_time}}</td>
@@ -49,8 +49,8 @@
         {% for concert in concert_objs %}
             {% if not concert.is_in_future %}
             <tr>
-                <td> {{ concert.name }}</td>
-                <td> {{ concert.stage_id }}</td>
+                <td> {{ concert.artist }}</td>
+                <td> {{ concert.time_slot.stage }}</td>
                 <td> {{ concert.time_slot.start_date }}</td>
                 <td> {{ concert.time_slot.end_date }}</td>
                 <td> {{ concert.tech_meetup_time}}</td>

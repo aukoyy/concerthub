@@ -5,6 +5,7 @@ from .models import (
     Concert,
     BookingOffer,
     TimeSlot,
+    Artist,
 )
 from .login_tests import (
     is_technician,
@@ -77,16 +78,18 @@ def technician_view(request):
     return render(request, template_name, context)
 
 
-# koble manager til et artist? hente artistene til manager, hente tekniske behov til disse artistene.
 @user_passes_test(is_artist_manager)
 def artist_manager_view(request):
     template_name = "booking/artist_manager.html"
 
-    artist_objs = User.objects.get(username=request.user).artist_set.all()
+    # artist_objs = User.objects.get(username=request.user).artist.all()
+    # TODO: Filter offers by username of artist_manager
     bookingoffer_objs = BookingOffer.objects.all()
+    # bookingoffer_objs = BookingOffer.objects.get(concert_manager=request.user)
+
 
     context = {
-        'artists': artist_objs,
+        # 'artists': artist_objs,
         'bookingoffers': bookingoffer_objs,
     }
     return render(request, template_name, context)
