@@ -13,19 +13,23 @@
             <th>Stage</th>
             <th>Start date</th>
             <th>Price</th>
+            <th>Comment</th>
             <th>Technical needs</th>
             <th>Accepted</th>
         </tr>
 
         {% for offer in bookingoffers %}
-        <tr>
-            <td> {{ offer.artist.name }}</td>
-            <td> {{ offer.offering_stage }}</td>
-            <td> {{ offer.offering_date }}</td>
-            <td> {{ offer.offering_price }}</td>
-            <td> {{ offer.tech_needs }}</td>
-            <td> {{ offer.accepted_by_am }}</td>
-        </tr>
+            {% if offer.approved_by_bm %}
+            <tr>
+                <td> {{ offer.artist.name }}</td>
+                <td> {{ offer.offering_stage }}</td>
+                <td> {{ program.htmloffer.offering_date }}</td>
+                <td> {{ offer.offering_price }}</td>
+                <td> {{ offer.comment }}</td>
+                <td> {{ offer.tech_needs }}</td>
+                <td> {{ offer.accepted_by_am }}</td>
+            </tr>
+            {% endif %}
         {% endfor %}
     </table>
 {% endblock content %}

@@ -12,10 +12,11 @@ from .login_tests import (
     is_booking_manager,
     is_artist_manager,
     is_booker,
+    is_organizer,
+    is_booking_manager_or_organizer,
 )
 
 
-@login_required()
 def program_view(request):
     template_name = "booking/program.html"
 
@@ -28,7 +29,20 @@ def program_view(request):
     return render(request, template_name, context)
 
 
-@user_passes_test(is_booking_manager)
+@user_passes_test(is_organizer)
+def organizer_view(request):
+    template_name = "booking/organizer.html"
+
+    objs = Concert.objects.all()
+
+    context = {
+        'concerts': objs,
+    }
+
+    return render(request, template_name, context)
+
+
+@user_passes_test(is_booking_manager_or_organizer)
 def booking_manager_view(request):
     template_name = "booking/booking_manager.html"
 
@@ -84,8 +98,8 @@ def artist_manager_view(request):
 
     # artist_objs = User.objects.get(username=request.user).artist.all()
     # TODO: Filter offers by username of artist_manager
-    bookingoffer_objs = BookingOffer.objects.all()
-    # bookingoffer_objs = BookingOffer.objects.get(concert_manager=request.user)
+    # bookingoffer_objs = BookingOffer.objects.all()
+    bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()  # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
 
 
     context = {

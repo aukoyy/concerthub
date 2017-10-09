@@ -4,17 +4,11 @@ from datetime import date
 from .validators import validate_future
 
 
-class Genre(models.Model):
-    name = models.CharField(max_length=120)
-
-    def __str__(self):
-        return self.name
-
-
 class Artist(models.Model):
     name = models.CharField(max_length=120, blank=False)
-    genre = models.ForeignKey(Genre, null=True, blank=True)
-    artist_manager = models.ForeignKey(User, null=True, related_name='artist_manager')
+    genre = models.ForeignKey('Genre', null=True, blank=True)
+    artist_manager = models.ForeignKey(User, null=True, related_name='artist_manager',
+                                       limit_choices_to={'groups__name': 'artist_manager'})
 
     def __str__(self):
         return self.name
@@ -22,6 +16,8 @@ class Artist(models.Model):
 
 class BookingOffer(models.Model):
     artist = models.ForeignKey(Artist, null=True, related_name='artist')
+    # I found no way to automate this. I tried. A lot. -auk
+    artist_manager = models.ForeignKey(User, default=1, limit_choices_to={'groups__name': 'artist_manager'})
     comment = models.TextField(max_length=120, blank=True)
     offering_date = models.DateField(null=True, validators=[validate_future])
     offering_stage = models.ForeignKey('Stage', null=True)
@@ -29,7 +25,7 @@ class BookingOffer(models.Model):
     tech_needs = models.TextField(blank=True)
     approved_by_bm = models.BooleanField(default=False)
     accepted_by_am = models.BooleanField(default=False)
-    booker = models.ForeignKey(User, related_name='booker')
+    booker = models.ForeignKey(User, related_name='booker', limit_choices_to={'groups__name': 'booker'})
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
@@ -39,18 +35,17 @@ class BookingOffer(models.Model):
     class Meta:
         ordering = ('offering_date', 'offering_stage')
 
-    @property
-    def artist_manager(self):
-        return self.artist.artist_manager
 
-from django.core.exceptions import ValidationError
+    # @property
+    # def artist_manager(self):
+    #     return self.artist.artist_manager
 
 
 class Concert(models.Model):
     artist = models.ForeignKey(Artist)
     time_slot = models.OneToOneField('TimeSlot', null=True, blank=True)
     description = models.TextField(max_length=120, null=False, blank=True)
-    technicians = models.ManyToManyField(User, blank=True)
+    technicians = models.ManyToManyField(User, blank=True, limit_choices_to={'groups__name': 'technician'})
     tech_meetup_time = models.DateTimeField(null=True, blank=True)
     tech_done_time = models.DateTimeField(null=True, blank=True)
     sold_tickets = models.IntegerField(null=True, blank=True)
@@ -61,7 +56,7 @@ class Concert(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
-        ordering = ('time_slot__start_date', 'artist',)
+        ordering = ('time_slot__start_date', 'time_slot__stage', 'artist',)
 
     def __str__(self):
         return '%s playing at %s on %s' % (self.artist, self.time_slot.stage, self.time_slot.start_date)
@@ -87,6 +82,13 @@ class Festival(models.Model):
     end_date = models.DateField(null=True, blank=True)
     num_of_concerts = models.IntegerField(null=True, blank=True)
     total_revenue = models.FloatField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Genre(models.Model):
+    name = models.CharField(max_length=120)
 
     def __str__(self):
         return self.name
