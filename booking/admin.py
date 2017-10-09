@@ -9,12 +9,19 @@ from .models import (
     TimeSlot,
 )
 
-# Register your models here.
+class BookingOfferModelAdmin(admin.ModelAdmin):
+    list_display = ['artist', 'offering_stage', 'offering_date', 'updated_at', 'approved_by_bm', 'accepted_by_am']
+    list_editable = ['offering_stage', 'offering_date', 'approved_by_bm'] #Lar deg endre on the fly
+    # list_display_links = ['updated_at'] #Styrer hva som er klikkbart
+    list_filter = ['updated_at', 'offering_stage', 'booker'] #Man kan ha flere filtre
+    search_fields = ['artist__name', 'comment', 'tech_needs'] #title og content er hva som er søkbart
+    class Meta:
+        model = BookingOffer
 
 admin.site.register(Genre)
 admin.site.register(Artist)
 admin.site.register(Concert)
 admin.site.register(Festival)
 admin.site.register(Stage)
-admin.site.register(BookingOffer)
+admin.site.register(BookingOffer, BookingOfferModelAdmin)
 admin.site.register(TimeSlot)

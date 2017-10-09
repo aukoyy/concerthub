@@ -21,7 +21,6 @@ class Artist(models.Model):
 
 
 class BookingOffer(models.Model):
-    name = models.CharField(max_length=120)
     artist = models.ForeignKey(Artist, null=True, related_name='artist')
     comment = models.TextField(max_length=120, blank=True)
     offering_date = models.DateField(null=True, validators=[validate_future])
@@ -44,6 +43,8 @@ class BookingOffer(models.Model):
     def artist_manager(self):
         return self.artist.artist_manager
 
+from django.core.exceptions import ValidationError
+
 
 class Concert(models.Model):
     artist = models.ForeignKey(Artist)
@@ -64,6 +65,13 @@ class Concert(models.Model):
 
     def __str__(self):
         return '%s playing at %s on %s' % (self.artist, self.time_slot.stage, self.time_slot.start_date)
+
+    # def clean(self):
+    #     cleaned_data = super(Concert, self).clean()
+    #     clean_sold_tickets = cleaned_data.get('sold_tickets')
+    #     clean_audience = cleaned_data.get('audience_showed_up')
+    #     if clean_sold_tickets > clean_audience:
+    #         raise ValidationError("you cant sell that many tickets")
 
     @property
     def is_in_future(self):
@@ -105,10 +113,10 @@ class TimeSlot(models.Model):
     def __str__(self):
         day = self.start_date.day
         month = self.start_date.month
-        start = str(self.start_time.hour) + ':' + str(self.start_time.minute)
-        end = str(self.end_time.hour) + str(self.end_time.minute)
+        start = '%02d:%02d' % (self.start_time.hour, self.start_time.minute)
+        end = '%02d:%02d' % (self.end_time.hour, self.end_time.minute)
         return '%s:  %s/%s %s-%s' % (self.stage, day, month, start, end)
 
     class Meta:
-        ordering = ('start_date',)
+        ordering = ('start_date', 'start_time', 'stage',)
 
