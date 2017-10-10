@@ -1,68 +1,57 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %} {% load static %}
 
-{% block content %}
-    {% load static %}
-
-    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
-
-    <caption class="title1">Overview of your concerts</caption>
-
-    <h1>Future Concerts</h1>
-    <table class="containertable">
-        <tr>
-            <th>Artist</th>
-            <th>Stage</th>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Tech meet-up time</th>
-            <th>Tech done time</th>
-        </tr>
-
-        {% for concert in concert_objs %}
-            {% if concert.is_in_future %}
-            <tr>
-                <td> {{ concert.artist }}</td>
-                <td> {{ concert.time_slot.stage }}</td>
-                <td> {{ concert.time_slot.start_date }}</td>
-                <td> {{ concert.time_slot.end_date }}</td>
-                <td> {{ concert.tech_meetup_time}}</td>
-                <td> {{ concert.tech_done_time}}</td>
-            </tr>
-            {% endif %}
-        {% endfor %}
-
-    </table>
-
-    <br><br><br>
-    <h1>Past Concerts</h1>
-    <table class="containertable">
-        <tr>
-            <th>Artist</th>
-            <th>Stage</th>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Tech meet-up time</th>
-            <th>Tech done time</th>
-        </tr>
+<link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
 
-        {% for concert in concert_objs %}
-            {% if not concert.is_in_future %}
-            <tr>
-                <td> {{ concert.artist }}</td>
-                <td> {{ concert.time_slot.stage }}</td>
-                <td> {{ concert.time_slot.start_date }}</td>
-                <td> {{ concert.time_slot.end_date }}</td>
-                <td> {{ concert.tech_meetup_time}}</td>
-                <td> {{ concert.tech_done_time}}</td>
-            </tr>
-            {% endif %}
-        {% endfor %}
+<h1>Future Concerts</h1>
+<table class="table">
+    <tr>
+        <th>Artist</th>
+        <th>Stage</th>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Tech meet-up time</th>
+        <th>Tech done time</th>
+    </tr>
 
-    </table>
+    {% for concert in concert_objs %} {% if concert.is_in_future %}
+    <tr>
+        <td> {{ concert.artist }}</td>
+        <td> {{ concert.time_slot.stage }}</td>
+        <td> {{ concert.time_slot.start_date }}</td>
+        <td> {{ concert.time_slot.end_date }}</td>
+        <td> {{ concert.tech_meetup_time}}</td>
+        <td> {{ concert.tech_done_time}}</td>
+    </tr>
+    {% endif %} {% endfor %}
+
+</table>
+
+<br><br><br>
+<h1>Past Concerts</h1>
+<table class="table">
+    <tr>
+        <th>Artist</th>
+        <th>Stage</th>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Tech meet-up time</th>
+        <th>Tech done time</th>
+    </tr>
 
 
-<br><br><br><br><br><br><br><br><br>
+    {% for concert in concert_objs %} {% if not concert.is_in_future %}
+    <tr>
+        <td> {{ concert.artist }}</td>
+        <td> {{ concert.time_slot.stage }}</td>
+        <td> {{ concert.time_slot.start_date }}</td>
+        <td> {{ concert.time_slot.end_date }}</td>
+        <td> {{ concert.tech_meetup_time}}</td>
+        <td> {{ concert.tech_done_time}}</td>
+    </tr>
+    {% endif %} {% endfor %}
+
+</table>
 
 
-{% endblock content %}
+<br><br><br><br><br><br><br><br><br> {% endblock content %}
