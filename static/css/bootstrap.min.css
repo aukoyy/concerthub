@@ -107,15 +107,6 @@ body {
     background-color: #fff;
 }
 
-.navbar-fixed-bottom {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 100px;
-    float: left;
-}
-
 [tabindex="-1"]:focus {
     outline: 0!important
 }
