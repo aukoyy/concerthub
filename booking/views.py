@@ -3,31 +3,20 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import (
     Concert,
-    Artist,
     BookingOffer,
     TimeSlot,
+    Artist,
 )
 from .login_tests import (
     is_technician,
     is_booking_manager,
     is_artist_manager,
     is_booker,
+    is_organizer,
+    is_booking_manager_or_organizer,
 )
 
 
-@user_passes_test(is_booker)
-def booker_view(request):
-    template_name = 'booking/booker.html'
-
-    bookingoffer_objs = User.objects.get(username=request.user).booker.all()
-
-    context = {
-        'bookingoffers': bookingoffer_objs,
-    }
-    return render(request, template_name, context)
-
-
-@login_required()
 def program_view(request):
     template_name = "booking/program.html"
 
@@ -40,9 +29,22 @@ def program_view(request):
     return render(request, template_name, context)
 
 
-@user_passes_test(is_booking_manager)
-def booking_view(request):
-    template_name = "booking/booking.html"
+@user_passes_test(is_organizer)
+def organizer_view(request):
+    template_name = "booking/organizer.html"
+
+    objs = Concert.objects.all()
+
+    context = {
+        'concerts': objs,
+    }
+
+    return render(request, template_name, context)
+
+
+@user_passes_test(is_booking_manager_or_organizer)
+def booking_manager_view(request):
+    template_name = "booking/booking_manager.html"
 
     booking_offers = BookingOffer.objects.all()
     booking_offers_count = booking_offers.count()
@@ -65,6 +67,18 @@ def booking_view(request):
     return render(request, template_name, context)
 
 
+@user_passes_test(is_booker)
+def booker_view(request):
+    template_name = 'booking/booker.html'
+
+    bookingoffer_objs = User.objects.get(username=request.user).booker.all()
+
+    context = {
+        'bookingoffers': bookingoffer_objs,
+    }
+    return render(request, template_name, context)
+
+
 @user_passes_test(is_technician)
 def technician_view(request):
     template_name = "booking/technician.html"
@@ -78,16 +92,18 @@ def technician_view(request):
     return render(request, template_name, context)
 
 
-# koble manager til et artist? hente artistene til manager, hente tekniske behov til disse artistene.
 @user_passes_test(is_artist_manager)
 def artist_manager_view(request):
     template_name = "booking/artist_manager.html"
 
-    artist_objs = User.objects.get(username=request.user).artist_set.all()
-    bookingoffer_objs = BookingOffer.objects.all()
+    # artist_objs = User.objects.get(username=request.user).artist.all()
+    # TODO: Filter offers by username of artist_manager
+    # bookingoffer_objs = BookingOffer.objects.all()
+    bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()  # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
+
 
     context = {
-        'artists': artist_objs,
+        # 'artists': artist_objs,
         'bookingoffers': bookingoffer_objs,
     }
     return render(request, template_name, context)

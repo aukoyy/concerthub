@@ -2,6 +2,8 @@
 {% load static %}
 {% block content %}
 
+<h1>Add total revenue and stuff</h1>
+
 
     <table class="containertable">
         <tr>
@@ -11,6 +13,8 @@
             <th>Time</th>
             <th>Sold Tickets</th>
             <th>Available Tickets</th>
+            <th>Technicians</th>
+            <!--<th> Number of Technicians</th>-->
         </tr>
         {% for concert in concerts %}
         <tr>
@@ -20,7 +24,12 @@
             <td> {{ concert.time_slot.start_time }}</td>
             <td> {{ concert.sold_tickets }}</td>
             <td> {{ concert.time_slot.stage.audience_cap }}</td>
-
+            <td>
+                {% for tech in concert.technicians.all %}
+                <li>{{ tech }}</li>
+                {% endfor %}
+            </td>
+            <!--<td> {{ concert.number_of_tech }}</td>-->
         </tr>
         {% endfor %}
 

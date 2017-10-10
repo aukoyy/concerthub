@@ -48,7 +48,6 @@
 
     </head>
     <body>
-
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
@@ -58,62 +57,99 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'home' %}">Home
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'home' %}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
-                    </li>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'program' %}">Program</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'program' %}">Program</a>
+                        </li>
 
-                    {% for group in request.user.groups.all %} {% if group.name == 'booking_manager' %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'booking' %}">Booking</a>
-                    </li>
-                    {% endif %} {% endfor %}
+                        {% if request.user.is_superuser %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'organizer_view' %}">Festival Overview</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'booking_manager_view' %}">Booking Overview</a>
+                            </li>
+                        {% else %}
+                            {% for group in request.user.groups.all %}
+                                {% if group.name == 'organizer' %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'organizer_view' %}">Festival Overview</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
 
-                    <li class="nav-item">
-                        {% for group in request.user.groups.all %} {% if group.name == 'artist_manager' %}
-                        <a class="nav-link" href="{% url 'artist_manager' %}">Artist manager</a> {% endif %} {% endfor %}
-                    </li>
 
-                    <li class="nav-item">
-                        {% for group in request.user.groups.all %} {% if group.name == 'technician' %}
-                        <a class="nav-link" href="{% url 'technician_view' %}">My Work Hours</a> {% endif %} {% endfor %}
-                    </li>
+                            {% for group in request.user.groups.all %}
+                                {% if 'booking_manager' or 'organizer' in group.name %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'booking_manager_view' %}">Booking Overview</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
 
-                    <li class="nav-item">
-                        {% for group in request.user.groups.all %} {% if group.name == 'booker' %}
-                        <a class="nav-link" href="{% url 'booker' %}">Booker</a> {% endif %} {% endfor %}
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                    </li>
-                </ul>
+                        <li class="nav-item">
+                            {% for group in request.user.groups.all %}
+                                {% if group.name == 'booker' %}
+                                    <a class="nav-link" href="{% url 'booker_view' %}">Booking</a>
+                                {% endif %}
+                            {% endfor %}
+                        </li>
 
-                <ul class="navbar ml-auto">
-                    <li class="nav-item">
-                        {% if user.is_authenticated %} {% if user.first_name %}
-                        <strong>{{ user.first_name }}</strong>
-                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a> {% else %}
-                        <strong>{{ user }}</strong>
-                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a> {% endif %} {% if user.groups.all.0 %}
-                        <p>role:</p>
-                        <strong>{{ user.groups.all.0 }}</strong>
-                        <!--only shows first role-->
-                        {% endif %} {% else %}
-                        <a class="nav-link" href="{% url 'login' %}">Log In</a> {% endif %}
-                    </li>
-                </ul>
+                        <li class="nav-item">
+                            {% for group in request.user.groups.all %}
+                                {% if group.name == 'technician' %}
+                                    <a class="nav-link" href="{% url 'technician_view' %}">My Work Hours</a>
+                                {% endif %}
+                            {% endfor %}
+                         </li>
+
+                        <li class="nav-item">
+                            {% for group in request.user.groups.all %}
+                                {% if group.name == 'artist_manager' %}
+                                    <a class="nav-link" href="{% url 'artist_manager_view' %}">Offers & Concerts</a>
+                                {% endif %}
+                            {% endfor %}
+                        </li>
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar ml-auto">
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                                {% if user.first_name %}
+                                    <strong>{{ user.first_name }}</strong>
+                                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                                {% else %}
+                                    <strong>{{ user }}</strong>
+                                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                                {% endif %}
+                                {% if user.groups.all.0 %}
+                                    <p>role:</p>
+                                    <strong>{{ user.groups.all.0 }}</strong>
+                                    <!--only shows first role-->
+                                {% endif %}
+                            {% else %}
+                                <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        </div>
-    </nav>
+        </nav>
 
     <!-- Bootstrap core JavaScript -->
 

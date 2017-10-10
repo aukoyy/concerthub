@@ -27,20 +27,11 @@ def is_booker(user):
 
 
 def is_technician(user):
-    # Following commented lines are for reference as to what is possible
-    # Note that print statements show up in terminal when page loads,
-    # not on page or dev tools (in browser as javascript does)
-
-    # print('Hallo from is_technician function in login_test.py')
-    # print(user.groups)
-    # print(user.is_authenticated())
-    # print(user.is_staff)
-    # print(user.groups.all())
-
     for group in user.groups.all():
         if str(group) == 'technician':
-            # print('In group technician')
             return True
-
-    # print('Not in group')
     return False
+
+
+def is_booking_manager_or_organizer(user):
+    return is_organizer(user) or is_booking_manager(user)
