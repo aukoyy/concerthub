@@ -5118,7 +5118,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
 
 .navbar-fixed-bottom,
 .navbar-fixed-top {
-    position: fixed;
+    position: absolute;
     right: 0;
     left: 0;
     z-index: 1030
