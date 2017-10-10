@@ -5,7 +5,8 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
-    <caption class="title1">Overview of your concerts</caption>
+    <h1 class="title1">Overview of your concerts</h1>
+
 
     <table class="containertable">
         <tr>
@@ -22,9 +23,9 @@
             {% if offer.approved_by_bm %}
             <tr>
                 <td> {{ offer.artist.name }}</td>
-                <td> {{ offer.offering_stage }}</td>
-                <td> {{ program.htmloffer.offering_date }}</td>
-                <td> {{ offer.offering_price }}</td>
+                <td> {{ offer.time_slot.stage }}</td>
+                <td> {{ offer.time_slot.start_date }}</td>
+                <td> {{ offer.price }}</td>
                 <td> {{ offer.comment }}</td>
                 <td> {{ offer.tech_needs }}</td>
                 <td> {{ offer.accepted_by_am }}</td>
