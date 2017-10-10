@@ -19,8 +19,8 @@ class BookingOffer(models.Model):
     # I found no way to automate this. I tried. A lot. -auk
     artist_manager = models.ForeignKey(User, default=1, limit_choices_to={'groups__name': 'artist_manager'})
     comment = models.TextField(max_length=120, blank=True)
-    offering_date = models.DateField(null=True, validators=[validate_future])
-    offering_stage = models.ForeignKey('Stage', null=True)
+    offering_time_slot = models.ForeignKey('TimeSlot', null=True, blank=True)
+    # offering_stage = models.ForeignKey('Stage', null=True)
     offering_price = models.IntegerField(null=True, blank=True)
     tech_needs = models.TextField(blank=True)
     approved_by_bm = models.BooleanField(default=False)
@@ -29,11 +29,11 @@ class BookingOffer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
-    def __str__(self):
-        return "%s offer at %s" % (self.artist, self.offering_date)
+    # def __str__(self):
+    #     return "%s offer at %s" % (self.artist, self.offering_date)
 
-    class Meta:
-        ordering = ('offering_date', 'offering_stage')
+    # class Meta:
+    #     ordering = ('offering_date', 'offering_stage')
 
 
     # @property
@@ -43,7 +43,8 @@ class BookingOffer(models.Model):
 
 class Concert(models.Model):
     artist = models.ForeignKey(Artist)
-    time_slot = models.OneToOneField('TimeSlot', null=True, blank=True)
+    time_slot = models.OneToOneField('TimeSlot', null=True, blank=True,)
+                                     # limit_choices_to={'concert': })
     description = models.TextField(max_length=120, null=False, blank=True)
     technicians = models.ManyToManyField(User, blank=True, limit_choices_to={'groups__name': 'technician'})
     tech_meetup_time = models.DateTimeField(null=True, blank=True)
