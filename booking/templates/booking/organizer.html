@@ -2,10 +2,9 @@
 {% load static %}
 {% block content %}
 
-<h1>Add total revenue and stuff</h1>
+    <h1>Add total revenue and stuff</h1>
 
-
-    <table class="containertable">
+    <table class="table">
         <tr>
             <th>Artist</th>
             <th>Stage</th>
@@ -17,20 +16,20 @@
             <!--<th> Number of Technicians</th>-->
         </tr>
         {% for concert in concerts %}
-        <tr>
-            <td> {{ concert.artist }}</td>
-            <td> {{ concert.time_slot.stage }}</td>
-            <td> {{ concert.time_slot.start_date }}</td>
-            <td> {{ concert.time_slot.start_time }}</td>
-            <td> {{ concert.sold_tickets }}</td>
-            <td> {{ concert.time_slot.stage.audience_cap }}</td>
-            <td>
-                {% for tech in concert.technicians.all %}
-                <li>{{ tech }}</li>
-                {% endfor %}
-            </td>
-            <!--<td> {{ concert.number_of_tech }}</td>-->
-        </tr>
+            <tr>
+                <td> {{ concert.artist }}</td>
+                <td> {{ concert.time_slot.stage }}</td>
+                <td> {{ concert.time_slot.start_date }}</td>
+                <td> {{ concert.time_slot.start_time }}</td>
+                <td> {{ concert.sold_tickets }}</td>
+                <td> {{ concert.time_slot.stage.audience_cap }}</td>
+                <td>
+                    {% for tech in concert.technicians.all %}
+                        <li>{{ tech }}</li>
+                    {% endfor %}
+                </td>
+                <!--<td> {{ concert.number_of_tech }}</td>-->
+            </tr>
         {% endfor %}
 
     </table>

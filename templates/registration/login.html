@@ -1,31 +1,36 @@
- {% extends "base.html" %} {% block content %} {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %} {% if next %} {% if user.is_authenticated %}
-<p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
-{% else %}
-<p>Please login to see this page.</p>
-{% endif %} {% endif %}
+ {% extends "base.html" %}
+ {% block content %}
+     {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+     {% endif %}
+     {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+     {% endif %}
 
 
-<div class="login">
-    <div class="login-triangle"></div>
-    <form method="post" class="login-container" action="{% url 'login' %}">
-        {% csrf_token %}
-        <h2 class="login-header">Concerthub</h2>
-        <table class="login-table">
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-        </table>
+    <div class="login">
+        <div class="login-triangle"></div>
+        <form method="post" class="login-container" action="{% url 'login' %}">
+            {% csrf_token %}
+            <h2 class="login-header">Concerthub</h2>
+            <table class="login-table">
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+            </table>
 
-        <input class="login-button" type="submit" value="Log in" />
-        <input type="hidden" name="next" value="{{ next }}" />
-    </form>
-</div>
+            <input class="login-button" type="submit" value="Log in" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
 
 {% endblock %}

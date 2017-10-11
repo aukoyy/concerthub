@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-
-    <table class="containertable">
+    <table class="table">
         <tr>
             <th>Artist</th>
             <th>Stage</th>
@@ -13,17 +11,14 @@
             <th>Available Tickets</th>
         </tr>
         {% for concert in concerts %}
-        <tr>
-            <td> {{ concert.artist }}</td>
-            <td> {{ concert.time_slot.stage }}</td>
-            <td> {{ concert.time_slot.start_date }}</td>
-            <td> {{ concert.time_slot.start_time }}</td>
-            <td> {{ concert.sold_tickets }}</td>
-            <td> {{ concert.time_slot.stage.audience_cap }}</td>
-
-        </tr>
+            <tr>
+                <td> {{ concert.artist }}</td>
+                <td> {{ concert.time_slot.stage }}</td>
+                <td> {{ concert.time_slot.start_date }}</td>
+                <td> {{ concert.time_slot.start_time }}</td>
+                <td> {{ concert.sold_tickets }}</td>
+                <td> {{ concert.time_slot.stage.audience_cap }}</td>
+            </tr>
         {% endfor %}
-
     </table>
-
 {% endblock content %}

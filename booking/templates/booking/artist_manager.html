@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
     {% load static %}
 
@@ -7,8 +6,7 @@
 
     <h1 class="title1">Overview of your concerts</h1>
 
-
-    <table class="containertable">
+    <table class="table">
         <tr>
             <th>Artist</th>
             <th>Stage</th>
@@ -18,7 +16,6 @@
             <th>Technical needs</th>
             <th>Accepted</th>
         </tr>
-
         {% for offer in bookingoffers %}
             {% if offer.approved_by_bm %}
             <tr>

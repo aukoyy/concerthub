@@ -1,39 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>OVERVIEW</h1>
-<table class="containertable">
-    <tr>
-        <th>Booked slots</th>
-        <th>Offers sent</th>
-        <th>Available slots</th>
-    </tr>
-    <tr>
-        <td> {{ booked_slots|length }}</td>
-        <td> {{ booking_offers|length }} </td>
-        <td> {{ available_slots|length }}</td>
-    </tr>
+    <h1>OVERVIEW</h1>
+    <table class="table">
+        <tr>
+            <th>Booked slots</th>
+            <th>Offers sent</th>
+            <th>Available slots</th>
+        </tr>
+        <tr>
+            <td> {{ booked_slots|length }}</td>
+            <td> {{ booking_offers|length }} </td>
+            <td> {{ available_slots|length }}</td>
+        </tr>
+    </table>
 
-</table>
-
-<h1>AVAILABLE TIME SLOTS </h1>
-<table class="containertable">
-    <tr>
-        <th>Slot</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Stage</th>
-    </tr>
-    {% for slot in available_slots %}
-
-    <tr>
-        <td> {{ slot }}</td>
-        <td> {{ slot.start_date }}</td>
-        <td> {{ slot.end_date }}</td>
-        <td> {{ slot.stage }}</td>
-    </tr>
-    {% endfor %}
-
-</table>
-
-
+    <h1>AVAILABLE TIME SLOTS </h1>
+    <table class="table">
+        <tr>
+            <th>Slot</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Stage</th>
+        </tr>
+        {% for slot in available_slots %}
+            <tr>
+                <td> {{ slot }}</td>
+                <td> {{ slot.start_date }}</td>
+                <td> {{ slot.end_date }}</td>
+                <td> {{ slot.stage }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock content %}
