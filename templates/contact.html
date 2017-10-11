@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block head_title %}Contact || {{ block.super }}{% endblock head_title %} {% block content %}
+{% extends "base.html" %}
+{% block head_title %}Contact || {{ block.super }}
+{% endblock head_title %}
+{% block content %}
 
 <div class="container">
     <div>
@@ -22,8 +25,7 @@
                     <textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
                     <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
                 </div>
-
-                <button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Submit Form</button>
+                <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Submit Form</button>
             </form>
         </div>
     </div>

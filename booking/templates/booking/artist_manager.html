@@ -1,9 +1,10 @@
-{% extends 'base.html' %} {% block content %} {% load static %}
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
 <h1 class="title1">Overview of your concerts</h1>
-
 
 <table class="table">
     <tr>
@@ -15,7 +16,6 @@
         <th>Technical needs</th>
         <th>Accepted</th>
     </tr>
-
     {% for offer in bookingoffers %} {% if offer.approved_by_bm %}
     <tr>
         <td> {{ offer.artist.name }}</td>
