@@ -27,6 +27,9 @@ class BookingOffer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
+    def get_absolute_url(self):
+        return "/offers_concerts"
+
     def __str__(self):
         return "%s offer at %s" % (self.artist, self.time_slot)
 

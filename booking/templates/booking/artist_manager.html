@@ -26,6 +26,7 @@
                 <td> {{ offer.comment }}</td>
                 <td> {{ offer.tech_needs }}</td>
                 <td> {{ offer.accepted_by_am }}</td>
+                <td><a href="{{ offer.id }}/update">Edit</a></td>
             </tr>
             {% endif %}
         {% endfor %}
