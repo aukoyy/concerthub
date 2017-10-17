@@ -101,8 +101,8 @@ def artist_manager_view(request):
     # artist_objs = User.objects.get(username=request.user).artist.all()
     # TODO: Filter offers by username of artist_manager
     # bookingoffer_objs = BookingOffer.objects.all()
-    bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()  # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
-
+    bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()
+    # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
 
     context = {
         # 'artists': artist_objs,
@@ -118,5 +118,5 @@ class BookingUpdate(UpdateView):
         'accepted_by_am',
     ]
     template_name = 'booking/bookingmodel_update_form.html'
-    #template_name_suffix = '_update_form'
+    # template_name_suffix = '_update_form'
     success_url = '/booking/offers_concerts'
