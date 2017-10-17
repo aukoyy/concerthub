@@ -15,6 +15,7 @@
             <th>Comment</th>
             <th>Technical needs</th>
             <th>Accepted</th>
+            <th></th>
         </tr>
         {% for offer in bookingoffers %}
             {% if offer.approved_by_bm %}
@@ -26,6 +27,7 @@
                 <td> {{ offer.comment }}</td>
                 <td> {{ offer.tech_needs }}</td>
                 <td> {{ offer.accepted_by_am }}</td>
+                <td><a href="{{ offer.pk }}/update">Edit</a></td>
             </tr>
             {% endif %}
         {% endfor %}

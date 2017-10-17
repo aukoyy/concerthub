@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.generic.edit import UpdateView
+
 from .models import (
     Concert,
     BookingOffer,
@@ -107,3 +109,14 @@ def artist_manager_view(request):
         'bookingoffers': bookingoffer_objs,
     }
     return render(request, template_name, context)
+
+
+class BookingUpdate(UpdateView):
+    model = BookingOffer
+    fields = [
+        'tech_needs',
+        'accepted_by_am',
+    ]
+    template_name = 'booking/bookingmodel_update_form.html'
+    #template_name_suffix = '_update_form'
+    success_url = '/booking/offers_concerts'
