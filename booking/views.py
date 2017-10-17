@@ -78,6 +78,18 @@ def booker_view(request):
     }
     return render(request, template_name, context)
 
+def accept_booking(pr):
+
+    offer = pr.POST.get("offer")
+    print(offer)
+
+
+
+
+def decline_booking(pr):
+    offer = pr.POST.get("offer")
+    print(offer)
+
 
 @user_passes_test(is_technician)
 def technician_view(request):

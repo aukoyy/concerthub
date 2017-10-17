@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <h1>Sent booking offers</h1>
     <table class="table">
         <tr>
@@ -20,11 +19,18 @@
                         </ul>
                         <br>
                         <!-- Links -->
-                        <button href="#" class="btn btn-primary">Accept</button>
-                        <button href="#" class="btn btn-primary">Decline</button>
-                        </div>
+                        <form method="post" class="login-container" action="{% url 'accept_booking' %}">
+                            {% csrf_token %}
+                           <input class="btn btn-primary" type="submit" value="Accept" name="Accept"/>
+                            <input type="hidden" name="offer" value="{{ offer }}" />
+                        </form>
+                        <form method="post" class="login-container" action="{% url 'decline_booking' %}">
+                            {% csrf_token %}
+                           <input class="btn btn-primary" type="submit" value="Decline" name="Decline" />
+                            <input type="hidden" name="offer" value="{{ offer }}" />
+                        </form>
                     </div>
-                    </td>
+                </td>
             {% if forloop.counter|divisibleby:3 %}
         </tr>
             <tr>
