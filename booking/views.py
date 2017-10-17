@@ -119,4 +119,5 @@ class BookingUpdate(UpdateView):
     ]
     template_name = 'booking/bookingmodel_update_form.html'
     # template_name_suffix = '_update_form'
+    # want to keep this to try and figure out why it did not work
     success_url = '/booking/offers_concerts'
