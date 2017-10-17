@@ -1,16 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>OVERVIEW</h1>
+
+
+<h1>Sent booking offers</h1>
     <table class="table">
         <tr>
-            <th>Booked slots</th>
-            <th>Offers sent</th>
-            <th>Available slots</th>
+        {% for offer in booking_offers %}
+                <td>
+                    <div class="card text-primary border-primary" style="max-width: 20rem;">
+                        <div class="card-body">
+                        <h4 class="card-title"> {{ offer.artist }}</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Booker: {{ offer.booker }}</li>
+                            <li class="list-group-item">Time:  {{ offer.time_slot }}</li>
+                            <li class="list-group-item">Price: {{ offer.price }}</li>
+                            <li class="list-group-item">Comment: {{ offer.comment }}</li>
+                            <li class="list-group-item">Approved by Booking Manager: {{ offer.approved_by_bm }}</li>
+                            <li class="list-group-item">Approved by Artist Manager: {{ offer.accepted_by_am }}</li>
+                        </ul>
+                        <br>
+                        <!-- Links -->
+                        <button href="#" class="btn btn-primary">Accept</button>
+                        <button href="#" class="btn btn-primary">Decline</button>
+                        </div>
+                    </div>
+                    </td>
+            {% if forloop.counter|divisibleby:3 %}
         </tr>
-        <tr>
-            <td> {{ booked_slots|length }}</td>
-            <td> {{ booking_offers|length }} </td>
-            <td> {{ available_slots|length }}</td>
+            <tr>
+            {% endif %}
+    {% endfor %}
         </tr>
     </table>
 
@@ -31,4 +50,21 @@
             </tr>
         {% endfor %}
     </table>
+
+
+    <h1>OVERVIEW</h1>
+    <table class="table">
+        <tr>
+            <th>Booked slots</th>
+            <th>Offers sent</th>
+            <th>Available slots</th>
+        </tr>
+        <tr>
+            <td> {{ booked_slots|length }}</td>
+            <td> {{ booking_offers|length }} </td>
+            <td> {{ available_slots|length }}</td>
+        </tr>
+    </table>
+
+
 {% endblock content %}
