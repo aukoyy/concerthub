@@ -8,7 +8,7 @@
                 <td>
                     <div class="card text-primary border-primary" style="max-width: 19rem;">
                         <div class="card-body">
-                            <h4 class="card-title"> {{ offer.artist }}</h4>
+                            <h4 class="card-title"> <i class="fa fa-user"></i> {{ offer.artist }} </h4>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Booker: {{ offer.booker }}</li>
                                 <li class="list-group-item">Time:  {{ offer.time_slot }}</li>
@@ -23,7 +23,7 @@
                                     <li>
                                         <form method="post"  action="{% url 'accept_booking' %}">
                                             {% csrf_token %}
-                                            <input class="btn btn-primary" type="submit" value="Accept" name="Accept"/>
+                                            <input class="btn btn-primary" type="submit" value="Approve" name="Accept"/>
                                             <input type="hidden" name="offer" value="{{ offer.id }}"/>
                                         </form>
                                     </li>
