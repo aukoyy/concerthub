@@ -52,7 +52,12 @@
                             {% endif %}
                         {% endfor %}
                         {% for group in request.user.groups.all %}
-                            {% if 'booking_manager' or 'organizer' in group.name %}
+                            {% if group.name == 'booking_manager' %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'booking_manager_view' %}">Booking Overview</a>
+                                </li>
+                            {% endif %}
+                            {% if group.name == 'organizer' %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'booking_manager_view' %}">Booking Overview</a>
                                 </li>
