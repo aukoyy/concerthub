@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <form action="" method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update" />
-    </form>
+
+    <div class="jumbotron">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+
 {% endblock content %}
 
