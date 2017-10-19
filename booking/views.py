@@ -8,6 +8,7 @@ from .models import (
     BookingOffer,
     TimeSlot,
     Artist,
+    Stage,
 )
 from .login_tests import (
     is_technician,
@@ -39,6 +40,28 @@ def organizer_view(request):
 
     context = {
         'concerts': objs,
+    }
+
+    return render(request, template_name, context)
+
+
+@user_passes_test(is_booking_manager_or_organizer)
+def concert_reports_view(request):
+    template_name = "booking/concert_reports.html"
+
+    stage = Stage.objects.all()
+    timeslot = TimeSlot.objects.all()
+    concert = Concert.objects.all()
+
+    
+
+
+
+
+    context = {
+        'stages': stage,
+        'timeslots': timeslot,
+        'concerts': concert,
     }
 
     return render(request, template_name, context)

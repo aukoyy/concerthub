@@ -45,6 +45,7 @@ class Concert(models.Model):
     sold_tickets = models.IntegerField(null=True, blank=True)
     audience_showed_up = models.IntegerField(null=True, blank=True)
     revenue = models.FloatField(null=True, blank=True)
+    costs = models.FloatField(null=True, blank=True)
     festival = models.ForeignKey('Festival', default=1)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)

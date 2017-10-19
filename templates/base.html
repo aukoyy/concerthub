@@ -60,6 +60,14 @@
                         {% endfor %}
                     {% endif %}
 
+                     <li class="nav-item">
+                        {% for group in request.user.groups.all %}
+                            {% if 'booking_manager' or 'organizer' in group.name %}
+                                <a class="nav-link" href="{% url 'concert_reports_view' %}">Concert Reports</a>
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+
 
                     <li class="nav-item">
                         {% for group in request.user.groups.all %}
