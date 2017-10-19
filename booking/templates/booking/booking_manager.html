@@ -17,10 +17,25 @@
     <h1>AVAILABLE TIME SLOTS </h1>
     <table class="table">
         <tr>
-            <th>Slot</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Start Date</th>
+            <th>End Time</th>
             <th>Stage</th>
+            <th>ingenting</th>
+        </tr>
+
+        <tr>
+            <td><input type="date" name="start date"></td>
+            <td><input type="date" name="end date"></td>
+            <td><input type="time" name="start time"></td>
+            <td><input type="time" name="end time"></td>
+            <td><select type="text" name="stage" id="stageSelect">
+                {% for stage in stages %}
+                    <option value="{{ stage.name }}">{{ stage.name }}</option>
+                {% endfor %}
+            </select></td>
+            <td><input type="submit" value="New Slot" class="btn btn-primary"></td>
         </tr>
         {% for slot in available_slots %}
             <tr>
@@ -31,4 +46,6 @@
             </tr>
         {% endfor %}
     </table>
+
+
 {% endblock content %}

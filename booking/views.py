@@ -8,6 +8,7 @@ from .models import (
     BookingOffer,
     TimeSlot,
     Artist,
+    Stage,
 )
 from .login_tests import (
     is_technician,
@@ -53,6 +54,8 @@ def booking_manager_view(request):
     booked_slots = []
     available_slots = []
 
+    stages = Stage.objects.all()
+
     for obj in TimeSlot.objects.all():
         if not hasattr(obj, "concert"):
             available_slots.append(obj)
@@ -64,6 +67,7 @@ def booking_manager_view(request):
         'available_slots': available_slots,
         'booking_offers': booking_offers,
         'booked_slots': booked_slots,
+        'stages': stages,
     }
 
     return render(request, template_name, context)
