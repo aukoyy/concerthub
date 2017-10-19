@@ -135,10 +135,25 @@ class BookingDelete(DeleteView):
     success_url = '/booking/booking'
 
 
-class BookingUpdate(UpdateView):
+class BookingUpdate_for_artist_manager(UpdateView):
     model = BookingOffer
     template_name = 'booking/bookingmodel_update_form.html'
-    
+
+    fields = [
+        'tech_needs',
+        'accepted_by_am',
+    ]
+
+    # template_name_suffix = '_update_form'
+    # want to keep this to try and figure out why it did not work
+
+    success_url = '/booking/offers_concerts'
+
+
+class BookingUpdate_for_booker(UpdateView):
+    model = BookingOffer
+    template_name = 'booking/bookingmodel_update_form.html'
+
     fields = [
         'artist',
         'artist_manager',
@@ -149,8 +164,4 @@ class BookingUpdate(UpdateView):
         'approved_by_bm',
         'accepted_by_am',
     ]
-
-    # template_name_suffix = '_update_form'
-    # want to keep this to try and figure out why it did not work
-
     success_url = '/booking/booking'
