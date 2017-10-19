@@ -123,13 +123,15 @@ hr {
 h1,
 h2,
 h3,
-h4,
 h5,
 h6 {
-    margin-top: 0;
-    margin-bottom: .5rem
+    margin-top: 15px;
+    margin-bottom: .9rem
 }
 
+h4 {
+    text-align: center;
+}
 p {
     margin-top: 0;
     margin-bottom: 1rem
@@ -2119,6 +2121,16 @@ fieldset[disabled] a.btn {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff
+}
+.btn-primary2 {
+    color: #fff;
+    background-color: #ed3c2d;
+    border-color: #ed3c2d
+}
+.btn-primary2:hover {
+    color: #fff;
+    background-color: #e0473a;
+    border-color: #e0473a
 }
 
 .btn-primary:hover {
@@ -8446,7 +8458,8 @@ a.text-dark:hover {
 }
 
 .text-muted {
-    color: #868e96!important
+    color: #868e96!important;
+    font-size: 1.2em;
 }
 
 .text-hide {
