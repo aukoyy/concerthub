@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponseNotFound
+from django.views.generic.edit import UpdateView
+
 from .models import (
     Concert,
     BookingOffer,
@@ -120,11 +122,23 @@ def artist_manager_view(request):
     # artist_objs = User.objects.get(username=request.user).artist.all()
     # TODO: Filter offers by username of artist_manager
     # bookingoffer_objs = BookingOffer.objects.all()
-    bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()  # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
-
+    bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()
+    # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
 
     context = {
         # 'artists': artist_objs,
         'bookingoffers': bookingoffer_objs,
     }
     return render(request, template_name, context)
+
+
+class BookingUpdate(UpdateView):
+    model = BookingOffer
+    fields = [
+        'tech_needs',
+        'accepted_by_am',
+    ]
+    template_name = 'booking/bookingmodel_update_form.html'
+    # template_name_suffix = '_update_form'
+    # want to keep this to try and figure out why it did not work
+    success_url = '/booking/offers_concerts'
