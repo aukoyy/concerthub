@@ -7,7 +7,7 @@ from .views import (
     artist_manager_view,
     organizer_view,
     accept_booking,
-    decline_booking
+    decline_booking,
     BookingUpdate,
 )
 
