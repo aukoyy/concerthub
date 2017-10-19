@@ -20,4 +20,6 @@ urlpatterns = [
     url(r'^offers_concerts/$', artist_manager_view, name='artist_manager_view'),
 
     url(r'^offers_concerts/(?P<pk>\w+)/update/$', BookingUpdate.as_view()),
+
+    # url(r'^timeslot/(?P<pk>w+)/create/$', TimeSlotCreate)
 ]

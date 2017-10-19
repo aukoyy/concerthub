@@ -19,29 +19,32 @@
         <tr>
             <th>Start Date</th>
             <th>End Date</th>
-            <th>Start Date</th>
+            <th>Start Time</th>
             <th>End Time</th>
             <th>Stage</th>
             <th>ingenting</th>
         </tr>
 
         <tr>
-            <td><input type="date" name="start date"></td>
-            <td><input type="date" name="end date"></td>
-            <td><input type="time" name="start time"></td>
-            <td><input type="time" name="end time"></td>
-            <td><select type="text" name="stage" id="stageSelect">
-                {% for stage in stages %}
-                    <option value="{{ stage.name }}">{{ stage.name }}</option>
-                {% endfor %}
-            </select></td>
-            <td><input type="submit" value="New Slot" class="btn btn-primary"></td>
+            <div class="form-group">
+                <td><input type="date" name="start date" class="form-control"></td>
+                <td><input type="date" name="end date" class="form-control"></td>
+                <td><input type="time" name="time" class="form-control" /></td>
+                <td><input type="time" name="end time" class="form-control"></td>
+                <td><select type="text" name="stage" id="stageSelect" class="form-control">
+                    {% for stage in stages %}
+                        <option value="{{ stage.name }}">{{ stage.name }}</option>
+                    {% endfor %}
+                </select></td>
+                <td><input type="submit" value="New Slot" class="btn btn-primary"></td>
+            </div>
         </tr>
         {% for slot in available_slots %}
             <tr>
-                <td> {{ slot }}</td>
                 <td> {{ slot.start_date }}</td>
                 <td> {{ slot.end_date }}</td>
+                <td> {{ slot.start_time }}</td>
+                <td> {{ slot.end_time }}</td>
                 <td> {{ slot.stage }}</td>
             </tr>
         {% endfor %}

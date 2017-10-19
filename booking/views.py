@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 
 from .models import (
     Concert,
@@ -71,6 +71,11 @@ def booking_manager_view(request):
     }
 
     return render(request, template_name, context)
+
+
+class TimeSlotCreate(CreateView):
+    model = TimeSlot
+
 
 
 @user_passes_test(is_booker)
