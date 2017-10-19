@@ -107,22 +107,22 @@
                 <table style="float: right;">
                     <tr>
                         {% if user.is_authenticated %}
-                                {% if user.first_name %}
-                                    <td>
-                                    <strong>{{ user.first_name }}</strong>
+                            {% if user.groups.all.0 %}
+                                <td><strong> Role:</strong> {{ user.groups.all.0 }} </td>
+                            {% endif %}
+                            {% if user.first_name %}
+                                <td>
+                                    <span class="text-muted"><p>{{ user.first_name }}</span>
                                     <a href="{% url 'logout' %}">Log Out</a>
-                                    </td>
-                                {% else %}
-                                    <td>
-                                    <strong>{{ user }}</strong>
+                                </td>
+                            {% else %}
+                                <td>
+                                    <strong> User:</strong> {{ user }}
                                     <a href="{% url 'logout' %}">Log Out</a>
-                                    </td>
-                                {% endif %}
-                                {% if user.groups.all.0 %}
-                                    <td> Role: {{ user.groups.all.0 }}</td>
-                                {% endif %}
+                                </td>
+                            {% endif %}
                         {% else %}
-                            <td><a href="{% url 'login' %}">Log In</a></td>
+                            <td ><a href="{% url 'login' %}">Log In</a></td>
                         {% endif %}
                     </tr>
                 </table>
