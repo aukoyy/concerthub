@@ -19,6 +19,7 @@ from .login_tests import (
     is_booking_manager_or_organizer,
 )
 
+from .forms import TimeSlotForm
 
 def program_view(request):
     template_name = "booking/program.html"
@@ -55,6 +56,10 @@ def booking_manager_view(request):
     available_slots = []
 
     stages = Stage.objects.all()
+    time_slot_form = TimeSlotForm(request.POST or None)
+    if time_slot_form.is_valid():
+        instance = time_slot_form.save(commit=False)
+        instance.save()
 
     for obj in TimeSlot.objects.all():
         if not hasattr(obj, "concert"):
@@ -67,8 +72,13 @@ def booking_manager_view(request):
         'available_slots': available_slots,
         'booking_offers': booking_offers,
         'booked_slots': booked_slots,
+        'time_slot_form': time_slot_form,
         'stages': stages,
     }
+
+    if request.method == "POST":
+        print(request.POST.get("start_date"))
+        print(request.POST.get("end_time"))
 
     return render(request, template_name, context)
 
