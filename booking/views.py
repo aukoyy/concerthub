@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponseNotFound
 from .models import (
     Concert,
     BookingOffer,
@@ -78,17 +80,22 @@ def booker_view(request):
     }
     return render(request, template_name, context)
 
-def accept_booking(pr):
+def accept_booking(request):
+    if request.method == 'POST':
+        offer_id = request.POST.get('offer', None)
+        offer = get_object_or_404(BookingOffer, pk=offer_id)
+        offer.approved_by_bm = True
+        offer.save()
+        return redirect('booking_manager_view')
 
-    offer = pr.POST.get("offer")
-    print(offer)
-
-
-
-
-def decline_booking(pr):
-    offer = pr.POST.get("offer")
-    print(offer)
+def decline_booking(request):
+    if request.method == 'POST':
+        offer_id = request.POST.get('offer', None)
+        print(offer_id)
+        offer = get_object_or_404(BookingOffer, pk=offer_id)
+        offer.approved_by_bm = False
+        offer.save()
+        return redirect('booking_manager_view')
 
 
 @user_passes_test(is_technician)

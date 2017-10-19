@@ -23,13 +23,13 @@
                         <form method="post"  action="{% url 'accept_booking' %}">
                             {% csrf_token %}
                            <input class="btn btn-primary" type="submit" value="Accept" name="Accept"/>
-                            <input type="hidden" name="offer" value="{{ offer }}" />
+                            <input type="hidden" name="offer" value="{{ offer.id }}" />
                         </form>
 
                         <form method="post"  action="{% url 'decline_booking' %}">
                             {% csrf_token %}
                            <input class="btn btn-primary" type="submit" value="Decline" name="Decline" />
-                            <input type="hidden" name="offer" value="{{ offer }}" />
+                            <input type="hidden" name="offer" value="{{ offer.id }}" />
                         </form>
                     </div>
                 </td>
