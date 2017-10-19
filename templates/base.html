@@ -103,27 +103,29 @@
         <footer class="footer">
             <div class="container">
                 <span class="text-muted">© 2017 - Site Built By Hanna, Aslak, Øyvind, Ebba, Håkon and Sondre</span>
-            </div>
-            <ul class="navbar ml-auto">
-                <li class="nav-item">
-                    {% if user.is_authenticated %}
-                        {% if user.first_name %}
-                            <strong>{{ user.first_name }}</strong>
-                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                <ul style="list-style-type:none;float:right;">
+                    <div>
+                        {% if user.is_authenticated %}
+                            <div style="float:left  ;"
+                                {% if user.first_name %}
+                                    <strong>{{ user.first_name }}</strong>
+                                    <a href="{% url 'logout' %}">Log Out</a>
+                                {% else %}
+                                    <strong>{{ user }}</strong>
+                                    <a href="{% url 'logout' %}">Log Out</a>
+                                {% endif %}
+                                {% if user.groups.all.0 %}
+                                    <p>role:</p>
+                                    <strong>{{ user.groups.all.0 }}</strong>
+                                    <!--only shows first role-->
+                            </div>
+                        {% endif %}
                         {% else %}
-                            <strong>{{ user }}</strong>
-                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                            <a href="{% url 'login' %}">Log In</a>
                         {% endif %}
-                        {% if user.groups.all.0 %}
-                            <p>role:</p>
-                            <strong>{{ user.groups.all.0 }}</strong>
-                            <!--only shows first role-->
-                        {% endif %}
-                    {% else %}
-                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                    {% endif %}
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </footer>
 
         <!-- Bootstrap core JavaScript
@@ -136,6 +138,6 @@
         <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvFR2nQbsTlL9IkMo7vSSzHolemaTyk7Q&callback=initMap" async defer></script>
-    
+
     </body>
 </html>
