@@ -35,7 +35,7 @@
                                     <li>
                                         <form method="post"  action="{% url 'decline_booking' %}">
                                             {% csrf_token %}
-                                            <input class="btn btn-primary" type="submit" value="Decline" name="Decline"/>
+                                            <input class="btn btn-primary2" type="submit" value="Decline" name="Decline"/>
                                             <input type="hidden" name="offer" value="{{ offer.id }}"/>
                                         </form>
                                     </li>
@@ -68,19 +68,9 @@
                 <td> {{ slot.stage }}</td>
             </tr>
         {% endfor %}
+        <tr>
+            <td>  Total {{ booked_slots|length }} slots booked, {{ booking_offers|length }} offers sent where as {{ available_slots|length }} of these are available </td>
+        </tr>
     </table>
 
-    <h1>OVERVIEW</h1>
-    <table class="table">
-        <tr>
-            <th>Booked slots</th>
-            <th>Offers sent</th>
-            <th>Available slots</th>
-        </tr>
-        <tr>
-            <td> {{ booked_slots|length }}</td>
-            <td> {{ booking_offers|length }}</td>
-            <td> {{ available_slots|length }}</td>
-        </tr>
-    </table>
 {% endblock content %}
