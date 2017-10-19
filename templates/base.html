@@ -102,29 +102,29 @@
 
         <footer class="footer">
             <div class="container">
-                <span class="text-muted">© 2017 - Site Built By Hanna, Aslak, Øyvind, Ebba, Håkon and Sondre</span>
-                <ul style="list-style-type:none;float:right;">
-                    <div>
+                <span class="text-muted" style="margin-top: 5px;">© 2017 - Site Built By Hanna, Aslak, Øyvind, Ebba, Håkon and Sondre</span>
+                <table style="float: right;">
+                    <tr>
                         {% if user.is_authenticated %}
-                            <div style="float:left  ;"
                                 {% if user.first_name %}
+                                    <td>
                                     <strong>{{ user.first_name }}</strong>
                                     <a href="{% url 'logout' %}">Log Out</a>
+                                    </td>
                                 {% else %}
+                                    <td>
                                     <strong>{{ user }}</strong>
                                     <a href="{% url 'logout' %}">Log Out</a>
+                                    </td>
                                 {% endif %}
                                 {% if user.groups.all.0 %}
-                                    <p>role:</p>
-                                    <strong>{{ user.groups.all.0 }}</strong>
-                                    <!--only shows first role-->
-                            </div>
-                        {% endif %}
+                                    <td> Role: {{ user.groups.all.0 }}</td>
+                                {% endif %}
                         {% else %}
-                            <a href="{% url 'login' %}">Log In</a>
+                            <td><a href="{% url 'login' %}">Log In</a></td>
                         {% endif %}
-                    </li>
-                </ul>
+                    </tr>
+                </table>
             </div>
         </footer>
 
