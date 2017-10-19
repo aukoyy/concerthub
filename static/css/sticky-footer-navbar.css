@@ -40,6 +40,11 @@ body>.container {
     padding-left: 15px;
 }
 
+.footer td{
+    color: #868e96!important;
+    font-size: 1.2em;
+}
+
 code {
     font-size: 80%;
 }
