@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .models import (
     Concert,
@@ -111,13 +111,46 @@ def artist_manager_view(request):
     return render(request, template_name, context)
 
 
-class BookingUpdate(UpdateView):
+class BookingCreate(CreateView):
     model = BookingOffer
     fields = [
+        'artist',
+        'artist_manager',
+        'comment',
+        'time_slot',
+        'price',
         'tech_needs',
+        'approved_by_bm',
         'accepted_by_am',
+        'booker',
     ]
     template_name = 'booking/bookingmodel_update_form.html'
+    success_url = '/booking/booking'
+
+
+class BookingDelete(DeleteView):
+    model = BookingOffer
+
+    template_name = 'booking/bookingmodel_delete_form.html'
+    success_url = '/booking/booking'
+
+
+class BookingUpdate(UpdateView):
+    model = BookingOffer
+    template_name = 'booking/bookingmodel_update_form.html'
+    
+    fields = [
+        'artist',
+        'artist_manager',
+        'comment',
+        'time_slot',
+        'price',
+        'tech_needs',
+        'approved_by_bm',
+        'accepted_by_am',
+    ]
+
     # template_name_suffix = '_update_form'
     # want to keep this to try and figure out why it did not work
-    success_url = '/booking/offers_concerts'
+
+    success_url = '/booking/booking'
