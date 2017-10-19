@@ -20,25 +20,31 @@
                         <br>
                         <!-- Links -->
 
-                        <table>
-                            <tr>
-                                <td>
-                                    <form method="post"  action="{% url 'accept_booking' %}">
+                    <div style="float: left; width: 50%;">
+                        <ul style="list-style-type:none;">
+                            <li>
+                                <form method="post"  action="{% url 'accept_booking' %}">
                                         {% csrf_token %}
                                        <input class="btn btn-primary" type="submit" value="Accept" name="Accept"/>
                                         <input type="hidden" name="offer" value="{{ offer.id }}" />
-                                    </form>
-                                </td>
-                                <td>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
 
-                                    <form method="post"  action="{% url 'decline_booking' %}">
+                    <div style="float: right; width: 50%;">
+                        <ul style="list-style-type:none; margin: 0; padding: 0;" >
+                            <li>
+                                <form method="post"  action="{% url 'decline_booking' %}">
                                         {% csrf_token %}
                                        <input class="btn btn-primary" type="submit" value="Decline" name="Decline" />
                                         <input type="hidden" name="offer" value="{{ offer.id }}" />
-                                    </form>
-                                </td>
-                            </tr>
-                        </table>
+                                </form>
+
+                            </li>
+                        </ul>
+                    </div>
+                            
                     </div>
                 </td>
             {% if forloop.counter|divisibleby:3 %}
