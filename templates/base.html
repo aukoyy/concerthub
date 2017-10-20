@@ -126,19 +126,6 @@
                             {% if user.groups.all.0 %}
                                 <td><strong> Role:</strong> {{ user.groups.all.0 }} </td>
                             {% endif %}
-                            {% if user.first_name %}
-                                <td>
-                                    <span class="text-muted"><p>{{ user.first_name }}</span>
-                                    <a href="{% url 'logout' %}">Log Out</a>
-                                </td>
-                            {% else %}
-                                <td>
-                                    <strong> User:</strong> {{ user }}
-                                    <a href="{% url 'logout' %}">Log Out</a>
-                                </td>
-                            {% endif %}
-                        {% else %}
-                            <td><a href="{% url 'login' %}">Log In</a></td>
                         {% endif %}
                     </tr>
                 </table>
