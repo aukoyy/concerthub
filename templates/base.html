@@ -97,7 +97,6 @@
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="{% url 'logout' %}"> Logout</a>
-                            <a class="dropdown-item" href="#">Another action</a>
                           </div>
                         </div>
                     </ul>
@@ -156,6 +155,11 @@
         <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvFR2nQbsTlL9IkMo7vSSzHolemaTyk7Q&callback=initMap" async defer></script>
-
+        <script>
+            $(document).ready(function() {
+              $('li.active').removeClass('active');
+              $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+            });
+        </script>
     </body>
 </html>
