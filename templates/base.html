@@ -89,6 +89,23 @@
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                       <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fa fa-user"></i> {{ user}}
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'logout' %}"> Logout</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                          </div>
+                        </div>
+                    </ul>
+                     {% else %}
+                        <div style="margin-left: 550px">
+                           <i class="fa fa-user"></i><a class="text-muted" href="{% url 'login' %}"> Login</a>
+                        </div>
+                    {% endif %}
             </div>
         </nav>
 
