@@ -3949,7 +3949,16 @@ tbody.collapse.show {
     margin-right: -.625rem;
     margin-left: -.625rem
 }
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
 
+#contentcontainer {
+    height: 100%;
+    width: 100%;
+    background: blue;
+}​
 .card-img-overlay {
     position: absolute;
     top: 0;
