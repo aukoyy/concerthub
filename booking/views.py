@@ -113,6 +113,8 @@ def artist_manager_view(request):
 
 class BookingCreate(CreateView):
     model = BookingOffer
+    template_name = 'booking/bookingmodel_create_form.html'
+
     fields = [
         'artist',
         'artist_manager',
@@ -122,7 +124,6 @@ class BookingCreate(CreateView):
         'tech_needs',
         'booker',
     ]
-    template_name = 'booking/bookingmodel_create_form.html'
     success_url = '/booking/booking'
 
 
