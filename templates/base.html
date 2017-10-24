@@ -89,11 +89,27 @@
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                       <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fa fa-user"></i> {{ user}}
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'logout' %}"> Logout</a>
+                          </div>
+                        </div>
+                    </ul>
+                     {% else %}
+                        <div style="margin-left: 550px">
+                           <i class="fa fa-user"></i><a class="text-muted" href="{% url 'login' %}"> Login</a>
+                        </div>
+                    {% endif %}
             </div>
         </nav>
 
         <!-- Begin page content -->
-        <div class="container">
+        <div class="container" >
             {% block title %}
             {% endblock title %}
 
@@ -108,21 +124,8 @@
                     <tr>
                         {% if user.is_authenticated %}
                             {% if user.groups.all.0 %}
-                                <td><strong> Role:</strong> {{ user.groups.all.0 }} </td>
+                                <td class="text-muted"> Role: {{ user.groups.all.0 }}</td>
                             {% endif %}
-                            {% if user.first_name %}
-                                <td>
-                                    <span class="text-muted"><p>{{ user.first_name }}</span>
-                                    <a href="{% url 'logout' %}">Log Out</a>
-                                </td>
-                            {% else %}
-                                <td>
-                                    <strong> User:</strong> {{ user }}
-                                    <a href="{% url 'logout' %}">Log Out</a>
-                                </td>
-                            {% endif %}
-                        {% else %}
-                            <td><a href="{% url 'login' %}">Log In</a></td>
                         {% endif %}
                     </tr>
                 </table>
@@ -139,6 +142,11 @@
         <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvFR2nQbsTlL9IkMo7vSSzHolemaTyk7Q&callback=initMap" async defer></script>
-
+        <script>
+            $(document).ready(function() {
+              $('li.active').removeClass('active');
+              $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+            });
+        </script>
     </body>
 </html>
