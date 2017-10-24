@@ -11,9 +11,10 @@
 
         <title>Concerthub</title>
 
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"></link>
-        <link href="{% static 'css/login.css' %}" rel="stylesheet"></link>
-        <link href="{% static 'css/sticky-footer-navbar.css' %}" rel="stylesheet"></link>
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/login.css' %}" rel="stylesheet">
+        <link href="{% static 'css/sticky-footer-navbar.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
@@ -23,7 +24,7 @@
             <a class="navbar-brand" href="#">Concerthub</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+            </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -52,7 +53,7 @@
                             {% endif %}
                         {% endfor %}
                         {% for group in request.user.groups.all %}
-                            {% if 'booking_manager' or 'organizer' in group.name %}
+                            {% if group.name == 'booking_manager' or group.name == 'organizer' %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'booking_manager_view' %}">Booking Overview</a>
                                 </li>
@@ -88,11 +89,27 @@
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                       <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fa fa-user"></i> {{ user}}
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'logout' %}"> Logout</a>
+                          </div>
+                        </div>
+                    </ul>
+                     {% else %}
+                        <div style="margin-left: 550px">
+                           <i class="fa fa-user"></i><a class="text-muted" href="{% url 'login' %}"> Login</a>
+                        </div>
+                    {% endif %}
             </div>
         </nav>
 
         <!-- Begin page content -->
-        <div class="container">
+        <div class="container" >
             {% block title %}
             {% endblock title %}
 
@@ -102,30 +119,18 @@
 
         <footer class="footer">
             <div class="container">
-                <span class="text-muted">© 2017 - Site Built By Hanna, Aslak, Øyvind, Ebba, Håkon and Sondre</span>
+                <span class="text-muted" style="margin-top: 5px;">© 2017 - Site Built By Hanna, Aslak, Øyvind, Ebba, Håkon and Sondre</span>
+                <table style="float: right;">
+                    <tr>
+                        {% if user.is_authenticated %}
+                            {% if user.groups.all.0 %}
+                                <td class="text-muted"> Role: {{ user.groups.all.0 }}</td>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                </table>
             </div>
-            <ul class="navbar ml-auto">
-                <li class="nav-item">
-                    {% if user.is_authenticated %}
-                        {% if user.first_name %}
-                            <strong>{{ user.first_name }}</strong>
-                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                        {% else %}
-                            <strong>{{ user }}</strong>
-                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                        {% endif %}
-                        {% if user.groups.all.0 %}
-                            <p>role:</p>
-                            <strong>{{ user.groups.all.0 }}</strong>
-                            <!--only shows first role-->
-                        {% endif %}
-                    {% else %}
-                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                    {% endif %}
-                </li>
-            </ul>
         </footer>
-
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -133,8 +138,15 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
         <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+        <script src="{% static 'js/map.js' %}"></script>
         <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvFR2nQbsTlL9IkMo7vSSzHolemaTyk7Q&callback=initMap" async defer></script>
+        <script>
+            $(document).ready(function() {
+              $('li.active').removeClass('active');
+              $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+            });
+        </script>
     </body>
-
 </html>

@@ -1,24 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <table class="table">
-        <tr>
-            <th>Artist</th>
-            <th>Stage</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Sold Tickets</th>
-            <th>Available Tickets</th>
-        </tr>
-        {% for concert in concerts %}
+    <h1>Festival Program</h1>
+    <div class ="container">
+        <table class="table">
             <tr>
-                <td> {{ concert.artist }}</td>
-                <td> {{ concert.time_slot.stage }}</td>
-                <td> {{ concert.time_slot.start_date }}</td>
-                <td> {{ concert.time_slot.start_time }}</td>
-                <td> {{ concert.sold_tickets }}</td>
-                <td> {{ concert.time_slot.stage.audience_cap }}</td>
+                <th>Artist</th>
+                <th>Stage</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Sold Tickets</th>
+                <th>Available Tickets</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for concert in concerts %}
+                <tr>
+                    <td> {{ concert.artist }}</td>
+                    <td> {{ concert.time_slot.stage }}</td>
+                    <td> {{ concert.time_slot.start_date }}</td>
+                    <td> {{ concert.time_slot.start_time }}</td>
+                    <td> {{ concert.sold_tickets }}</td>
+                    <td> {{ concert.time_slot.stage.audience_cap }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock content %}
+
+

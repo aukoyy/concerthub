@@ -1,16 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>OVERVIEW</h1>
+
+<h1>Sent booking offers</h1>
     <table class="table">
         <tr>
-            <th>Booked slots</th>
-            <th>Offers sent</th>
-            <th>Available slots</th>
-        </tr>
-        <tr>
-            <td> {{ booked_slots|length }}</td>
-            <td> {{ booking_offers|length }} </td>
-            <td> {{ available_slots|length }}</td>
+            {% for offer in booking_offers %}
+                <td>
+                    <div class="card text-primary border-primary" style="max-width: 19rem;">
+                        <div class="card-body">
+                            <h4 class="card-title"> <i class="fa fa-user"></i> {{ offer.artist }} </h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Booker: {{ offer.booker }}</li>
+                                <li class="list-group-item">Time:  {{ offer.time_slot }}</li>
+                                <li class="list-group-item">Price: {{ offer.price }}</li>
+                                <li class="list-group-item">Comment: {{ offer.comment }}</li>
+                                <li class="list-group-item">Approved by Booking Manager: {{ offer.approved_by_bm }}</li>
+                                <li class="list-group-item">Accepted by Artist Manager: {{ offer.accepted_by_am }}</li>
+                            </ul>
+
+                            <div style="float: left; width: 50%; margin-top: 10px;">
+                                <ul style="list-style-type:none;">
+                                    <li>
+                                        <form method="post"  action="{% url 'accept_booking' %}">
+                                            {% csrf_token %}
+                                            <input class="btn btn-primary" type="submit" value="Approve" name="Accept"/>
+                                            <input type="hidden" name="offer" value="{{ offer.id }}"/>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div style="float: right; width: 50%;">
+                                <ul style="list-style-type:none; margin: 10px 0 0; padding: 0;" >
+                                    <li>
+                                        <form method="post"  action="{% url 'decline_booking' %}">
+                                            {% csrf_token %}
+                                            <input class="btn btn-primary2" type="submit" value="Decline" name="Decline"/>
+                                            <input type="hidden" name="offer" value="{{ offer.id }}"/>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                {% if forloop.counter|divisibleby:3 %}
+                    </tr>
+                    <tr>
+                {% endif %}
+            {% endfor %}
         </tr>
     </table>
 
@@ -74,16 +112,9 @@
                 <td> <a class="btn btn-primary" data-toggle="modal" data-target="#TimeSlotModal">Edit</a></td>
             </tr>
         {% endfor %}
+        <tr>
+            <td>  Total {{ booked_slots|length }} slots booked, {{ booking_offers|length }} offers sent where as {{ available_slots|length }} of these are available </td>
+        </tr>
     </table>
-
-<script>
-    $('#TimeSlotModal').submit(function() {
-
-    // submission stuff
-
-    $('#TimeSlotModal').modal('hide');
-    return false;
-});
-</script>
 
 {% endblock content %}
