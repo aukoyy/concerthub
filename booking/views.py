@@ -120,8 +120,6 @@ class BookingCreate(CreateView):
         'time_slot',
         'price',
         'tech_needs',
-        'approved_by_bm',
-        'accepted_by_am',
         'booker',
     ]
     template_name = 'booking/bookingmodel_update_form.html'
