@@ -57,10 +57,10 @@ def concert_reports_view(request):
 
     for t in timeslot:
         for c in concert:
-                if t.stage not in stage_dict and c.time_slot == t:
-                    stage_dict[t.stage] = [c]
-                elif t.stage in stage_dict and c.time_slot == t:
-                    stage_dict[t.stage].append(c)
+            if t.stage not in stage_dict and c.time_slot == t:
+                stage_dict[t.stage] = [c]
+            elif t.stage in stage_dict and c.time_slot == t:
+                stage_dict[t.stage].append(c)
 
     context = {
         'stages': stage,
@@ -108,6 +108,7 @@ def booker_view(request):
     }
     return render(request, template_name, context)
 
+
 def accept_booking(request):
     if request.method == 'POST':
         offer_id = request.POST.get('offer', None)
@@ -115,6 +116,7 @@ def accept_booking(request):
         offer.approved_by_bm = True
         offer.save()
         return redirect('booking_manager_view')
+
 
 def decline_booking(request):
     if request.method == 'POST':
