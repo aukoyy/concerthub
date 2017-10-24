@@ -122,7 +122,7 @@ class BookingCreate(CreateView):
         'tech_needs',
         'booker',
     ]
-    template_name = 'booking/bookingmodel_update_form.html'
+    template_name = 'booking/bookingmodel_create_form.html'
     success_url = '/booking/booking'
 
 
@@ -159,5 +159,6 @@ class BookingUpdate_booker(UpdateView):
         'time_slot',
         'price',
         'tech_needs',
+        'booker',
     ]
     success_url = '/booking/booking'
