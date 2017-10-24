@@ -89,10 +89,6 @@ def booking_manager_view(request):
     return render(request, template_name, context)
 
 
-class TimeSlotCreate(CreateView):
-    model = TimeSlot
-
-
 
 @user_passes_test(is_booker)
 def booker_view(request):
@@ -153,6 +149,21 @@ def artist_manager_view(request):
         'bookingoffers': bookingoffer_objs,
     }
     return render(request, template_name, context)
+
+
+class TimeSlotCreate(CreateView):
+    model = TimeSlot
+    template_name = 'booking/bookingmodel_create_form.html'
+    form = TimeSlotForm
+    fields = [
+        'start_date',
+        'end_date',
+    #     'start_time',
+    #     'end_time',
+    #     'stage',
+    ]
+
+    success_url = '/booking/booking_overview'
 
 
 class BookingCreate(CreateView):

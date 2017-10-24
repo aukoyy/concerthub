@@ -12,6 +12,7 @@ from .views import (
     BookingUpdateBooker,
     accept_booking,
     decline_booking,
+    TimeSlotCreate,
 )
 
 
@@ -28,6 +29,7 @@ urlpatterns = [
     url(r'^offers_concerts/(?P<pk>\w+)/update/$', BookingUpdateArtistManager.as_view()),
     url(r'^booking/(?P<pk>\w+)/update/$', BookingUpdateBooker.as_view()),
     url(r'^booking/(?P<pk>\w+)/delete/$', BookingDelete.as_view()),
-    url(r'new$', BookingCreate.as_view(), name='bookingoffer_new'),
+    url(r'^new$', BookingCreate.as_view(), name='bookingoffer_new'),
 
+    url(r'^booking_overview/create/$', TimeSlotCreate.as_view(), name='timeslot_create'),
 ]

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
 
 <h1>Sent booking offers</h1>
     <table class="table">
@@ -55,8 +56,9 @@
     <h1>AVAILABLE TIME SLOTS </h1>
 
     <br>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TimeSlotModal"
-            data-whatever="@mdo" style="float:right;" onclick="$('#yourModal').modal({'backdrop': 'static'});">New TimeSlot</button>
+    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TimeSlotModal"-->
+            <!--data-whatever="@mdo" style="float:right;">New TimeSlot</button>-->
+    <a type="button" class="btn btn-primary" href="{% url 'timeslot_create' %}" style="float: right;">New TimeSlot</a>
     <br>
 
     <table class="table">
@@ -69,7 +71,24 @@
             <th></th>
         </tr>
 
+        <br>
+        <br>
 
+
+        {% for slot in available_slots %}
+            <tr>
+                <td> {{ slot.start_date }}</td>
+                <td> {{ slot.end_date }}</td>
+                <td> {{ slot.start_time }}</td>
+                <td> {{ slot.end_time }}</td>
+                <td> {{ slot.stage }}</td>
+                <td> <a class="btn btn-primary" data-toggle="modal" data-target="#TimeSlotModal">Edit</a></td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>  Total {{ booked_slots|length }} slots booked, {{ booking_offers|length }} offers sent where as {{ available_slots|length }} of these are available </td>
+        </tr>
+    </table>
 
 
 
@@ -88,7 +107,7 @@
                         {{ time_slot_form.as_p }}
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <input type="submit" value="Save TimeSlot" class="btn btn-primary" data-dismiss=""/>
+                            <input type="submit" value="Save TimeSlot" class="btn btn-primary"/>
                         </div>
                       </div>
                   </form>
@@ -97,24 +116,26 @@
           </div>
         </div>
 
-        <br>
-        <br>
 
 
 
-        {% for slot in available_slots %}
-            <tr>
-                <td> {{ slot.start_date }}</td>
-                <td> {{ slot.end_date }}</td>
-                <td> {{ slot.start_time }}</td>
-                <td> {{ slot.end_time }}</td>
-                <td> {{ slot.stage }}</td>
-                <td> <a class="btn btn-primary" data-toggle="modal" data-target="#TimeSlotModal">Edit</a></td>
-            </tr>
-        {% endfor %}
-        <tr>
-            <td>  Total {{ booked_slots|length }} slots booked, {{ booking_offers|length }} offers sent where as {{ available_slots|length }} of these are available </td>
-        </tr>
-    </table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script !src="">
+
+//$('#TimeSlotModal').on('hidden.bs.modal', function() {
+//  return false;
+//});
+
+$('#TimeSlotModal').on('hide.bs.modal', function(e) {
+
+       e.preventDefault();
+   });
+
+//    $(document).ready(function(){
+//    $("p").click(function(){
+//        $(this).hide();
+//    });
+//});
+</script>
 
 {% endblock content %}
