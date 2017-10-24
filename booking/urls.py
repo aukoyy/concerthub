@@ -6,9 +6,12 @@ from .views import (
     technician_view,
     artist_manager_view,
     organizer_view,
+    BookingCreate,
+    BookingDelete,
+    BookingUpdateArtistManager,
+    BookingUpdateBooker,
     accept_booking,
     decline_booking,
-    BookingUpdate,
 )
 
 
@@ -21,5 +24,8 @@ urlpatterns = [
     url(r'^booking/$', booker_view, name='booker_view'),
     url(r'^work_hours/$', technician_view, name='technician_view'),
     url(r'^offers_concerts/$', artist_manager_view, name='artist_manager_view'),
-    url(r'^offers_concerts/(?P<pk>\w+)/update/$', BookingUpdate.as_view()),
+    url(r'^offers_concerts/(?P<pk>\w+)/update/$', BookingUpdateArtistManager.as_view()),
+    url(r'^booking/(?P<pk>\w+)/update/$', BookingUpdateBooker.as_view()),
+    url(r'^booking/(?P<pk>\w+)/delete/$', BookingDelete.as_view()),
+    url(r'new$', BookingCreate.as_view(), name='bookingoffer_new'),
 ]
