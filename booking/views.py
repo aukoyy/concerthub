@@ -150,7 +150,6 @@ def artist_manager_view(request):
     # bookingoffer_objs = BookingOffer.objects.all()
     bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()  # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
 
-
     context = {
         # 'artists': artist_objs,
         'bookingoffers': bookingoffer_objs,
