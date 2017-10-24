@@ -134,7 +134,7 @@ class BookingDelete(DeleteView):
     success_url = '/booking/booking'
 
 
-class BookingUpdate_artist_manager(UpdateView):
+class BookingUpdateArtistManager(UpdateView):
     model = BookingOffer
     template_name = 'booking/bookingmodel_update_form.html'
 
@@ -149,7 +149,7 @@ class BookingUpdate_artist_manager(UpdateView):
     success_url = '/booking/offers_concerts'
 
 
-class BookingUpdate_booker(UpdateView):
+class BookingUpdateBooker(UpdateView):
     model = BookingOffer
     template_name = 'booking/bookingmodel_update_form.html'
 
