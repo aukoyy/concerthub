@@ -109,6 +109,7 @@ class TimeSlot(models.Model):
     end_time = models.TimeField(null=True, blank=False)
     stage = models.ForeignKey(Stage, null=True, blank=False)
 
+
     def __str__(self):
         day = self.start_date.day
         month = self.start_date.month
