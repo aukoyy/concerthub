@@ -8,7 +8,7 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 90px;
+    margin-bottom: 80px;
 }
 
 .footer {
@@ -16,8 +16,8 @@ body {
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 60px;
-    background-color: #f5f5f5;
+    height: 50px;
+    background-color: #565656;
 }
 
 
@@ -38,6 +38,11 @@ body>.container {
 .footer>.container {
     padding-right: 15px;
     padding-left: 15px;
+}
+
+.footer td{
+    color: #868e96!important;
+    font-size: 1.2em;
 }
 
 code {

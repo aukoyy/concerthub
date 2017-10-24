@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponseNotFound
+
 
 from .models import (
     Concert,
@@ -79,6 +82,25 @@ def booker_view(request):
         'bookingoffers': bookingoffer_objs,
     }
     return render(request, template_name, context)
+
+
+def accept_booking(request):
+    if request.method == 'POST':
+        offer_id = request.POST.get('offer', None)
+        offer = get_object_or_404(BookingOffer, pk=offer_id)
+        offer.approved_by_bm = True
+        offer.save()
+        return redirect('booking_manager_view')
+
+
+def decline_booking(request):
+    if request.method == 'POST':
+        offer_id = request.POST.get('offer', None)
+        print(offer_id)
+        offer = get_object_or_404(BookingOffer, pk=offer_id)
+        offer.approved_by_bm = False
+        offer.save()
+        return redirect('booking_manager_view')
 
 
 @user_passes_test(is_technician)

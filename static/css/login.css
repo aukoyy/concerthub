@@ -32,11 +32,11 @@
     margin-right: auto;
     margin-left: auto;
     border: 12px solid transparent;
-    border-bottom-color: #1F2739;
+    border-bottom-color: #76323f;
 }
 
 .login-header {
-    background: #1F2739;
+    background: #76323f;
     padding: 20px;
     font-size: 1.4em;
     font-weight: normal;
@@ -85,14 +85,14 @@
 }
 
 .login input[type="submit"] {
-    background: #1F2739;
+    background: #76323f;
     border-color: transparent;
     color: #fff;
     cursor: pointer;
 }
 
 .login input[type="submit"]:hover {
-    background: #17c;
+    background: #c09f80;
 }
 
 
