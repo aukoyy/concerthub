@@ -53,15 +53,20 @@ def concert_reports_view(request):
     timeslot = TimeSlot.objects.all()
     concert = Concert.objects.all()
 
-    
+    stage_dict = dict()
 
-
-
+    for t in timeslot:
+        for c in concert:
+                if t.stage not in stage_dict and c.time_slot == t:
+                    stage_dict[t.stage] = [c]
+                elif t.stage in stage_dict and c.time_slot == t:
+                    stage_dict[t.stage].append(c)
 
     context = {
         'stages': stage,
         'timeslots': timeslot,
         'concerts': concert,
+        'stage_dict': stage_dict,
     }
 
     return render(request, template_name, context)
