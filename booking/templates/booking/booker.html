@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
     <h1 class="title1">Overview of your booking offers</h1>
+    <a href="{% url 'bookingoffer_new' %}">New</a>
 
     <table class="table">
         <tr>
@@ -34,6 +35,5 @@
             <td><a href="{{ offer.id }}/delete">Delete</a></td>
         </tr>
         {% endfor %}
-        <a href="{% url 'bookingoffer_new' %}">New</a>
     </table>
 {% endblock content %}

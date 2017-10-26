@@ -53,14 +53,21 @@
         </tr>
     </table>
 
-    <h1>AVAILABLE TIME SLOTS </h1>
+    <br>
+    <hr>
+    <br>
 
+    <h1>TIME SLOTS
+    <a type="button" class="btn btn-primary btn-lg" href="{% url 'timeslot_create' %}" style="float: right;">New TimeSlot</a>
+    </h1>
     <br>
     <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TimeSlotModal"-->
             <!--data-whatever="@mdo" style="float:right;">New TimeSlot</button>-->
-    <a type="button" class="btn btn-primary" href="{% url 'timeslot_create' %}" style="float: right;">New TimeSlot</a>
     <br>
-
+        <tr>
+            <td><h3>  Total {{ booked_slots|length }} slots booked, {{ booking_offers|length }} offers sent where as {{ available_slots|length }} of these are available </h3></td>
+        </tr>
+<br>
     <table class="table">
         <tr>
             <th>Start Date</th>
@@ -69,10 +76,9 @@
             <th>End Time</th>
             <th>Stage</th>
             <th></th>
+            <th></th>
         </tr>
 
-        <br>
-        <br>
 
 
         {% for slot in available_slots %}
@@ -82,60 +88,11 @@
                 <td> {{ slot.start_time }}</td>
                 <td> {{ slot.end_time }}</td>
                 <td> {{ slot.stage }}</td>
-                <td> <a class="btn btn-primary" data-toggle="modal" data-target="#TimeSlotModal">Edit</a></td>
+                <td> <a class="btn btn-primary" href="{{ slot.id }}/update">Edit</a></td>
+                <td> <a class="btn btn-primary2" href="{{ slot.id }}/delete">Delete</a></td>
             </tr>
         {% endfor %}
-        <tr>
-            <td>  Total {{ booked_slots|length }} slots booked, {{ booking_offers|length }} offers sent where as {{ available_slots|length }} of these are available </td>
-        </tr>
     </table>
 
-
-
-        <div class="modal fade" id="TimeSlotModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New TimeSlot</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                  <form method="POST" action="">{% csrf_token %}
-                      <div class="form-group">
-                        {{ time_slot_form.as_p }}
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <input type="submit" value="Save TimeSlot" class="btn btn-primary"/>
-                        </div>
-                      </div>
-                  </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script !src="">
-
-//$('#TimeSlotModal').on('hidden.bs.modal', function() {
-//  return false;
-//});
-
-$('#TimeSlotModal').on('hide.bs.modal', function(e) {
-
-       e.preventDefault();
-   });
-
-//    $(document).ready(function(){
-//    $("p").click(function(){
-//        $(this).hide();
-//    });
-//});
-</script>
 
 {% endblock content %}

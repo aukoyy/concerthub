@@ -89,7 +89,6 @@ def booking_manager_view(request):
     return render(request, template_name, context)
 
 
-
 @user_passes_test(is_booker)
 def booker_view(request):
     template_name = 'booking/booker.html'
@@ -154,15 +153,21 @@ def artist_manager_view(request):
 class TimeSlotCreate(CreateView):
     model = TimeSlot
     template_name = 'booking/bookingmodel_create_form.html'
-    form = TimeSlotForm
-    fields = [
-        'start_date',
-        'end_date',
-    #     'start_time',
-    #     'end_time',
-    #     'stage',
-    ]
+    form_class = TimeSlotForm
 
+    success_url = '/booking/booking_overview'
+
+
+class TimeSlotUpdate(UpdateView):
+    model = TimeSlot
+    template_name = 'booking/bookingmodel_update_form.html'
+    form_class = TimeSlotForm
+    success_url = '/booking/booking_overview'
+
+
+class TimeSlotDelete(DeleteView):
+    model = TimeSlot
+    template_name = 'booking/bookingmodel_delete_form.html'
     success_url = '/booking/booking_overview'
 
 
@@ -174,7 +179,7 @@ class BookingCreate(CreateView):
         'artist',
         'artist_manager',
         'comment',
-        'time_slot',
+        # 'time_slot',
         'price',
         'tech_needs',
         'booker',
@@ -184,7 +189,6 @@ class BookingCreate(CreateView):
 
 class BookingDelete(DeleteView):
     model = BookingOffer
-
     template_name = 'booking/bookingmodel_delete_form.html'
     success_url = '/booking/booking'
 
@@ -212,7 +216,7 @@ class BookingUpdateBooker(UpdateView):
         'artist',
         'artist_manager',
         'comment',
-        'time_slot',
+        # 'time_slot',
         'price',
         'tech_needs',
         'booker',

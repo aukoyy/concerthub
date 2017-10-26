@@ -14,7 +14,6 @@ class TimeSlotForm(forms.ModelForm):
             'stage',
         ]
 
-
     def clean(self):
         cleaned_data = super(TimeSlotForm, self).clean()
         start_time = cleaned_data.get('start_time')
@@ -30,5 +29,7 @@ class TimeSlotForm(forms.ModelForm):
             stage=stage,
         )
         if any(conflicts):
-            raise forms.ValidationError("%i conflicts found" % conflicts.count())
+            raise forms.ValidationError("You are trying to add a timeslot to a time and on a stage that is already "
+                                        "taken by %i other time slots. Please choose another time and/or stage"
+                                        % conflicts.count())
         return cleaned_data
