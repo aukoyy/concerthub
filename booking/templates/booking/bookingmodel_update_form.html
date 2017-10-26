@@ -5,8 +5,7 @@
     <form method="post" class="uniForm">{% csrf_token %}
         {{ form.as_p }}
         <input type="submit" class="btn btn-primary" value="Update" />
-        <a type="button" class="btn btn-primary2" href="/booking/booking_overview/{{ object.id }}/delete">Delete</a>
+        <a type="button" class="btn btn-primary2" href="/{{ object.get_absolute_url }}/{{ object.id }}/delete">Delete</a>
     </form>
-
 
 {% endblock content %}

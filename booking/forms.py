@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import TimeSlot
+from .models import TimeSlot, BookingOffer
 
 
 class TimeSlotForm(forms.ModelForm):
@@ -33,3 +33,4 @@ class TimeSlotForm(forms.ModelForm):
                                         "taken by %i other time slots. Please choose another time and/or stage"
                                         % conflicts.count())
         return cleaned_data
+

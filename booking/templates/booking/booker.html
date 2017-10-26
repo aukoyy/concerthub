@@ -4,8 +4,9 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
-    <h1 class="title1">Overview of your booking offers</h1>
-    <a href="{% url 'bookingoffer_new' %}">New</a>
+    <h1 class="title1">Overview of your booking offers
+    <a style="float: right" class="btn btn-primary btn-lg" href="{% url 'bookingoffer_new' %}">New</a>
+    </h1>
 
     <table class="table">
         <tr>
@@ -31,8 +32,8 @@
             <td>{{ offer.artist_manager }}</td>
             <td>{{ offer.approved_by_bm}}</td>
             <td>{{ offer.accepted_by_am }}</td>
-            <td><a href="{{ offer.id }}/update">Edit</a></td>
-            <td><a href="{{ offer.id }}/delete">Delete</a></td>
+            <td><a href="{{ offer.id }}/update" class="btn btn-primary">Edit</a></td>
+            <td><a href="{{ offer.id }}/delete" class="btn btn-primary2">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

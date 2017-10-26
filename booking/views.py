@@ -1,24 +1,19 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.views.generic.edit import UpdateView, CreateView
-
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponseNotFound
-
 
 
 from .models import (
     Concert,
     BookingOffer,
     TimeSlot,
-    Artist,
     Stage,
 )
 from .login_tests import (
     is_technician,
-    is_booking_manager,
     is_artist_manager,
     is_booker,
     is_organizer,
@@ -26,6 +21,7 @@ from .login_tests import (
 )
 
 from .forms import TimeSlotForm
+
 
 def program_view(request):
     template_name = "booking/program.html"
@@ -93,10 +89,10 @@ def booking_manager_view(request):
 def booker_view(request):
     template_name = 'booking/booker.html'
 
-    bookingoffer_objs = User.objects.get(username=request.user).booker.all()
+    booking_offer_objs = User.objects.get(username=request.user).booker.all()
 
     context = {
-        'bookingoffers': bookingoffer_objs,
+        'bookingoffers': booking_offer_objs,
     }
     return render(request, template_name, context)
 
@@ -162,6 +158,7 @@ class TimeSlotUpdate(UpdateView):
     model = TimeSlot
     template_name = 'booking/bookingmodel_update_form.html'
     form_class = TimeSlotForm
+
     success_url = '/booking/booking_overview'
 
 
@@ -179,7 +176,7 @@ class BookingCreate(CreateView):
         'artist',
         'artist_manager',
         'comment',
-        # 'time_slot',
+        'time_slot',
         'price',
         'tech_needs',
         'booker',
@@ -202,9 +199,6 @@ class BookingUpdateArtistManager(UpdateView):
         'accepted_by_am',
     ]
 
-    # template_name_suffix = '_update_form'
-    # want to keep this to try and figure out why it did not work
-
     success_url = '/booking/offers_concerts'
 
 
@@ -216,7 +210,7 @@ class BookingUpdateBooker(UpdateView):
         'artist',
         'artist_manager',
         'comment',
-        # 'time_slot',
+        'time_slot',
         'price',
         'tech_needs',
         'booker',
