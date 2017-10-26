@@ -11,6 +11,7 @@ from .models import (
     BookingOffer,
     TimeSlot,
     Artist,
+    Review,
 )
 from .login_tests import (
     is_technician,
@@ -185,3 +186,13 @@ class BookingUpdateBooker(UpdateView):
         'booker',
     ]
     success_url = '/booking/booking'
+
+
+class ReviewUpdate(UpdateView):
+    model = Review
+    template_name = 'booking/bookingmodel_update_form.html'
+
+    fields = [
+        'artist_rev',
+    ]
+    success_url = '/booking/booking_overview'

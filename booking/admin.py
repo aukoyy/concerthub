@@ -7,6 +7,7 @@ from .models import (
     Stage,
     BookingOffer,
     TimeSlot,
+    Review,
 )
 
 class BookingOfferModelAdmin(admin.ModelAdmin):
@@ -33,3 +34,4 @@ admin.site.register(Festival)
 admin.site.register(Stage)
 admin.site.register(BookingOffer, BookingOfferModelAdmin)
 admin.site.register(TimeSlot)
+admin.site.register(Review)
