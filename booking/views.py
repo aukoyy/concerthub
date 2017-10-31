@@ -19,6 +19,7 @@ from .login_tests import (
     is_booker,
     is_organizer,
     is_booking_manager_or_organizer,
+    is_pr_man,
 )
 
 
@@ -42,6 +43,19 @@ def organizer_view(request):
 
     context = {
         'concerts': objs,
+    }
+
+    return render(request, template_name, context)
+
+
+@user_passes_test(is_pr_man)
+def pr_man_view(request):
+    template_name = "booking/pr_man.html"
+
+    objs = "x.objects.all()"
+
+    context = {
+        '': objs
     }
 
     return render(request, template_name, context)
