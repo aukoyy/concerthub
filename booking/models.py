@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 from .validators import validate_future
-from django.core.urlresolvers import reverse
 
 
 class Artist(models.Model):

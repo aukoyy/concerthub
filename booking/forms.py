@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import TimeSlot, BookingOffer
+from .models import TimeSlot
 
 
 class TimeSlotForm(forms.ModelForm):
@@ -28,6 +28,8 @@ class TimeSlotForm(forms.ModelForm):
             end_date__gte=end_date,
             stage=stage,
         )
+        if self.instance.pk is not None:
+            conflicts = conflicts.exclude(pk=self.instance.pk)
         if any(conflicts):
             raise forms.ValidationError("You are trying to add a timeslot to a time and on a stage that is already "
                                         "taken by %i other time slots. Please choose another time and/or stage"

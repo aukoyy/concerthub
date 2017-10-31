@@ -2,14 +2,15 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<h1>Sent booking offers</h1>
+<h1>Sent booking offers <a style="float: right" class="btn btn-primary btn-lg" href="{% url 'bookingoffer_new' %}">New BookingOffer</a> </h1>
+
     <table class="table">
         <tr>
             {% for offer in booking_offers %}
                 <td>
                     <div class="card text-primary border-primary" style="max-width: 19rem;">
                         <div class="card-body">
-                            <h4 class="card-title"> <i class="fa fa-user"></i> {{ offer.artist }} </h4>
+                            <a href="/booking/booking/{{ offer.id }}/update"><h4 class="card-title"> <i class="fa fa-user"></i> {{ offer.artist }} </h4></a>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Booker: {{ offer.booker }}</li>
                                 <li class="list-group-item">Time:  {{ offer.time_slot }}</li>
