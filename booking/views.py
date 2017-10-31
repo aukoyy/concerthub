@@ -185,3 +185,11 @@ class BookingUpdateBooker(UpdateView):
         'booker',
     ]
     success_url = '/booking/booking'
+
+
+class TechMeetupUpdate(UpdateView):
+    model = Concert
+    template_name = 'booking/update_form'
+
+    fields = {}
+    success_url = '/booking/work_hours'
