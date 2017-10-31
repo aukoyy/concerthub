@@ -14,6 +14,7 @@
             <th>End time</th>
             <th>Tech meet-up time</th>
             <th>Tech done time</th>
+            <th>Techs meat</th>
         </tr>
 
         {% for concert in concert_objs %}
@@ -23,8 +24,14 @@
                     <td> {{ concert.time_slot.stage }}</td>
                     <td> {{ concert.time_slot.start_date }}</td>
                     <td> {{ concert.time_slot.end_date }}</td>
-                    <td> {{ concert.tech_meetup_time}}</td>
-                    <td> {{ concert.tech_done_time}}</td>
+                    <td> {{ concert.tech_meetup_time }}</td>
+                    <td> {{ concert.tech_done_time }}</td>
+                    <td>
+                        {% for tech in concert.tech_meat.all %}
+                            <li>{{ tech }}</li>
+                        {% endfor %}
+                    </td>
+                    <td><a href="{{ concert.id }}/update">Edit</a></td>
                 </tr>
             {% endif %}
         {% endfor %}
@@ -49,8 +56,8 @@
                 <td> {{ concert.time_slot.stage }}</td>
                 <td> {{ concert.time_slot.start_date }}</td>
                 <td> {{ concert.time_slot.end_date }}</td>
-                <td> {{ concert.tech_meetup_time}}</td>
-                <td> {{ concert.tech_done_time}}</td>
+                <td> {{ concert.tech_meetup_time }}</td>
+                <td> {{ concert.tech_done_time }}</td>
             </tr>
             {% endif %}
         {% endfor %}
