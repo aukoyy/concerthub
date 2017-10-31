@@ -11,6 +11,7 @@ from .models import (
     BookingOffer,
     TimeSlot,
     Artist,
+    Stage,
 )
 from .login_tests import (
     is_technician,
@@ -42,6 +43,33 @@ def organizer_view(request):
 
     context = {
         'concerts': objs,
+    }
+
+    return render(request, template_name, context)
+
+
+@user_passes_test(is_booking_manager_or_organizer)
+def concert_reports_view(request):
+    template_name = "booking/concert_reports.html"
+
+    stage = Stage.objects.all()
+    timeslot = TimeSlot.objects.all()
+    concert = Concert.objects.all()
+
+    stage_dict = dict()
+
+    for t in timeslot:
+        for c in concert:
+            if t.stage not in stage_dict and c.time_slot == t:
+                stage_dict[t.stage] = [c]
+            elif t.stage in stage_dict and c.time_slot == t:
+                stage_dict[t.stage].append(c)
+
+    context = {
+        'stages': stage,
+        'timeslots': timeslot,
+        'concerts': concert,
+        'stage_dict': stage_dict,
     }
 
     return render(request, template_name, context)
@@ -123,6 +151,7 @@ def artist_manager_view(request):
     # artist_objs = User.objects.get(username=request.user).artist.all()
     # TODO: Filter offers by username of artist_manager
     # bookingoffer_objs = BookingOffer.objects.all()
+
     bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()
     # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
 
