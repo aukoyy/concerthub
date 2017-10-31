@@ -135,7 +135,7 @@ def artist_manager_view(request):
 
 class BookingCreate(CreateView):
     model = BookingOffer
-    template_name = 'booking/bookingmodel_create_form.html'
+    template_name = 'booking/model_create_form.html'
 
     fields = [
         'artist',
@@ -152,13 +152,13 @@ class BookingCreate(CreateView):
 class BookingDelete(DeleteView):
     model = BookingOffer
 
-    template_name = 'booking/bookingmodel_delete_form.html'
+    template_name = 'booking/model_delete_form.html'
     success_url = '/booking/booking'
 
 
 class BookingUpdateArtistManager(UpdateView):
     model = BookingOffer
-    template_name = 'booking/bookingmodel_update_form.html'
+    template_name = 'booking/model_update_form.html'
 
     fields = [
         'tech_needs',
@@ -173,7 +173,7 @@ class BookingUpdateArtistManager(UpdateView):
 
 class BookingUpdateBooker(UpdateView):
     model = BookingOffer
-    template_name = 'booking/bookingmodel_update_form.html'
+    template_name = 'booking/model_update_form.html'
 
     fields = [
         'artist',
@@ -189,6 +189,6 @@ class BookingUpdateBooker(UpdateView):
 
 class TechMeetupUpdate(UpdateView):
     model = Concert
-    template_name = 'booking/bookingmodel_update_form.html'
-    fields = {'tech_meat'}
+    template_name = 'booking/model_update_form.html'
+    fields = {'techs_meat'}
     success_url = '/booking/work_hours'

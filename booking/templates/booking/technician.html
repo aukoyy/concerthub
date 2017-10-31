@@ -27,7 +27,7 @@
                     <td> {{ concert.tech_meetup_time }}</td>
                     <td> {{ concert.tech_done_time }}</td>
                     <td>
-                        {% for tech in concert.tech_meat.all %}
+                        {% for tech in concert.techs_meat.all %}
                             <li>{{ tech }}</li>
                         {% endfor %}
                     </td>
