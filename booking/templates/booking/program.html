@@ -24,6 +24,22 @@
             {% endfor %}
         </table>
     </div>
+
+    <h1>Reviews</h1>
+    <div class ="container">
+        <table class="table">
+            <tr>
+                <th>Artist</th>
+                <th>Review</th>
+            </tr>
+            {% for concert in concerts %}
+                <tr>
+                    <td> {{ concert.artist }} </td>
+                    <td> {{ concert.artist.artist_rev }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock content %}
 
 
