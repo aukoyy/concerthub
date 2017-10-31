@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
+
+    <h1 class="title1">Overview of your booking offers</h1>
 
     <table class="table">
         <tr>
             <th>Artist</th>
             <th>Stage</th>
-            <th>Date</th>
-            <th>Artist manager</th>
+            <th>Start date</th>
+            <th>Price</th>
+            <th>Comment</th>
             <th>Technical needs</th>
+            <th>Artist manager</th>
+            <th>Approved</th>
+            <th>Accepted</th>
         </tr>
 
         {% for offer in bookingoffers %}
@@ -15,9 +24,16 @@
             <td>{{ offer.artist.name }}</td>
             <td>{{ offer.time_slot.stage }}</td>
             <td>{{ offer.time_slot.start_date }}</td>
-            <td>{{ offer.artist_manager }}</td>
+            <td>{{ offer.price }}</td>
+            <td>{{ offer.comment }}</td>
             <td>{{ offer.tech_needs }}</td>
+            <td>{{ offer.artist_manager }}</td>
+            <td>{{ offer.approved_by_bm}}</td>
+            <td>{{ offer.accepted_by_am }}</td>
+            <td><a href="{{ offer.id }}/update">Edit</a></td>
+            <td><a href="{{ offer.id }}/delete">Delete</a></td>
         </tr>
         {% endfor %}
+        <a href="{% url 'bookingoffer_new' %}">New</a>
     </table>
 {% endblock content %}

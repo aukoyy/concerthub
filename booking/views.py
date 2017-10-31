@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponseNotFound
+
+
 from .models import (
     Concert,
     BookingOffer,
@@ -148,10 +151,66 @@ def artist_manager_view(request):
     # artist_objs = User.objects.get(username=request.user).artist.all()
     # TODO: Filter offers by username of artist_manager
     # bookingoffer_objs = BookingOffer.objects.all()
-    bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()  # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
+
+    bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()
+    # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
 
     context = {
         # 'artists': artist_objs,
         'bookingoffers': bookingoffer_objs,
     }
     return render(request, template_name, context)
+
+
+class BookingCreate(CreateView):
+    model = BookingOffer
+    template_name = 'booking/bookingmodel_create_form.html'
+
+    fields = [
+        'artist',
+        'artist_manager',
+        'comment',
+        'time_slot',
+        'price',
+        'tech_needs',
+        'booker',
+    ]
+    success_url = '/booking/booking'
+
+
+class BookingDelete(DeleteView):
+    model = BookingOffer
+
+    template_name = 'booking/bookingmodel_delete_form.html'
+    success_url = '/booking/booking'
+
+
+class BookingUpdateArtistManager(UpdateView):
+    model = BookingOffer
+    template_name = 'booking/bookingmodel_update_form.html'
+
+    fields = [
+        'tech_needs',
+        'accepted_by_am',
+    ]
+
+    # template_name_suffix = '_update_form'
+    # want to keep this to try and figure out why it did not work
+
+    success_url = '/booking/offers_concerts'
+
+
+class BookingUpdateBooker(UpdateView):
+    model = BookingOffer
+    template_name = 'booking/bookingmodel_update_form.html'
+
+    fields = [
+        'artist',
+        'artist_manager',
+        'comment',
+        'time_slot',
+        'price',
+        'tech_needs',
+        'booker',
+    ]
+    success_url = '/booking/booking'

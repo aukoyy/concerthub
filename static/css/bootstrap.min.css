@@ -51,15 +51,17 @@
         border: 1px solid #000
     }
     .table {
-        border-collapse: collapse!important
+        border-collapse: collapse!important;
+        
     }
     .table td,
     .table th {
-        background-color: #fff!important
+        background-color: #fff!important;
+        border: 1px solid #76323F!important
     }
     .table-bordered td,
     .table-bordered th {
-        border: 1px solid #ddd!important
+        border: 1px solid #76323F!important
     }
 }
 
@@ -106,7 +108,7 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: #565656;
     background-color: #fff;
 }
 
@@ -123,13 +125,15 @@ hr {
 h1,
 h2,
 h3,
-h4,
 h5,
 h6 {
-    margin-top: 0;
-    margin-bottom: .5rem
+    margin-top: 15px;
+    margin-bottom: .9rem
 }
 
+h4 {
+    text-align: center;
+}
 p {
     margin-top: 0;
     margin-bottom: 1rem
@@ -275,6 +279,7 @@ textarea {
 
 table {
     border-collapse: collapse
+
 }
 
 caption {
@@ -2117,8 +2122,18 @@ fieldset[disabled] a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: #304357;
+    border-color: ##304357
+}
+.btn-primary2 {
+    color: #fff;
+    background-color: #76323f;
+    border-color: #76323f
+}
+.btn-primary2:hover {
+    color: #fff;
+    background-color: #e0473a;
+    border-color: #e0473a
 }
 
 .btn-primary:hover {
@@ -2148,8 +2163,8 @@ fieldset[disabled] a.btn {
 
 .btn-secondary {
     color: #fff;
-    background-color: #868e96;
-    border-color: #868e96
+    background-color: #C09f80;
+    border-color: #C09f80
 }
 
 .btn-secondary:hover {
@@ -5559,7 +5574,7 @@ a.bg-light:hover {
 }
 
 .bg-dark {
-    background-color: #343a40!important
+    background-color: #565656!important
 }
 
 a.bg-dark:focus,
@@ -5600,7 +5615,7 @@ a.bg-dark:hover {
 }
 
 .border-primary {
-    border-color: #007bff!important
+    border-color: #d7cec7!important
 }
 
 .border-secondary {
@@ -8374,7 +8389,7 @@ a.bg-dark:hover {
 }
 
 .text-primary {
-    color: #007bff!important
+    color: #565656!important
 }
 
 a.text-primary:focus,
@@ -8446,7 +8461,8 @@ a.text-dark:hover {
 }
 
 .text-muted {
-    color: #868e96!important
+    color: #868e96!important;
+    font-size: 1em;
 }
 
 .text-hide {
