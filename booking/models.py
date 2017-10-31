@@ -9,6 +9,7 @@ class Artist(models.Model):
     genre = models.ForeignKey('Genre', null=True, blank=True)
     artist_manager = models.ForeignKey(User, null=True, related_name='artist_manager',
                                        limit_choices_to={'groups__name': 'artist_manager'})
+    artist_rev = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
@@ -43,11 +44,14 @@ class Concert(models.Model):
                                      # limit_choices_to={'concert': True})
     description = models.TextField(max_length=120, null=False, blank=True)
     technicians = models.ManyToManyField(User, blank=True, limit_choices_to={'groups__name': 'technician'})
+    techs_met = models.ManyToManyField(User, blank=True, related_name='techs_met',
+                                       limit_choices_to={'groups__name': 'technician'})
     tech_meetup_time = models.DateTimeField(null=True, blank=True)
     tech_done_time = models.DateTimeField(null=True, blank=True)
     sold_tickets = models.IntegerField(null=True, blank=True)
     audience_showed_up = models.IntegerField(null=True, blank=True)
     revenue = models.FloatField(null=True, blank=True)
+    costs = models.FloatField(null=True, blank=True)
     festival = models.ForeignKey('Festival', default=1)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)

@@ -11,6 +11,7 @@ from .models import (
     BookingOffer,
     TimeSlot,
     Artist,
+    Stage,
 )
 from .login_tests import (
     is_technician,
@@ -56,6 +57,33 @@ def pr_man_view(request):
 
     context = {
         '': objs
+    }
+
+    return render(request, template_name, context)
+
+
+@user_passes_test(is_booking_manager_or_organizer)
+def concert_reports_view(request):
+    template_name = "booking/concert_reports.html"
+
+    stage = Stage.objects.all()
+    timeslot = TimeSlot.objects.all()
+    concert = Concert.objects.all()
+
+    stage_dict = dict()
+
+    for t in timeslot:
+        for c in concert:
+            if t.stage not in stage_dict and c.time_slot == t:
+                stage_dict[t.stage] = [c]
+            elif t.stage in stage_dict and c.time_slot == t:
+                stage_dict[t.stage].append(c)
+
+    context = {
+        'stages': stage,
+        'timeslots': timeslot,
+        'concerts': concert,
+        'stage_dict': stage_dict,
     }
 
     return render(request, template_name, context)
@@ -137,6 +165,7 @@ def artist_manager_view(request):
     # artist_objs = User.objects.get(username=request.user).artist.all()
     # TODO: Filter offers by username of artist_manager
     # bookingoffer_objs = BookingOffer.objects.all()
+
     bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()
     # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
 
@@ -149,7 +178,7 @@ def artist_manager_view(request):
 
 class BookingCreate(CreateView):
     model = BookingOffer
-    template_name = 'booking/bookingmodel_create_form.html'
+    template_name = 'booking/model_create_form.html'
 
     fields = [
         'artist',
@@ -166,13 +195,13 @@ class BookingCreate(CreateView):
 class BookingDelete(DeleteView):
     model = BookingOffer
 
-    template_name = 'booking/bookingmodel_delete_form.html'
+    template_name = 'booking/model_delete_form.html'
     success_url = '/booking/booking'
 
 
 class BookingUpdateArtistManager(UpdateView):
     model = BookingOffer
-    template_name = 'booking/bookingmodel_update_form.html'
+    template_name = 'booking/model_update_form.html'
 
     fields = [
         'tech_needs',
@@ -187,7 +216,7 @@ class BookingUpdateArtistManager(UpdateView):
 
 class BookingUpdateBooker(UpdateView):
     model = BookingOffer
-    template_name = 'booking/bookingmodel_update_form.html'
+    template_name = 'booking/model_update_form.html'
 
     fields = [
         'artist',
@@ -199,3 +228,21 @@ class BookingUpdateBooker(UpdateView):
         'booker',
     ]
     success_url = '/booking/booking'
+
+
+class UpdateArtistReview(UpdateView):
+    model = Artist
+    template_name = 'booking/bookingmodel_update_form.html'
+
+    fields = [
+        'artist_rev',
+    ]
+    success_url = '/booking/booking_overview'
+
+
+
+class TechMeetupUpdate(UpdateView):
+    model = Concert
+    template_name = 'booking/model_update_form.html'
+    fields = {'techs_met'}
+    success_url = '/booking/work_hours'
