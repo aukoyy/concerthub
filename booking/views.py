@@ -190,5 +190,5 @@ class BookingUpdateBooker(UpdateView):
 class TechMeetupUpdate(UpdateView):
     model = Concert
     template_name = 'booking/model_update_form.html'
-    fields = {'techs_meat'}
+    fields = {'techs_met'}
     success_url = '/booking/work_hours'
