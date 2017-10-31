@@ -226,6 +226,7 @@ class UpdateArtistReview(UpdateView):
     success_url = '/booking/booking_overview'
 
 
+
 class TechMeetupUpdate(UpdateView):
     model = Concert
     template_name = 'booking/model_update_form.html'
