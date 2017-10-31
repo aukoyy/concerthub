@@ -185,3 +185,13 @@ class BookingUpdateBooker(UpdateView):
         'booker',
     ]
     success_url = '/booking/booking'
+
+
+class UpdateArtistReview(UpdateView):
+    model = Artist
+    template_name = 'booking/bookingmodel_update_form.html'
+
+    fields = [
+        'artist_rev',
+    ]
+    success_url = '/booking/booking_overview'

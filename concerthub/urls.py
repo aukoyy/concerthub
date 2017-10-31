@@ -21,7 +21,6 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import TemplateView
 
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
