@@ -10,12 +10,14 @@ from .models import (
     Review,
 )
 
+
 class BookingOfferModelAdmin(admin.ModelAdmin):
     list_display = ['artist', 'artist_manager', 'updated_at', 'approved_by_bm', 'accepted_by_am']
-    list_editable = ['approved_by_bm'] #Lar deg endre on the fly
-    # list_display_links = ['updated_at'] #Styrer hva som er klikkbart
-    list_filter = ['updated_at', 'booker'] #Man kan ha flere filtre
-    search_fields = ['artist__name', 'comment', 'tech_needs'] #title og content er hva som er søkbart
+    list_editable = ['approved_by_bm']  # Lar deg endre on the fly
+    # list_display_links = ['updated_at'] # Styrer hva som er klikkbart
+    list_filter = ['updated_at', 'booker']  # Man kan ha flere filtre
+    search_fields = ['artist__name', 'comment', 'tech_needs']  # title og content er hva som er søkbart
+
     class Meta:
         model = BookingOffer
 
