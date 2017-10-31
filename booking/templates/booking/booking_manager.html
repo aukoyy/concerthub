@@ -16,6 +16,7 @@
                                 <li class="list-group-item">Comment: {{ offer.comment }}</li>
                                 <li class="list-group-item">Approved by Booking Manager: {{ offer.approved_by_bm }}</li>
                                 <li class="list-group-item">Accepted by Artist Manager: {{ offer.accepted_by_am }}</li>
+                                <li class="list-group-item">Review: {{ offer.artist.artist_review }} <a class="btn btn-primary" href="/booking/artist/{{ offer.artist.id }}/update">Edit</a></li>
                             </ul>
 
                             <div style="float: left; width: 50%; margin-top: 10px;">
@@ -72,5 +73,6 @@
             <td>  Total {{ booked_slots|length }} slots booked, {{ booking_offers|length }} offers sent where as {{ available_slots|length }} of these are available </td>
         </tr>
     </table>
+
 
 {% endblock content %}

@@ -4,11 +4,19 @@ from datetime import date
 from .validators import validate_future
 
 
+class Review(models.Model):
+    artist_rev = models.CharField(max_length=120, blank=True)
+
+    def __str__(self):
+        return self.artist_rev
+
+
 class Artist(models.Model):
     name = models.CharField(max_length=120, blank=False)
     genre = models.ForeignKey('Genre', null=True, blank=True)
     artist_manager = models.ForeignKey(User, null=True, related_name='artist_manager',
                                        limit_choices_to={'groups__name': 'artist_manager'})
+    artist_review = models.ForeignKey(Review, null=True, related_name='review')
 
     def __str__(self):
         return self.name
