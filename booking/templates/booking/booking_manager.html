@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Sent booking offers</h1>
+<h1>SENT BOOKING OFFERS</h1>
     <table class="table">
         <tr>
             {% for offer in booking_offers %}
@@ -46,8 +46,8 @@
                     </div>
                 </td>
                 {% if forloop.counter|divisibleby:3 %}
-                    </tr>
-                    <tr>
+        </tr>
+        <tr>
                 {% endif %}
             {% endfor %}
         </tr>
