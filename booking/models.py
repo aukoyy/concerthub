@@ -43,6 +43,8 @@ class Concert(models.Model):
                                      # limit_choices_to={'concert': True})
     description = models.TextField(max_length=120, null=False, blank=True)
     technicians = models.ManyToManyField(User, blank=True, limit_choices_to={'groups__name': 'technician'})
+    techs_met = models.ManyToManyField(User, blank=True, related_name='techs_met',
+                                       limit_choices_to={'groups__name': 'technician'})
     tech_meetup_time = models.DateTimeField(null=True, blank=True)
     tech_done_time = models.DateTimeField(null=True, blank=True)
     sold_tickets = models.IntegerField(null=True, blank=True)
