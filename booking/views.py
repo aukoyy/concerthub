@@ -10,8 +10,10 @@ from .models import (
     Concert,
     BookingOffer,
     TimeSlot,
+    Artist,
     Stage,
 )
+
 from .login_tests import (
     is_technician,
     is_artist_manager,
