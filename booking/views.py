@@ -53,10 +53,10 @@ def organizer_view(request):
 def pr_man_view(request):
     template_name = "booking/pr_man.html"
 
-    objs = "x.objects.all()"
+    objs = Concert.objects.all()
 
     context = {
-        '': objs
+        'concerts': objs,
     }
 
     return render(request, template_name, context)
@@ -232,7 +232,7 @@ class BookingUpdateBooker(UpdateView):
 
 class UpdateArtistReview(UpdateView):
     model = Artist
-    template_name = 'booking/bookingmodel_update_form.html'
+    template_name = 'booking/model_update_form.html'
 
     fields = [
         'artist_rev',
