@@ -1,1 +1,1 @@
-web: gunicorn concerthub.wsgi --log-file -
+web: gunicorn concerthub:app
