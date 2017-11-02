@@ -20,6 +20,7 @@ from .login_tests import (
     is_booker,
     is_organizer,
     is_booking_manager_or_organizer,
+    is_pr_man,
 )
 
 from .forms import TimeSlotForm
@@ -40,6 +41,19 @@ def program_view(request):
 @user_passes_test(is_organizer)
 def organizer_view(request):
     template_name = "booking/organizer.html"
+
+    objs = Concert.objects.all()
+
+    context = {
+        'concerts': objs,
+    }
+
+    return render(request, template_name, context)
+
+
+@user_passes_test(is_pr_man)
+def pr_man_view(request):
+    template_name = "booking/pr_man.html"
 
     objs = Concert.objects.all()
 
@@ -251,7 +265,7 @@ class BookingUpdateBooker(UpdateView):
 
 class UpdateArtistReview(UpdateView):
     model = Artist
-    template_name = 'booking/bookingmodel_update_form.html'
+    template_name = 'booking/model_update_form.html'
 
     fields = [
         'artist_rev',

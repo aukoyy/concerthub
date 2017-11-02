@@ -79,6 +79,14 @@
 
                     <li class="nav-item">
                         {% for group in request.user.groups.all %}
+                            {% if group.name == 'pr_man' %}
+                                <a class="nav-link" href="{% url 'pr_man_view' %}">Festival Info</a>
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+
+                    <li class="nav-item">
+                        {% for group in request.user.groups.all %}
                             {% if group.name == 'technician' %}
                                 <a class="nav-link" href="{% url 'technician_view' %}">My Work Hours</a>
                             {% endif %}

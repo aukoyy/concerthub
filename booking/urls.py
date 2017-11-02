@@ -22,6 +22,7 @@ from .views import (
     UpdateArtistReview,
     TechMeetupUpdate,
     concert_reports_view,
+    pr_man_view,
 )
 
 
@@ -54,5 +55,7 @@ urlpatterns = [
     url(r'^artist/(?P<pk>\w+)/update/$', UpdateArtistReview.as_view()),
     url(r'^offers_concerts/(?P<pk>\w+)/update/$', BookingUpdateArtistManager.as_view()),
 
+    # pr_man view
+    url(r'^festival_info/$', pr_man_view, name='pr_man_view'),
 
 ]
