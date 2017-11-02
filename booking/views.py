@@ -151,13 +151,14 @@ def artist_manager_view(request):
     # artist_objs = User.objects.get(username=request.user).artist.all()
     # TODO: Filter offers by username of artist_manager
     # bookingoffer_objs = BookingOffer.objects.all()
-
+    concert_objs = User.objects.get(username=request.user).artist_man.all()
     bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()
     # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
 
     context = {
         # 'artists': artist_objs,
         'bookingoffers': bookingoffer_objs,
+        'concerts': concert_objs,
     }
     return render(request, template_name, context)
 
