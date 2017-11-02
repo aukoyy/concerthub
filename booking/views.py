@@ -13,14 +13,16 @@ from .models import (
     Artist,
     Stage,
 )
+
 from .login_tests import (
     is_technician,
-    is_booking_manager,
     is_artist_manager,
     is_booker,
     is_organizer,
     is_booking_manager_or_organizer,
 )
+
+from .forms import TimeSlotForm
 
 
 def program_view(request):
@@ -84,6 +86,12 @@ def booking_manager_view(request):
     booked_slots = []
     available_slots = []
 
+    stages = Stage.objects.all()
+    time_slot_form = TimeSlotForm(request.POST or None)
+    if time_slot_form.is_valid():
+        instance = time_slot_form.save(commit=False)
+        instance.save()
+
     for obj in TimeSlot.objects.all():
         if not hasattr(obj, "concert"):
             available_slots.append(obj)
@@ -95,7 +103,13 @@ def booking_manager_view(request):
         'available_slots': available_slots,
         'booking_offers': booking_offers,
         'booked_slots': booked_slots,
+        'time_slot_form': time_slot_form,
+        'stages': stages,
     }
+
+    if request.method == "POST":
+        print(request.POST.get("start_date"))
+        print(request.POST.get("end_time"))
 
     return render(request, template_name, context)
 
@@ -104,10 +118,10 @@ def booking_manager_view(request):
 def booker_view(request):
     template_name = 'booking/booker.html'
 
-    bookingoffer_objs = User.objects.get(username=request.user).booker.all()
+    booking_offer_objs = User.objects.get(username=request.user).booker.all()
 
     context = {
-        'bookingoffers': bookingoffer_objs,
+        'bookingoffers': booking_offer_objs,
     }
     return render(request, template_name, context)
 
@@ -162,6 +176,28 @@ def artist_manager_view(request):
     return render(request, template_name, context)
 
 
+class TimeSlotCreate(CreateView):
+    model = TimeSlot
+    template_name = 'booking/bookingmodel_create_form.html'
+    form_class = TimeSlotForm
+
+    success_url = '/booking/booking_overview'
+
+
+class TimeSlotUpdate(UpdateView):
+    model = TimeSlot
+    template_name = 'booking/bookingmodel_update_form.html'
+    form_class = TimeSlotForm
+
+    success_url = '/booking/booking_overview'
+
+
+class TimeSlotDelete(DeleteView):
+    model = TimeSlot
+    template_name = 'booking/bookingmodel_delete_form.html'
+    success_url = '/booking/booking_overview'
+
+
 class BookingCreate(CreateView):
     model = BookingOffer
     template_name = 'booking/model_create_form.html'
@@ -193,9 +229,6 @@ class BookingUpdateArtistManager(UpdateView):
         'tech_needs',
         'accepted_by_am',
     ]
-
-    # template_name_suffix = '_update_form'
-    # want to keep this to try and figure out why it did not work
 
     success_url = '/booking/offers_concerts'
 

@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
+
+<h1>Sent booking offers <a style="float: right" class="btn btn-primary btn-lg" href="{% url 'bookingoffer_new' %}">New BookingOffer</a> </h1>
 
 <h1>SENT BOOKING OFFERS</h1>
     <table class="table">
@@ -8,7 +11,7 @@
                 <td>
                     <div class="card text-primary border-primary" style="max-width: 19rem;">
                         <div class="card-body">
-                            <h4 class="card-title"> <i class="fa fa-user"></i> {{ offer.artist }} </h4>
+                            <a href="/booking/booking/{{ offer.id }}/update"><h4 class="card-title"> <i class="fa fa-user"></i> {{ offer.artist }} </h4></a>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Booker: {{ offer.booker }}</li>
                                 <li class="list-group-item">Time:  {{ offer.time_slot }}</li>
@@ -53,25 +56,46 @@
         </tr>
     </table>
 
-    <h1>AVAILABLE TIME SLOTS </h1>
+    <br>
+    <hr>
+    <br>
+
+    <h1>TIME SLOTS
+    <a type="button" class="btn btn-primary btn-lg" href="{% url 'timeslot_create' %}" style="float: right;">New TimeSlot</a>
+    </h1>
+    <br>
+    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TimeSlotModal"-->
+            <!--data-whatever="@mdo" style="float:right;">New TimeSlot</button>-->
+    <br>
+        <tr>
+            <td><h3>  Total {{ booked_slots|length }} slots booked, {{ booking_offers|length }} offers sent where as {{ available_slots|length }} of these are available </h3></td>
+        </tr>
+<br>
     <table class="table">
         <tr>
-            <th>Slot</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
             <th>Stage</th>
+            <th></th>
+            <th></th>
         </tr>
+
+
+
         {% for slot in available_slots %}
             <tr>
-                <td> {{ slot }}</td>
                 <td> {{ slot.start_date }}</td>
                 <td> {{ slot.end_date }}</td>
+                <td> {{ slot.start_time }}</td>
+                <td> {{ slot.end_time }}</td>
                 <td> {{ slot.stage }}</td>
+                <td> <a class="btn btn-primary" href="{{ slot.id }}/update">Edit</a></td>
+                <td> <a class="btn btn-primary2" href="{{ slot.id }}/delete">Delete</a></td>
             </tr>
         {% endfor %}
-        <tr>
-            <td>  Total {{ booked_slots|length }} slots booked, {{ booking_offers|length }} offers sent where as {{ available_slots|length }} of these are available </td>
-        </tr>
     </table>
+
 
 {% endblock content %}
