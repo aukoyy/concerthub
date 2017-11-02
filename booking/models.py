@@ -30,7 +30,7 @@ class BookingOffer(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def get_absolute_url(self):
-        return "/offers_concerts"
+        return "booking/booking"
 
     def __str__(self):
         return "%s offer at %s" % (self.artist, self.time_slot)
@@ -42,7 +42,6 @@ class BookingOffer(models.Model):
 class Concert(models.Model):
     artist = models.ForeignKey(Artist)
     time_slot = models.OneToOneField('TimeSlot', null=True, blank=True,)
-                                     # limit_choices_to={'concert': True})
     description = models.TextField(max_length=120, null=False, blank=True)
     technicians = models.ManyToManyField(User, blank=True, limit_choices_to={'groups__name': 'technician'})
     techs_met = models.ManyToManyField(User, blank=True, related_name='techs_met',
@@ -62,13 +61,6 @@ class Concert(models.Model):
 
     def __str__(self):
         return '%s playing at %s on %s' % (self.artist, self.time_slot.stage, self.time_slot.start_date)
-
-    # def clean(self):
-    #     cleaned_data = super(Concert, self).clean()
-    #     clean_sold_tickets = cleaned_data.get('sold_tickets')
-    #     clean_audience = cleaned_data.get('audience_showed_up')
-    #     if clean_sold_tickets > clean_audience:
-    #         raise ValidationError("you cant sell that many tickets")
 
     @property
     def is_in_future(self):
@@ -113,6 +105,9 @@ class TimeSlot(models.Model):
     start_time = models.TimeField(null=True, blank=False)
     end_time = models.TimeField(null=True, blank=False)
     stage = models.ForeignKey(Stage, null=True, blank=False)
+
+    def get_absolute_url(self):
+        return("booking/booking_overview")
 
     def __str__(self):
         day = self.start_date.day
