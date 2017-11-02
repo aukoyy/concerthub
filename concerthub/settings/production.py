@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'coolcats',
+    'booking',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -100,6 +101,11 @@ DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
+
+LOGIN_URL='/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
