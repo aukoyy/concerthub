@@ -4,8 +4,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
-    <h1 class="title1">Overview of your concerts</h1>
-    {{ concerts }}
+    <h1 class="title1">Bookingoffers</h1>
     <table class="table">
         <tr>
             <th>Artist</th>
@@ -31,4 +30,33 @@
             {% endif %}
         {% endfor %}
     </table>
+    <h1>Concerts</h1>
+    <div class ="container">
+        <table class="table">
+            <tr>
+                <th>Artist</th>
+                <th>Stage</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Sold Tickets</th>
+                <th>Available Tickets</th>
+                <th>Contact person</th>
+            </tr>
+            {% for concert in concerts %}
+                <tr>
+                    <td> {{ concert.artist }}</td>
+                    <td> {{ concert.time_slot.stage }}</td>
+                    <td> {{ concert.time_slot.start_date }}</td>
+                    <td> {{ concert.time_slot.start_time }}</td>
+                    <td> {{ concert.sold_tickets }}</td>
+                    <td> {{ concert.time_slot.stage.audience_cap }}</td>
+                    <td>
+                        {% for contact in concert.contact_person.all %}
+                            <li>{{ contact }}</li>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock content %}
