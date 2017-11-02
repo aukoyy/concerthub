@@ -1,1 +1,1 @@
-web: gunicorn concerthub:app
+web: gunicorn concerthub.wsgi
