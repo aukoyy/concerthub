@@ -35,3 +35,10 @@ def is_technician(user):
 
 def is_booking_manager_or_organizer(user):
     return is_organizer(user) or is_booking_manager(user)
+
+
+def is_pr_man(user):
+    for group in user.groups.all():
+        if str(group) == 'pr_man':
+            return True
+    return False

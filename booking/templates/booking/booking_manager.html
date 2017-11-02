@@ -4,6 +4,7 @@
 
 <h1>Sent booking offers <a style="float: right" class="btn btn-primary btn-lg" href="{% url 'bookingoffer_new' %}">New BookingOffer</a> </h1>
 
+<h1>SENT BOOKING OFFERS</h1>
     <table class="table">
         <tr>
             {% for offer in booking_offers %}
@@ -18,6 +19,7 @@
                                 <li class="list-group-item">Comment: {{ offer.comment }}</li>
                                 <li class="list-group-item">Approved by Booking Manager: {{ offer.approved_by_bm }}</li>
                                 <li class="list-group-item">Accepted by Artist Manager: {{ offer.accepted_by_am }}</li>
+                                <li class="list-group-item">Review: {{ offer.artist.artist_rev }} <br> <a class="btn btn-primary" href="/booking/artist/{{ offer.artist.id }}/update">Edit</a></li>
                             </ul>
 
                             <div style="float: left; width: 50%; margin-top: 10px;">
@@ -47,8 +49,8 @@
                     </div>
                 </td>
                 {% if forloop.counter|divisibleby:3 %}
-                    </tr>
-                    <tr>
+        </tr>
+        <tr>
                 {% endif %}
             {% endfor %}
         </tr>
