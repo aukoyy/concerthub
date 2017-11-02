@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <h1>CONTACT INFORMATION</h1>
+    <table class="table">
+        <tr>
+            <th>Artist</th>
+            <th>Contact information</th>
+        </tr>
+        {% for concert in concerts %}
+        <tr>
+            <td>{{ concert.artist }}</td>
+            <td>{{ concert.artist.contact_info }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>SALES NUMBERS</h1>
+    <table class="table">
+        <tr>
+            <th>Artist</th>
+            <th>Available tickets</th>
+            <th>Sold tickets</th>
+            <th>Costs</th>
+            <th>Revenue</th>
+        </tr>
+        {% for concert in concerts %}
+        <tr>
+            <td>{{ concert.artist }}</td>
+            <td>{{ concert.time_slot.stage.audience_cap }}</td>
+            <td>{{ concert.artist.sold_tickets }}</td>
+            <td>{{ concert.costs }}</td>
+            <td>{{ concert.revenue }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>PRESS REVIEW</h1>
+    <table class="table">
+        <tr>
+            <th>Artist</th>
+            <th>Press review</th>
+        </tr>
+        {% for concert in concerts %}
+        <tr>
+            <td>{{ concert.artist }}</td>
+            <td>{{ concert.artist.artist_rev }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

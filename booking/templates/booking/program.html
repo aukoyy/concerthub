@@ -24,6 +24,26 @@
             {% endfor %}
         </table>
     </div>
+
+
+    {% for group in request.user.groups.all %}
+        {% if group.name == 'pr_man' %}
+            <h1>Reviews</h1>
+            <div class ="container">
+                <table class="table">
+                    <tr>
+                        <th>Artist</th>
+                        <th>Review</th>
+                    </tr>
+                    {% for concert in concerts %}
+                        <tr>
+                            <td> {{ concert.artist }} </td>
+                            <td> {{ concert.artist.artist_rev }} </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+    {% endfor %}
+
 {% endblock content %}
-
-
