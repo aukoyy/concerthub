@@ -2,9 +2,9 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<h1>Sent booking offers <a style="float: right" class="btn btn-primary btn-lg" href="{% url 'bookingoffer_new' %}">New BookingOffer</a> </h1>
-
-<h1>SENT BOOKING OFFERS</h1>
+<br>
+<h1>SENT BOOKING OFFERS <a style="float: right" class="btn btn-primary btn-lg" href="{% url 'bookingoffer_new' %}">New BookingOffer</a> </h1>
+<br>
     <table class="table">
         <tr>
             {% for offer in booking_offers %}
