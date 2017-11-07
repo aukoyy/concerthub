@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}" />
 
     <h1 class="title1">Bookingoffers</h1>
+    <p>Press</p>
     <table class="table">
         <tr>
             <th>Artist</th>
@@ -23,9 +24,15 @@
                 <td> {{ offer.time_slot.start_date }}</td>
                 <td> {{ offer.price }}</td>
                 <td> {{ offer.comment }}</td>
-                <td> {{ offer.tech_needs }}</td>
-                <td> {{ offer.accepted_by_am }}</td>
-                <td><a href="{{ offer.id }}/update" class="btn btn-primary">Edit</a></td>
+                
+                {% if offer.tech_needs %}
+                    <td><a href="{{ offer.id }}/update">{{ offer.tech_needs }}</a></td>
+                {% else %}
+                    <td><a href="{{ offer.id }}/update" class="btn btn-primary">Add</a></td>
+                {% endif %}
+
+                <td><a href="{{ offer.id }}/update">{{ offer.accepted_by_am }}</a></td>
+                <!--<td><a href="{{ offer.id }}/update" class="btn btn-primary">Add tech needs / Accept</a></td>-->
             </tr>
             {% endif %}
         {% endfor %}
