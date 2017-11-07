@@ -219,7 +219,6 @@ class BookingCreate(CreateView):
 
     fields = [
         'artist',
-        'artist_manager',
         'comment',
         'time_slot',
         'price',
