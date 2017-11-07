@@ -24,7 +24,7 @@
                 <td> {{ offer.time_slot.start_date }}</td>
                 <td> {{ offer.price }}</td>
                 <td> {{ offer.comment }}</td>
-                
+
                 {% if offer.tech_needs %}
                     <td><a href="{{ offer.id }}/update">{{ offer.tech_needs }}</a></td>
                 {% else %}

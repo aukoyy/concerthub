@@ -9,7 +9,7 @@ class Artist(models.Model):
     genre = models.ForeignKey('Genre', null=True, blank=True)
     artist_manager = models.ForeignKey(User, null=True, related_name='artist_manager',
                                        limit_choices_to={'groups__name': 'artist_manager'})
-    artist_rev = models.TextField(blank=True)
+    artist_review = models.TextField(blank=True)
     contact_info = models.CharField(max_length=120, blank=True)
 
     def __str__(self):
