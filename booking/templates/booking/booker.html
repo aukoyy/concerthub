@@ -37,4 +37,23 @@
         </tr>
         {% endfor %}
     </table>
+
+    <h1 class="title1">Reviews for booked artists</h1>
+    <table class ="table">
+        <tr>
+            <th>Artist</th>
+            <th>Review</th>
+            <th></th>
+        </tr>
+        {% for artist in distinct_offers %}
+        <tr>
+            <td>{{ artist }}</td>
+            <td>{{ artist.artist_rev }} <td>
+            <td><a href="artist/{{ artist.id }}/updater" class="btn btn-primary">Edit this review</a></td>
+
+        </tr>
+        {% endfor %}
+
+
+    </table>
 {% endblock content %}

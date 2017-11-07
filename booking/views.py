@@ -133,9 +133,15 @@ def booker_view(request):
     template_name = 'booking/booker.html'
 
     booking_offer_objs = User.objects.get(username=request.user).booker.all()
+    print(booking_offer_objs[0].artist.artist_rev)
+    distinct_offers = []
+    for offer in booking_offer_objs:
+        if offer.artist not in distinct_offers:
+            distinct_offers.append(offer.artist)
 
     context = {
         'bookingoffers': booking_offer_objs,
+        'distinct_offers': distinct_offers,
     }
     return render(request, template_name, context)
 
@@ -273,6 +279,15 @@ class UpdateArtistReview(UpdateView):
     ]
     success_url = '/booking/booking_overview'
 
+
+class UpdateBookerArtistReview(UpdateView):
+    model = Artist
+    template_name = 'booking/model_update_form.html'
+
+    fields = [
+        'artist_rev',
+    ]
+    success_url = '/booking/booking'
 
 
 class TechMeetupUpdate(UpdateView):
