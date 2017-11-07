@@ -1,5 +1,5 @@
 """
-WSGI config for conserthub project.
+WSGI config for concerthub project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
