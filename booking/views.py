@@ -133,7 +133,6 @@ def booker_view(request):
     template_name = 'booking/booker.html'
 
     booking_offer_objs = User.objects.get(username=request.user).booker.all()
-    print(booking_offer_objs[0].artist.artist_rev)
     distinct_offers = []
     for offer in booking_offer_objs:
         if offer.artist not in distinct_offers:
@@ -279,7 +278,7 @@ class UpdateBookerArtistReview(UpdateView):
     template_name = 'booking/model_update_form.html'
 
     fields = [
-        'artist_rev',
+        'artist_review',
     ]
     success_url = '/booking/booking'
 
