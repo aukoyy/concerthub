@@ -192,7 +192,7 @@ def artist_manager_view(request):
 
 class TimeSlotCreate(CreateView):
     model = TimeSlot
-    template_name = 'booking/bookingmodel_create_form.html'
+    template_name = 'booking/model_create_form.html'
     form_class = TimeSlotForm
 
     success_url = '/booking/booking_overview'
@@ -200,7 +200,7 @@ class TimeSlotCreate(CreateView):
 
 class TimeSlotUpdate(UpdateView):
     model = TimeSlot
-    template_name = 'booking/bookingmodel_update_form.html'
+    template_name = 'booking/model_update_form.html'
     form_class = TimeSlotForm
 
     success_url = '/booking/booking_overview'
@@ -208,7 +208,7 @@ class TimeSlotUpdate(UpdateView):
 
 class TimeSlotDelete(DeleteView):
     model = TimeSlot
-    template_name = 'booking/bookingmodel_delete_form.html'
+    template_name = 'booking/model_delete_form.html'
     success_url = '/booking/booking_overview'
 
 
@@ -225,7 +225,7 @@ class BookingCreate(CreateView):
         'tech_needs',
         'booker',
     ]
-    success_url = '/booking/booking'
+    success_url = '/booking/booking '
 
 
 class BookingDelete(DeleteView):
