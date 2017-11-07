@@ -11,6 +11,7 @@ from .views import (
     BookingUpdateArtistManager,
     BookingUpdateBooker,
     BookingDelete,
+    UpdateBookerArtistReview,
 
     accept_booking,
     decline_booking,
@@ -36,6 +37,7 @@ urlpatterns = [
     url(r'^new$', BookingCreate.as_view(), name='bookingoffer_new'),
     url(r'^booking/(?P<pk>\w+)/update/$', BookingUpdateBooker.as_view()),
     url(r'^booking/(?P<pk>\w+)/delete/$', BookingDelete.as_view()),
+    url(r'^booking/artist/(?P<pk>\w+)/updater/$', UpdateBookerArtistReview.as_view()),
 
     # booking_manager view, TimeSlot logic and accept/decline logic for BookingOffer
     url(r'^booking_overview/$', booking_manager_view, name='booking_manager_view'),
