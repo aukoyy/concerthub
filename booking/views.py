@@ -225,7 +225,7 @@ class BookingCreate(CreateView):
         'tech_needs',
         'booker',
     ]
-    success_url = '/booking/booking '
+    success_url = '/booking/booking'
 
 
 class BookingDelete(DeleteView):
