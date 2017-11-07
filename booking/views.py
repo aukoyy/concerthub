@@ -176,15 +176,10 @@ def technician_view(request):
 def artist_manager_view(request):
     template_name = "booking/artist_manager.html"
 
-    # artist_objs = User.objects.get(username=request.user).artist.all()
-    # TODO: Filter offers by username of artist_manager
-    # bookingoffer_objs = BookingOffer.objects.all()
-    concert_objs = User.objects.get(username=request.user).artist_man.all()
-    bookingoffer_objs = User.objects.get(username=request.user).bookingoffer_set.all()
-    # BookingOffer.objects.filter(artist_manager__name__icontains='auk')  # get(concert_manager=request.user)
+    concert_objs = Concert.objects.filter(artist__artist_manager=request.user)
+    bookingoffer_objs = BookingOffer.objects.filter(artist__artist_manager=request.user)
 
     context = {
-        # 'artists': artist_objs,
         'bookingoffers': bookingoffer_objs,
         'concerts': concert_objs,
     }
@@ -254,7 +249,6 @@ class BookingUpdateBooker(UpdateView):
 
     fields = [
         'artist',
-        'artist_manager',
         'comment',
         'time_slot',
         'price',
