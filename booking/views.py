@@ -176,7 +176,7 @@ def technician_view(request):
 def artist_manager_view(request):
     template_name = "booking/artist_manager.html"
 
-    concert_objs = request.user.artist_man.all()
+    concert_objs = Concert.objects.filter(artist__artist_manager=request.user)
     bookingoffer_objs = BookingOffer.objects.filter(artist__artist_manager=request.user)
 
     context = {
@@ -249,7 +249,6 @@ class BookingUpdateBooker(UpdateView):
 
     fields = [
         'artist',
-        'artist_manager',
         'comment',
         'time_slot',
         'price',
