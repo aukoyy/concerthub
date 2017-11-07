@@ -18,7 +18,6 @@ class Artist(models.Model):
 
 class BookingOffer(models.Model):
     artist = models.ForeignKey(Artist, null=True, related_name='artist')
-    artist_manager = models.ForeignKey(User, default=1, limit_choices_to={'groups__name': 'artist_manager'})
     comment = models.TextField(max_length=120, blank=True)
     time_slot = models.ForeignKey('TimeSlot', null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
@@ -43,7 +42,6 @@ class Concert(models.Model):
     artist = models.ForeignKey(Artist)
     time_slot = models.OneToOneField('TimeSlot', null=True, blank=True,)
                                      # limit_choices_to={'concert': True})
-    artist_manager = models.ForeignKey(User, default=1, limit_choices_to={'groups__name': 'artist_manager'}, related_name='artist_man')
     description = models.TextField(max_length=120, null=False, blank=True)
     technicians = models.ManyToManyField(User, blank=True, limit_choices_to={'groups__name': 'technician'})
     contact_person = models.ManyToManyField(User, blank=True, limit_choices_to={'groups__name': 'technician'}, related_name='contact')
