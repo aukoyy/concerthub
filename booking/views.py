@@ -267,7 +267,7 @@ class UpdateArtistReview(UpdateView):
     template_name = 'booking/model_update_form.html'
 
     fields = [
-        'artist_rev',
+        'artist_review',
     ]
     success_url = '/booking/booking_overview'
 
