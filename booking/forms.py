@@ -4,6 +4,11 @@ from .models import TimeSlot
 
 
 class TimeSlotForm(forms.ModelForm):
+    start_date = forms.DateField(required=True, label="Start Date", widget=forms.SelectDateWidget)
+    end_date = forms.DateField(required=True, label="End Date", widget=forms.SelectDateWidget)
+    start_time = forms.TimeField(required=True, label="Start Time", widget=forms.TextInput({"placeholder": " H : M "}))
+    end_time = forms.TimeField(required=True, label="End_Time", widget=forms.TextInput({"placeholder": " H : M "}))
+
     class Meta:
         model = TimeSlot
         fields = [
