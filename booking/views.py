@@ -225,14 +225,14 @@ class BookingCreate(CreateView):
         'tech_needs',
         'booker',
     ]
-    success_url = '/booking/booking'
+    success_url = '/booking/program'
 
 
 class BookingDelete(DeleteView):
     model = BookingOffer
 
     template_name = 'booking/model_delete_form.html'
-    success_url = '/booking/booking'
+    success_url = '/booking/program'
 
 
 class BookingUpdateArtistManager(UpdateView):
@@ -259,7 +259,7 @@ class BookingUpdateBooker(UpdateView):
         'tech_needs',
         'booker',
     ]
-    success_url = '/booking/booking'
+    success_url = '/booking/program'
 
 
 class UpdateArtistReview(UpdateView):
@@ -279,7 +279,7 @@ class UpdateBookerArtistReview(UpdateView):
     fields = [
         'artist_review',
     ]
-    success_url = '/booking/booking'
+    success_url = '/booking/program'
 
 
 class TechMeetupUpdate(UpdateView):
