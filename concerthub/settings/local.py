@@ -26,7 +26,7 @@ SECRET_KEY = '8m^p(c-)&behz4u0rkoxtp@y_k+&its400h3vk5sysvm)wk-yh'
 DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'isbjornt.herokuapp.com']
 
 # Application definition
 
