@@ -3,6 +3,12 @@
 {% load static %}
 {% block content %}
 
+    <style>
+        .post-explain-box {
+            margin: 4em;
+        }
+    </style>
+
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:100%">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -29,6 +35,51 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+    </div>
+
+
+    <div class="post-explain-box">
+        <h1>Explanation</h1>
+        <p>This is a student project by students at NTNU Trondheim built in automn of year two</p>
+        <p>The project focuses on development process and scrum. Together with this site is a lot of documentation,
+        and most notably an extensive group report as well as a personal report. A's and B's where received as a result</p>
+        <p>The project is built with html, css, bootstrap, js, python/django with PostgreSQL as database and published on heroku</p>
+        <a href="{% static 'IT1901_Gruppe09_rapport.pdf' %}" target="_blank"><h4>Link to report/documentation</h4></a>
+
+        <h2>Project</h2>
+        <p>The task of the project was to make an internal portal for information and personnel management for
+        a fictional event company for the planning and doing of concerts and festivals</p>
+        <p>Functions thus include management for scheduling concerts and venues, technicians and artists.</p>
+
+        <h2>Dummy Data</h2>
+        <p>It is possible to log in as the different roles in order to explore the functionality on the site</p>
+        <p>admin:<br>
+            Admin access is limited, ask the Isbjørn<br>
+            <br>
+            <br>
+            organizer:<br>
+            org1 / org1_pass<br>
+            orgx / orgx_pass<br>
+            <br>
+            booking_manager:<br>
+            bman1 / bman1_pass<br>
+            bmanx / bmanx_pass<br>
+            <br>
+            booker:<br>
+            book1 / book1_pass<br>
+            bookx / bookx_pass<br>
+            <br>
+            technician:<br>
+            tech1 / tech1_pass<br>
+            techx / techx_pass<br>
+            <br>
+            artist_manager:<br>
+            aman1 / aman1_pass<br>
+            amanx / amanx_pass<br>
+            <br>
+            pr_man:<br>
+            pr1 / pr1_pass<br>
+            prx / prx_pass</p>
     </div>
 
 {% endblock content %}
